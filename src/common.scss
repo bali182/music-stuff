@@ -1,0 +1,38 @@
+$borderColor: #c9cfd6;
+$headerColor: #eaedef;
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src:
+    url('~typeface-poppins/files/poppins-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+    url('~typeface-poppins/files/poppins-latin-300.woff') format('woff'); /* Modern Browsers */
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src:
+    url('~typeface-poppins/files/poppins-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+    url('~typeface-poppins/files/poppins-latin-700.woff') format('woff'); /* Modern Browsers */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  color: #444;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+}
+
+@mixin flexContainer($flex-direction: row, $justify-content: center, $align-items: center, $align-content: center) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  align-content: $align-content;
+}

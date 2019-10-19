@@ -4,13 +4,13 @@ import { FretBoardContext } from './FretboardContext'
 
 const stringStyle = (thickness: number, spacing: number) =>
   css({
+    label: 'instrument-string',
     backgroundColor: '#ccc',
     height: `${thickness}px`,
     marginBottom: `${spacing - thickness / 2}px`,
     ':last-child': {
       marginBottom: '0px',
     },
-    label: 'instrument-string',
   })
 
 export type InstrumentStringProps = {

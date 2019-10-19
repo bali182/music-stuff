@@ -6,11 +6,11 @@ import { getFretboardWidth } from './utils'
 
 const fretboardStyle = (width: number) =>
   css({
+    label: 'fretboard',
     background: 'white',
     position: 'relative',
     width: `${width}px`,
     margin: 'auto',
-    label: 'fretboard',
   })
 
 export type FretboardProps = Partial<FretboardContexType> & {

@@ -1,5 +1,27 @@
 import React from 'react'
+import range from 'lodash/range'
 import { render } from 'react-dom'
-import { RandomNote } from './RandomNote/RandomNote'
+import { Fretboard } from './Fretboard/Fretboard'
+import { Frets } from './Fretboard/Frets'
+import { Fret } from './Fretboard/Fret'
+import { InstrumentStrings } from './Fretboard/InstrumentStrings'
+import { InstrumentString } from './Fretboard/InstrumentString'
 
-render(<RandomNote timer={10000} />, document.getElementById('root'))
+render(
+  <Fretboard>
+    <Frets>
+      {range(1, 22 + 1).map((fret) => (
+        <Fret fretNumber={fret} key={fret} />
+      ))}
+    </Frets>
+    <InstrumentStrings>
+      <InstrumentString thickness={1} />
+      <InstrumentString thickness={1} />
+      <InstrumentString thickness={2} />
+      <InstrumentString thickness={3} />
+      <InstrumentString thickness={3} />
+      <InstrumentString thickness={4} />
+    </InstrumentStrings>
+  </Fretboard>,
+  document.getElementById('root')
+)

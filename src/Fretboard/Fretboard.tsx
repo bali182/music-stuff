@@ -1,28 +1,45 @@
 import React, { PureComponent, ReactNode } from 'react'
+import isNil from 'lodash/isNil'
 import { css } from 'emotion'
-import { FretBoardContext } from './FretboardContext'
+import { FretBoardContext, FretboardContexType } from './FretboardContext'
+import { getFretboardWidth } from './utils'
 
-const fretboardStyle = css({
-  background: 'white',
-  position: 'relative',
-})
+const fretboardStyle = (width: number) =>
+  css({
+    background: 'white',
+    position: 'relative',
+    width: `${width}px`,
+    margin: 'auto',
+    label: 'fretboard',
+  })
 
-export type FretboardProps = {
+export type FretboardProps = Partial<FretboardContexType> & {
   children: ReactNode
-  stringSpacing?: number
-  numberOfFrets?: number
-  firstFretWidth?: number
-  lastFretWidth?: number
 }
 
 export class Fretboard extends PureComponent<FretboardProps> {
   render() {
-    const { firstFretWidth, stringSpacing, numberOfFrets, lastFretWidth, children } = this.props
+    const {
+      firstFretWidth,
+      stringSpacing,
+      numberOfFrets,
+      lastFretWidth,
+      firstVisibleFret,
+      lastVisibleFret,
+      children,
+    } = this.props
+
+    const context: FretboardContexType = {
+      firstFretWidth,
+      stringSpacing,
+      numberOfFrets,
+      lastFretWidth,
+      firstVisibleFret,
+      lastVisibleFret: isNil(lastVisibleFret) ? numberOfFrets : lastVisibleFret,
+    }
     return (
-      <div className={fretboardStyle}>
-        <FretBoardContext.Provider value={{ firstFretWidth, stringSpacing, numberOfFrets, lastFretWidth }}>
-          {children}
-        </FretBoardContext.Provider>
+      <div className={fretboardStyle(getFretboardWidth(context))}>
+        <FretBoardContext.Provider value={context}>{children}</FretBoardContext.Provider>
       </div>
     )
   }
@@ -32,5 +49,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
     lastFretWidth: 12,
     numberOfFrets: 22,
     stringSpacing: 14,
+    firstVisibleFret: 0,
+    lastVisibleFret: null,
   }
 }

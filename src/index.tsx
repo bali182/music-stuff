@@ -10,7 +10,7 @@ import { InstrumentString } from './Fretboard/InstrumentString'
 render(
   <Fretboard>
     <Frets>
-      {range(1, 22 + 1).map((fret) => (
+      {range(0, 22).map((fret) => (
         <Fret fretNumber={fret} key={fret} />
       ))}
     </Frets>

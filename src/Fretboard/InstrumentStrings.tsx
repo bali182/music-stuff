@@ -4,9 +4,10 @@ import { css } from 'emotion'
 const stringsStyle = css({
   position: 'relative',
   width: '100%',
-  paddingTop: '10px',
-  paddingBottom: '10px',
+  paddingTop: '8px',
+  paddingBottom: '8px',
   zIndex: 10,
+  label: 'instrument-strings'
 })
 
 export type InstrumentStringsProps = {

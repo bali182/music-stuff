@@ -5,6 +5,8 @@ export type FretboardContexType = {
   numberOfFrets: number
   firstFretWidth: number
   lastFretWidth: number
+  firstVisibleFret: number
+  lastVisibleFret: number
 }
 
 export const FretBoardContext = createContext<FretboardContexType>({
@@ -12,4 +14,6 @@ export const FretBoardContext = createContext<FretboardContexType>({
   numberOfFrets: 22,
   firstFretWidth: 60,
   lastFretWidth: 12,
+  firstVisibleFret: 0,
+  lastVisibleFret: null,
 })

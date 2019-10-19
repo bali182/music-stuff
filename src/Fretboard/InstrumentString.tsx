@@ -10,6 +10,7 @@ const stringStyle = (thickness: number, spacing: number) =>
     ':last-child': {
       marginBottom: '0px',
     },
+    label: 'instrument-string',
   })
 
 export type InstrumentStringProps = {

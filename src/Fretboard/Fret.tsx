@@ -1,18 +1,34 @@
 import React, { PureComponent } from 'react'
 import { css } from 'emotion'
 import { FretBoardContext } from './FretboardContext'
+import { getFretWidth } from './utils'
 
-const fretStyle = (margin: number) =>
+const fretStyle = (width: number) =>
   css({
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: `${width}px`,
     height: '100%',
-    width: '5px',
-    backgroundColor: '#999',
-    borderRadius: '5px',
-    marginRight: margin,
-    ':last-child': {
-      marginRight: '0px',
-    },
+    label: 'fret',
   })
+
+const fretWireStyle = css({
+  height: '100%',
+  width: '5px',
+  backgroundColor: '#999',
+  borderRadius: '5px',
+  label: 'fret-wire',
+})
+
+const nutStyle = css({
+  height: '100%',
+  width: '8px',
+  backgroundColor: '#e3dac9',
+  borderRadius: '3px',
+  marginLeft: '1px',
+  label: 'nut',
+})
 
 export type FretProps = {
   fretNumber: number
@@ -23,16 +39,15 @@ export class Fret extends PureComponent<FretProps> {
     const { fretNumber } = this.props
     return (
       <FretBoardContext.Consumer>
-        {({ firstFretWidth, lastFretWidth, numberOfFrets }) => (
-          <div
-            className={fretStyle(this.linearInterpolation(firstFretWidth, lastFretWidth, fretNumber / numberOfFrets))}
-          />
-        )}
+        {(context) => {
+          const width = getFretWidth(context)(fretNumber)
+          return (
+            <div className={fretStyle(width)}>
+              <div className={fretNumber === 0 ? nutStyle : fretWireStyle} />
+            </div>
+          )
+        }}
       </FretBoardContext.Consumer>
     )
-  }
-
-  private linearInterpolation(start: number, end: number, fret: number): number {
-    return (1 - fret) * start + fret * end
   }
 }

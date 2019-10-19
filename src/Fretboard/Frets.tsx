@@ -10,6 +10,7 @@ const fretsStyle = css({
   left: '0px',
   bottom: '4px',
   right: '0px',
+  label: 'frets'
 })
 
 export type FretsProps = {

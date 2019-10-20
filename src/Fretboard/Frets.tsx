@@ -1,5 +1,10 @@
 import React, { PureComponent, ReactNode } from 'react'
 import { css } from 'emotion'
+import { FretboardContext, FretboardContexType } from './FretboardContext'
+import range from 'lodash/range'
+import { Fret } from './Fret'
+
+export const FretOverhang = 5
 
 const fretsStyle = css({
   display: 'flex',
@@ -7,19 +12,23 @@ const fretsStyle = css({
   flexDirection: 'row',
   position: 'absolute',
   top: '3px',
-  left: '0px',
+  left: `${FretOverhang}px`,
   bottom: '3px',
-  right: '0px',
-  label: 'frets'
+  right: `-${FretOverhang}px`,
+  label: 'frets',
 })
 
-export type FretsProps = {
-  children: ReactNode
-}
+export type FretsProps = {}
 
 export class Frets extends PureComponent<FretsProps> {
   render() {
-    const { children } = this.props
-    return <div className={fretsStyle}>{children}</div>
+    return (
+      <div className={fretsStyle}>
+        <FretboardContext.Consumer>{(context) => this.renderFrets(context)}</FretboardContext.Consumer>
+      </div>
+    )
+  }
+  private renderFrets(context: FretboardContexType) {
+    return range(context.firstVisibleFret, context.lastVisibleFret).map((fret) => <Fret fret={fret} key={fret} />)
   }
 }

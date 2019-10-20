@@ -5,4 +5,4 @@ export enum BassString {
   G = 'G',
 }
 
-export const GuitarStrings = [BassString.E, BassString.A, BassString.D, BassString.G]
+export const BassStrings = [BassString.E, BassString.A, BassString.D, BassString.G]

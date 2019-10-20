@@ -23,14 +23,14 @@ const dotStyle = css({
 })
 
 export type FretDotProps = {
-  fretNumber: number
+  fret: number
 }
 
 export class FretDot extends PureComponent<FretDotProps> {
   render() {
-    const { fretNumber } = this.props
-    const mod12 = (fretNumber + 1) % 12
-    if (fretNumber !== 0 && mod12 === 0) {
+    const { fret } = this.props
+    const mod12 = (fret + 1) % 12
+    if (fret !== 0 && mod12 === 0) {
       return (
         <div className={dotContainerStyle}>
           <div className={dotStyle} />

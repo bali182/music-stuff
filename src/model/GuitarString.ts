@@ -8,10 +8,10 @@ export enum GuitarString {
 }
 
 export const GuitarStrings = [
-  GuitarString.E6,
-  GuitarString.A,
-  GuitarString.D,
-  GuitarString.G,
-  GuitarString.B,
   GuitarString.E1,
+  GuitarString.B,
+  GuitarString.G,
+  GuitarString.D,
+  GuitarString.A,
+  GuitarString.E6,
 ]

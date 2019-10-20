@@ -26,10 +26,12 @@ export class Fretboard extends PureComponent<FretboardProps> {
       lastFretWidth,
       firstVisibleFret,
       lastVisibleFret,
+      strings,
       children,
     } = this.props
 
     const context: FretboardContexType = {
+      strings,
       firstFretWidth,
       stringSpacing,
       numberOfFrets,
@@ -50,6 +52,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
     numberOfFrets: 22,
     stringSpacing: 18,
     firstVisibleFret: 0,
+    strings: [],
     lastVisibleFret: null,
   }
 }

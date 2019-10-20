@@ -1,5 +1,8 @@
-import React, { PureComponent, ReactNode } from 'react'
+import React, { PureComponent } from 'react'
 import { css } from 'emotion'
+import { FretboardContext, FretboardContexType } from './FretboardContext'
+import { InstrumentString } from './InstrumentString'
+import { getStringThickness } from './utils'
 
 const stringsStyle = css({
   label: 'instrument-strings',
@@ -10,13 +13,19 @@ const stringsStyle = css({
   zIndex: 2,
 })
 
-export type InstrumentStringsProps = {
-  children: ReactNode
-}
+export type InstrumentStringsProps = {}
 
 export class InstrumentStrings extends PureComponent<InstrumentStringsProps> {
   render() {
-    const { children } = this.props
-    return <div className={stringsStyle}>{children}</div>
+    return (
+      <div className={stringsStyle}>
+        <FretboardContext.Consumer>{(context) => this.renderStrings(context)}</FretboardContext.Consumer>
+      </div>
+    )
+  }
+  private renderStrings(context: FretboardContexType) {
+    return context.strings.map((string) => {
+      return <InstrumentString thickness={getStringThickness(string)} key={string.toString()} />
+    })
   }
 }

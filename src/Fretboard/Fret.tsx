@@ -33,21 +33,21 @@ const nutStyle = css({
 })
 
 export type FretProps = {
-  fretNumber: number
+  fret: number
 }
 
 export class Fret extends PureComponent<FretProps> {
   render() {
-    const { fretNumber } = this.props
+    const { fret } = this.props
     return (
       <FretboardContext.Consumer>
         {(context) => {
-          const width = getFretWidth(context)(fretNumber)
-          const separatorStyle = fretNumber === 0 ? nutStyle : fretWireStyle
+          const width = getFretWidth(context)(fret)
+          const separatorStyle = fret === 0 ? nutStyle : fretWireStyle
           return (
             <div className={fretStyle(width)}>
               <div className={separatorStyle} />
-              <FretDot fretNumber={fretNumber} />
+              <FretDot fret={fret} />
             </div>
           )
         }}

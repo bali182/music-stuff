@@ -7,6 +7,7 @@ import { BassString } from '../model/BassString'
 
 export const DefaultColors = {
   red: '#ca3433',
+  gray: '#808080',
 }
 
 export type FrettedNoteProps = {

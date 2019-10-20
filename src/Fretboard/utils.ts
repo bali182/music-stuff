@@ -2,6 +2,7 @@ import { FretboardContexType } from './FretboardContext'
 import range from 'lodash/range'
 import { GuitarString } from '../model/GuitarString'
 import { BassString } from '../model/BassString'
+import { sum } from '../utils'
 
 function linearInterpolation(start: number, end: number, fret: number): number {
   return (1 - fret) * start + fret * end
@@ -33,7 +34,7 @@ export const getFretWidth = (context: FretboardContexType) => (fret: number) => 
 export const getPartialFretboardWidth = (context: FretboardContexType) => (firstFret: number, lastFret: number) => {
   return range(firstFret, lastFret)
     .map(getFretWidth(context))
-    .reduce((fullFretWidth, width) => fullFretWidth + width, 0)
+    .reduce(sum, 0)
 }
 
 export const getFretboardWidth = (context: FretboardContexType): number => {

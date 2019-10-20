@@ -3,6 +3,9 @@ import isNil from 'lodash/isNil'
 import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
 import { getFretboardWidth } from './utils'
+import { InstrumentStrings } from './InstrumentStrings'
+import { Frets } from './Frets'
+import { FrettedNotes } from './FrettedNotes'
 
 const fretboardStyle = (width: number) =>
   css({
@@ -10,7 +13,7 @@ const fretboardStyle = (width: number) =>
     background: 'white',
     position: 'relative',
     width: `${width}px`,
-    margin: 'auto',
+    margin: '20px auto 20px auto'
   })
 
 export type FretboardProps = Partial<FretboardContexType> & {
@@ -43,7 +46,11 @@ export class Fretboard extends PureComponent<FretboardProps> {
     }
     return (
       <div className={fretboardStyle(getFretboardWidth(context))}>
-        <FretboardContext.Provider value={context}>{children}</FretboardContext.Provider>
+        <FretboardContext.Provider value={context}>
+          <Frets />
+          <InstrumentStrings />
+          <FrettedNotes>{children}</FrettedNotes>
+        </FretboardContext.Provider>
       </div>
     )
   }

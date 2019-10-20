@@ -40,8 +40,13 @@ export const getPartialFretboardWidth = (context: FretboardContexType) => (first
 export const getFretboardWidth = (context: FretboardContexType): number => {
   return (
     getPartialFretboardWidth(context)(context.firstVisibleFret, context.lastVisibleFret) +
-    2 * getStringOverhang(context)
+    2 * getStringOverhang(context) +
+    getFretboardLeftSpacing(context)
   )
+}
+
+export const getFretboardLeftSpacing = (context: FretboardContexType): number => {
+  return context.firstVisibleFret === 0 ? getFrettedNoteSize(context) : 0
 }
 
 export const getStringOverhang = (context: FretboardContexType): number => {
@@ -56,18 +61,22 @@ export const getFrettedNoteSize = (context: FretboardContexType) => {
   return context.stringSpacing - 2
 }
 
-export const getFrettedNotePosition = (context: FretboardContexType) => (
-  string: GuitarString | BassString,
-  fret: number
-): [number, number] => {
-  const fretWidth = getFretWidth(context)(fret)
+export const getFrettedNoteTop = (context: FretboardContexType) => (string: GuitarString | BassString): number => {
   const stringIndex = context.strings.indexOf(string)
+  const top = context.stringSpacing * stringIndex
+  return top
+}
+
+export const getFrettedNoteLeft = (context: FretboardContexType) => (fret: number): number => {
+  const fretWidth = getFretWidth(context)(fret)
   const frettedNoteSize = getFrettedNoteSize(context)
   const partialFretboardWidth = getPartialFretboardWidth(context)(context.firstVisibleFret, fret)
-  const top = context.stringSpacing * stringIndex
-  const left =
-    fret === 0
-      ? -frettedNoteSize
-      : partialFretboardWidth - fretWidth / 2 - frettedNoteSize / 2 + getStringOverhang(context)
-  return [top, left]
+  let left = partialFretboardWidth - fretWidth / 2 - frettedNoteSize / 2 + getStringOverhang(context)
+  if (fret === 0) {
+    return getStringOverhang(context)
+  }
+  if (context.firstVisibleFret === 0) {
+    left += getFretboardLeftSpacing(context)
+  }
+  return left
 }

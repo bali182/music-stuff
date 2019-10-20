@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
-import { getFrettedNotePosition, getFrettedNoteSize } from './utils'
+import { getFrettedNoteSize, getFrettedNoteTop, getFrettedNoteLeft } from './utils'
 import { GuitarString } from '../model/GuitarString'
 import { BassString } from '../model/BassString'
 
@@ -29,7 +29,8 @@ export class FrettedNote extends PureComponent<FrettedNoteProps> {
 
   noteStyle(context: FretboardContexType) {
     const { color, fret, string } = this.props
-    const [top, left] = getFrettedNotePosition(context)(string, fret)
+    const top = getFrettedNoteTop(context)(string)
+    const left = getFrettedNoteLeft(context)(fret)
     const size = getFrettedNoteSize(context)
     return css({
       label: 'fretted-note',

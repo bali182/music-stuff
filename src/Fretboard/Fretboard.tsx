@@ -2,19 +2,10 @@ import React, { PureComponent, ReactNode } from 'react'
 import isNil from 'lodash/isNil'
 import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
-import { getFretboardWidth } from './utils'
+import { getFretboardWidth, getFretboardLeftSpacing, getStringOverhang } from './utils'
 import { InstrumentStrings } from './InstrumentStrings'
 import { Frets } from './Frets'
 import { FrettedNotes } from './FrettedNotes'
-
-const fretboardStyle = (width: number) =>
-  css({
-    label: 'fretboard',
-    background: 'white',
-    position: 'relative',
-    width: `${width}px`,
-    margin: '20px auto 20px auto'
-  })
 
 export type FretboardProps = Partial<FretboardContexType> & {
   children: ReactNode
@@ -45,7 +36,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
       lastVisibleFret: isNil(lastVisibleFret) ? numberOfFrets : lastVisibleFret,
     }
     return (
-      <div className={fretboardStyle(getFretboardWidth(context))}>
+      <div className={this.getFretboardStyle(context)}>
         <FretboardContext.Provider value={context}>
           <Frets />
           <InstrumentStrings />
@@ -55,7 +46,20 @@ export class Fretboard extends PureComponent<FretboardProps> {
     )
   }
 
-  static defaultProps: Partial<FretboardProps> = {
+  getFretboardStyle(context: FretboardContexType) {
+    const width = getFretboardWidth(context)
+    const stringOverhang = getStringOverhang(context)
+    return css({
+      label: 'fretboard',
+      background: 'white',
+      position: 'relative',
+      width: `${width + stringOverhang}px`,
+      overflow: 'hidden',
+    })
+  }
+
+  static defaultProps: FretboardContexType = {
+    dots: true,
     firstFretWidth: 70,
     lastFretWidth: 12,
     numberOfFrets: 22,

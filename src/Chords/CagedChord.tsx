@@ -1,12 +1,9 @@
 import React, { PureComponent } from 'react'
-import values from 'lodash/values'
 import { Fretboard } from '../Fretboard/Fretboard'
-import { ChordShape, ChordTone } from '../model/ChordShape'
-import { Note } from '../model/Note'
-import { moveChordRoot } from '../model/moveChordRoot'
+import { moveChordRoot } from '../model/moveChordShape'
 import { min, max } from '../utils'
-import { GuitarStrings } from '../model/GuitarString'
 import { FrettedNote, DefaultColors } from '../Fretboard/FrettedNote'
+import { ChordShape, Note, ChordTone, GuitarStrings } from '../model/models'
 
 export type CagedChordProps = {
   shape: ChordShape
@@ -17,8 +14,8 @@ export class CagedChord extends PureComponent<CagedChordProps> {
   render() {
     const { root, shape } = this.props
     const chord = moveChordRoot(shape, root)
-    const firstVisibleFret = max(chord.notes.map((note) => note.fret).reduce(min) - 1, 0)
-    const lastVisibleFret = min(chord.notes.map((note) => note.fret).reduce(max) + 1, 22)
+    const firstVisibleFret = chord.notes.map((note) => note.fret).reduce(min)
+    const lastVisibleFret = chord.notes.map((note) => note.fret).reduce(max)
     return (
       <Fretboard firstVisibleFret={firstVisibleFret} lastVisibleFret={lastVisibleFret} strings={GuitarStrings}>
         {chord.notes.map((note) => (

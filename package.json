@@ -14,6 +14,7 @@
     "build": "yarn run build-scss && webpack --config webpack.prod.js --display-error-details",
     "build-scss": "tcm --pattern src/**/*.module.scss --camelCase",
     "watch-scss": "tcm --pattern src/**/*.module.scss --camelCase --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "jest"
   },
   "dependencies": {

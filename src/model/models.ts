@@ -1,3 +1,21 @@
+export enum GuitarString {
+  E6 = 'E6',
+  A = 'A',
+  D = 'D',
+  G = 'G',
+  B = 'B',
+  E1 = 'E1',
+}
+
+export enum BassString {
+  E = 'E',
+  A = 'A',
+  D = 'D',
+  G = 'G',
+}
+
+export type AnyString = BassString | GuitarString
+
 export enum Note {
   A = 'A',
   ASharp = 'A#',
@@ -21,6 +39,25 @@ export enum Note {
   GSharp = 'G#',
   AFlat = 'Ab',
 }
+export enum ChordTone {
+  Root = 'R',
+  Third = '3',
+  Fifth = '5',
+  Seventh = '7',
+  Ninth = '9',
+}
+
+export type ChordNote = {
+  fret: number
+  tone: ChordTone
+  note: Note
+  string: AnyString
+}
+
+export type ChordShape = {
+  root: Note
+  notes: ChordNote[]
+}
 
 export const Notes = [
   Note.A,
@@ -33,6 +70,7 @@ export const Notes = [
   Note.CSharp,
   Note.DFlat,
   Note.D,
+  Note.DSharp,
   Note.EFlat,
   Note.E,
   Note.ESharp,
@@ -44,7 +82,6 @@ export const Notes = [
   Note.GSharp,
   Note.AFlat,
 ]
-
 
 export const ChromaticScaleFromC = [
   Note.C,
@@ -59,4 +96,15 @@ export const ChromaticScaleFromC = [
   Note.A,
   Note.ASharp,
   Note.B,
+]
+
+export const BassStrings = [BassString.E, BassString.A, BassString.D, BassString.G]
+
+export const GuitarStrings = [
+  GuitarString.E1,
+  GuitarString.B,
+  GuitarString.G,
+  GuitarString.D,
+  GuitarString.A,
+  GuitarString.E6,
 ]

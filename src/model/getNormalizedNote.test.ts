@@ -1,5 +1,5 @@
 import { getNormalizedNote } from './getNormalizedNote'
-import { Notes, ChromaticScaleFromC } from './Note'
+import { Notes, ChromaticScaleFromC } from './models'
 
 describe('getNormalizedNote', () => {
   it('should throw when non-note passed in', () => {

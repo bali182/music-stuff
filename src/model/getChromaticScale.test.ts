@@ -1,5 +1,5 @@
-import { Note, ChromaticScaleFromC } from './Note'
 import { getChromaticScale } from './getChromaticScale'
+import { Note, ChromaticScaleFromC } from './models'
 
 describe('getChromaticScale', () => {
   it('should return the chromatic scale from C', () => {

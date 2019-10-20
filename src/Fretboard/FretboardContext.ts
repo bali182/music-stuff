@@ -1,11 +1,10 @@
 import { createContext } from 'react'
-import { GuitarString } from '../model/GuitarString'
-import { BassString } from '../model/BassString'
+import { AnyString } from '../model/models'
 
 export type FretboardContexType = {
   dots: boolean
   stringSpacing: number
-  strings: (GuitarString | BassString)[]
+  strings: (AnyString)[]
   numberOfFrets: number
   firstFretWidth: number
   lastFretWidth: number

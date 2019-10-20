@@ -1,5 +1,5 @@
-import { Note, ChromaticScaleFromC } from './Note'
 import { getNormalizedNote } from './getNormalizedNote'
+import { Note, ChromaticScaleFromC } from './models'
 
 export function getChromaticScale(root: Note): Note[] {
   const rootNote = getNormalizedNote(root)

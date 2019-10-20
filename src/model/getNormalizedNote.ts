@@ -1,4 +1,4 @@
-import { Note, Notes } from './Note'
+import { Note, Notes } from './models'
 
 export function getNormalizedNote(note: Note): Note {
   if (Notes.indexOf(note) < 0) {

@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react'
 import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
 import { getFrettedNoteSize, getFrettedNoteTop, getFrettedNoteLeft } from './utils'
-import { GuitarString } from '../model/GuitarString'
-import { BassString } from '../model/BassString'
+import { AnyString } from '../model/models'
 
 export const DefaultColors = {
   red: '#ca3433',
@@ -12,7 +11,7 @@ export const DefaultColors = {
 
 export type FrettedNoteProps = {
   label: string
-  string: GuitarString | BassString
+  string: AnyString
   fret: number
   color?: string
 }

@@ -47,7 +47,7 @@ export class Fret extends PureComponent<FretProps> {
           return (
             <div className={fretStyle(width)}>
               <div className={separatorStyle} />
-              <FretDot fret={fret} />
+              {context.dots ? <FretDot fret={fret} /> : null}
             </div>
           )
         }}

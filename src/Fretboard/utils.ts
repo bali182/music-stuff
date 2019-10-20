@@ -55,7 +55,7 @@ export const getFrettedNotePosition = (context: FretboardContexType) => (
     .reduce((fullFretWidth, width) => fullFretWidth + width, 0)
 
   const top = context.stringSpacing * stringIndex + extraTopSpacing
-  const left = partialFretboardWidth - fretWidth / 2 - FrettedNoteSize / 2 + FretOverhang
+  const left = fret === 0 ? -17 : partialFretboardWidth - fretWidth / 2 - FrettedNoteSize / 2 + FretOverhang
 
   return [top, left]
 }

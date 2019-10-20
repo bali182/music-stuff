@@ -20,6 +20,7 @@ export type FretboardProps = Partial<FretboardContexType> & {
 export class Fretboard extends PureComponent<FretboardProps> {
   render() {
     const {
+      dots,
       firstFretWidth,
       stringSpacing,
       numberOfFrets,
@@ -31,6 +32,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
     } = this.props
 
     const context: FretboardContexType = {
+      dots,
       strings,
       firstFretWidth,
       stringSpacing,

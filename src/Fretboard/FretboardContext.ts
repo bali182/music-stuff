@@ -3,6 +3,7 @@ import { GuitarString } from '../model/GuitarString'
 import { BassString } from '../model/BassString'
 
 export type FretboardContexType = {
+  dots: boolean
   stringSpacing: number
   strings: (GuitarString | BassString)[]
   numberOfFrets: number
@@ -13,6 +14,7 @@ export type FretboardContexType = {
 }
 
 export const FretboardContext = createContext<FretboardContexType>({
+  dots: true,
   strings: [],
   stringSpacing: 20,
   numberOfFrets: 22,

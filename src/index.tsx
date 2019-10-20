@@ -8,7 +8,7 @@ import { FrettedNote } from './Fretboard/FrettedNote'
 import { GuitarStrings, GuitarString } from './model/GuitarString'
 
 render(
-  <Fretboard firstVisibleFret={0} lastVisibleFret={13} strings={GuitarStrings}>
+  <Fretboard firstVisibleFret={0} lastVisibleFret={13} strings={GuitarStrings} dots={false}>
     <Frets />
     <InstrumentStrings />
     <FrettedNotes>

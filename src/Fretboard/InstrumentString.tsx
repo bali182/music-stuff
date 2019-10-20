@@ -7,7 +7,7 @@ const stringStyle = (thickness: number, spacing: number) =>
     label: 'instrument-string',
     backgroundColor: '#ccc',
     height: `${thickness}px`,
-    marginBottom: `${spacing - thickness / 2}px`,
+    marginBottom: `${spacing - (thickness % 2 === 0 ? thickness + 1 : thickness)}px`,
     ':last-child': {
       marginBottom: '0px',
     },

@@ -1,7 +1,5 @@
 import { FretboardContexType } from './FretboardContext'
 import range from 'lodash/range'
-import { Size as FrettedNoteSize } from './FrettedNote'
-import { FretOverhang } from './Frets'
 import { GuitarString } from '../model/GuitarString'
 import { BassString } from '../model/BassString'
 
@@ -39,7 +37,22 @@ export const getPartialFretboardWidth = (context: FretboardContexType) => (first
 }
 
 export const getFretboardWidth = (context: FretboardContexType): number => {
-  return getPartialFretboardWidth(context)(context.firstVisibleFret, context.lastVisibleFret) + 2 * FretOverhang
+  return (
+    getPartialFretboardWidth(context)(context.firstVisibleFret, context.lastVisibleFret) +
+    2 * getStringOverhang(context)
+  )
+}
+
+export const getStringOverhang = (context: FretboardContexType): number => {
+  return 5
+}
+
+export const getFretOverhang = (context: FretboardContexType): number => {
+  return context.stringSpacing / 2 - 2
+}
+
+export const getFrettedNoteSize = (context: FretboardContexType) => {
+  return context.stringSpacing - 2
 }
 
 export const getFrettedNotePosition = (context: FretboardContexType) => (
@@ -48,14 +61,12 @@ export const getFrettedNotePosition = (context: FretboardContexType) => (
 ): [number, number] => {
   const fretWidth = getFretWidth(context)(fret)
   const stringIndex = context.strings.indexOf(string)
+  const frettedNoteSize = getFrettedNoteSize(context)
   const partialFretboardWidth = getPartialFretboardWidth(context)(context.firstVisibleFret, fret)
-  const extraTopSpacing = context.strings
-    .slice(0, Math.max(stringIndex - 1, 0))
-    .map((string) => getStringThickness(string))
-    .reduce((fullFretWidth, width) => fullFretWidth + width, 0)
-
-  const top = context.stringSpacing * stringIndex + extraTopSpacing
-  const left = fret === 0 ? -17 : partialFretboardWidth - fretWidth / 2 - FrettedNoteSize / 2 + FretOverhang
-
+  const top = context.stringSpacing * stringIndex
+  const left =
+    fret === 0
+      ? -frettedNoteSize
+      : partialFretboardWidth - fretWidth / 2 - frettedNoteSize / 2 + getStringOverhang(context)
   return [top, left]
 }

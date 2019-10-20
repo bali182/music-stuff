@@ -1,11 +1,9 @@
 import React, { PureComponent } from 'react'
 import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
-import { getFrettedNotePosition } from './utils'
+import { getFrettedNotePosition, getFrettedNoteSize } from './utils'
 import { GuitarString } from '../model/GuitarString'
 import { BassString } from '../model/BassString'
-
-export const Size = 17
 
 export const DefaultColors = {
   red: '#ca3433',
@@ -31,6 +29,7 @@ export class FrettedNote extends PureComponent<FrettedNoteProps> {
   noteStyle(context: FretboardContexType) {
     const { color, fret, string } = this.props
     const [top, left] = getFrettedNotePosition(context)(string, fret)
+    const size = getFrettedNoteSize(context)
     return css({
       label: 'fretted-note',
       position: 'absolute',
@@ -39,7 +38,7 @@ export class FrettedNote extends PureComponent<FrettedNoteProps> {
       alignContent: 'center',
       justifyItems: 'center',
       justifyContent: 'center',
-      fontSize: '10px',
+      fontSize: '12px',
       userSelect: 'none',
       color: '#fff',
       opacity: 0.6,
@@ -49,9 +48,9 @@ export class FrettedNote extends PureComponent<FrettedNoteProps> {
 
       top: `${top}px`,
       left: `${left}px`,
-      width: `${Size}px`,
-      height: `${Size}px`,
-      borderRadius: `${Size}px`,
+      width: `${size}px`,
+      height: `${size}px`,
+      borderRadius: `${size}px`,
       backgroundColor: color,
     })
   }

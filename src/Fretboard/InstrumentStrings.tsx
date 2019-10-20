@@ -2,26 +2,27 @@ import React, { PureComponent } from 'react'
 import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
 import { InstrumentString } from './InstrumentString'
-import { getStringThickness } from './utils'
-
-const stringsStyle = css({
-  label: 'instrument-strings',
-  position: 'relative',
-  width: '100%',
-  paddingTop: '8px',
-  paddingBottom: '8px',
-  zIndex: 2,
-})
+import { getStringThickness, getFretOverhang } from './utils'
 
 export type InstrumentStringsProps = {}
 
 export class InstrumentStrings extends PureComponent<InstrumentStringsProps> {
   render() {
     return (
-      <div className={stringsStyle}>
-        <FretboardContext.Consumer>{(context) => this.renderStrings(context)}</FretboardContext.Consumer>
-      </div>
+      <FretboardContext.Consumer>
+        {(context) => <div className={this.getStringsStyle(context)}>{this.renderStrings(context)}</div>}
+      </FretboardContext.Consumer>
     )
+  }
+  private getStringsStyle(context: FretboardContexType) {
+    return css({
+      label: 'instrument-strings',
+      position: 'relative',
+      width: '100%',
+      paddingTop: `${getFretOverhang(context)}px`,
+      paddingBottom: `${getFretOverhang(context)}px`,
+      zIndex: 2,
+    })
   }
   private renderStrings(context: FretboardContexType) {
     return context.strings.map((string) => {

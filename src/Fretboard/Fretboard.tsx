@@ -52,7 +52,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
     firstFretWidth: 70,
     lastFretWidth: 12,
     numberOfFrets: 22,
-    stringSpacing: 18,
+    stringSpacing: 20,
     firstVisibleFret: 0,
     strings: [],
     lastVisibleFret: null,

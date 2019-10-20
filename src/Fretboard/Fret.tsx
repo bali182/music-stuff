@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import { css } from 'emotion'
-import { FretboardContext, FretboardContexType } from './FretboardContext'
-import { getFretWidth, getFretboardLeftSpacing } from './utils'
+import { FretboardContext } from './FretboardContext'
+import { getFretWidth } from './utils'
 import { FretDot } from './FretDot'
+import { FretWire } from './FretWire'
+import { FretPositionMarker } from './FretPositionMarker'
 
 const fretStyle = (width: number) =>
   css({
@@ -13,15 +15,8 @@ const fretStyle = (width: number) =>
     alignItems: 'center',
     width: `${width}px`,
     height: '100%',
+    flexShrink: 0,
   })
-
-const fretWireStyle = css({
-  label: 'fret-wire',
-  height: '100%',
-  width: '5px',
-  backgroundColor: '#999',
-  borderRadius: '5px',
-})
 
 export type FretProps = {
   fret: number
@@ -35,8 +30,8 @@ export class Fret extends PureComponent<FretProps> {
         {(context) => {
           const width = getFretWidth(context)(fret)
           return (
-            <div className={fretStyle(width)}>
-              <div className={fretWireStyle} />
+            <div className={fretStyle(width)} data-fret={fret}>
+              <FretWire />
               {context.dots ? <FretDot fret={fret} /> : null}
             </div>
           )

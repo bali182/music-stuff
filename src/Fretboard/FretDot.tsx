@@ -4,7 +4,7 @@ import { css } from 'emotion'
 const dotContainerStyle = css({
   label: 'fret-dot-container',
   display: 'flex',
-  flex: '1 1 1px',
+  flex: '1 0 1px',
   flexDirection: 'row',
   alignItems: 'center',
   justifyItems: 'center',

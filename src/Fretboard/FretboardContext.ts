@@ -3,6 +3,7 @@ import { AnyString } from '../model/models'
 
 export type FretboardContexType = {
   dots: boolean
+  positionMarkers: boolean
   stringSpacing: number
   strings: (AnyString)[]
   numberOfFrets: number
@@ -14,6 +15,7 @@ export type FretboardContexType = {
 
 export const FretboardContext = createContext<FretboardContexType>({
   dots: true,
+  positionMarkers: true,
   strings: [],
   stringSpacing: 20,
   numberOfFrets: 22,

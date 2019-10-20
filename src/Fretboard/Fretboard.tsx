@@ -6,6 +6,7 @@ import { getFretboardWidth, getFretboardLeftSpacing, getStringOverhang } from '.
 import { InstrumentStrings } from './InstrumentStrings'
 import { Frets } from './Frets'
 import { FrettedNotes } from './FrettedNotes'
+import { FretPositionMarkers } from './FretPositionMarkers'
 
 export type FretboardProps = Partial<FretboardContexType> & {
   children: ReactNode
@@ -23,10 +24,12 @@ export class Fretboard extends PureComponent<FretboardProps> {
       lastVisibleFret,
       strings,
       children,
+      positionMarkers: markers,
     } = this.props
 
     const context: FretboardContexType = {
       dots,
+      positionMarkers: markers,
       strings,
       firstFretWidth,
       stringSpacing,
@@ -39,6 +42,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
       <div className={this.getFretboardStyle(context)}>
         <FretboardContext.Provider value={context}>
           <Frets />
+          {context.positionMarkers ? <FretPositionMarkers /> : null}
           <InstrumentStrings />
           <FrettedNotes>{children}</FrettedNotes>
         </FretboardContext.Provider>
@@ -54,12 +58,13 @@ export class Fretboard extends PureComponent<FretboardProps> {
       background: 'white',
       position: 'relative',
       width: `${width + stringOverhang}px`,
-      overflow: 'hidden',
+      margin: 'auto',
     })
   }
 
   static defaultProps: FretboardContexType = {
     dots: true,
+    positionMarkers: true,
     firstFretWidth: 70,
     lastFretWidth: 12,
     numberOfFrets: 22,

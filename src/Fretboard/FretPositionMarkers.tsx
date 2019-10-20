@@ -2,31 +2,22 @@ import React, { PureComponent, ReactNode } from 'react'
 import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
 import range from 'lodash/range'
-import { Fret } from './Fret'
 import { getStringOverhang } from './utils'
-import { Nut } from './Nut'
-import { FretWire } from './FretWire'
-import { max } from '../utils'
 import { FretPositionMarker } from './FretPositionMarker'
 
-export type FretsProps = {}
+export type FretPositionMarkersProps = {}
 
-export class Frets extends PureComponent<FretsProps> {
+export class FretPositionMarkers extends PureComponent<FretPositionMarkersProps> {
   render() {
     return (
       <FretboardContext.Consumer>
-        {(context) => (
-          <div className={this.getFretsStyle(context)}>
-            {this.renderNutOrFirstFret(context)}
-            {this.renderFrets(context)}
-          </div>
-        )}
+        {(context) => <div className={this.getFretsStyle(context)}>{this.renderPositionMarkers(context)}</div>}
       </FretboardContext.Consumer>
     )
   }
   private getFretsStyle(context: FretboardContexType) {
     return css({
-      label: 'frets',
+      label: 'fret-position-markers',
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'row',
@@ -37,10 +28,9 @@ export class Frets extends PureComponent<FretsProps> {
       right: `-${getStringOverhang(context)}px`,
     })
   }
-  private renderNutOrFirstFret(context: FretboardContexType) {
-    return context.firstVisibleFret === 0 ? <Nut /> : <FretWire />
-  }
-  private renderFrets(context: FretboardContexType) {
-    return range(context.firstVisibleFret, context.lastVisibleFret).map((fret) => <Fret fret={fret} key={fret} />)
+  private renderPositionMarkers(context: FretboardContexType) {
+    return range(context.firstVisibleFret, context.lastVisibleFret + 1).map((fret) => (
+      <FretPositionMarker fret={fret} key={fret} />
+    ))
   }
 }

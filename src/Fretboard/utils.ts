@@ -79,3 +79,15 @@ export const getFrettedNoteLeft = (context: FretboardContexType) => (fret: numbe
   }
   return left
 }
+
+export const getFretPositionMarkerLeft = (context: FretboardContexType) => (fret: number): number => {
+  const partialFretboardWidth = getPartialFretboardWidth(context)(context.firstVisibleFret, fret)
+  let left = partialFretboardWidth - 5
+  if (fret === 0) {
+    return getFretboardLeftSpacing(context) + getStringOverhang(context) - 8
+  }
+  if (context.firstVisibleFret === 0) {
+    left += getFretboardLeftSpacing(context) + getStringOverhang(context) - 2
+  }
+  return left
+}

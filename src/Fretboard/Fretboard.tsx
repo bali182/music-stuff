@@ -1,7 +1,7 @@
 import React, { PureComponent, ReactNode } from 'react'
 import isNil from 'lodash/isNil'
 import { css } from 'emotion'
-import { FretBoardContext, FretboardContexType } from './FretboardContext'
+import { FretboardContext, FretboardContexType } from './FretboardContext'
 import { getFretboardWidth } from './utils'
 
 const fretboardStyle = (width: number) =>
@@ -39,7 +39,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
     }
     return (
       <div className={fretboardStyle(getFretboardWidth(context))}>
-        <FretBoardContext.Provider value={context}>{children}</FretBoardContext.Provider>
+        <FretboardContext.Provider value={context}>{children}</FretboardContext.Provider>
       </div>
     )
   }
@@ -48,7 +48,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
     firstFretWidth: 70,
     lastFretWidth: 12,
     numberOfFrets: 22,
-    stringSpacing: 14,
+    stringSpacing: 18,
     firstVisibleFret: 0,
     lastVisibleFret: null,
   }

@@ -1,4 +1,6 @@
 import { createContext } from 'react'
+import { GuitarString } from '../model/GuitarString'
+import { BassString } from '../model/BassString'
 
 export type FretboardContexType = {
   stringSpacing: number
@@ -9,11 +11,11 @@ export type FretboardContexType = {
   lastVisibleFret: number
 }
 
-export const FretBoardContext = createContext<FretboardContexType>({
+export const FretboardContext = createContext<FretboardContexType>({
   stringSpacing: 20,
   numberOfFrets: 22,
-  firstFretWidth: 60,
-  lastFretWidth: 12,
   firstVisibleFret: 0,
   lastVisibleFret: null,
+  firstFretWidth: 60,
+  lastFretWidth: 12,
 })

@@ -7,7 +7,7 @@ const stringsStyle = css({
   width: '100%',
   paddingTop: '8px',
   paddingBottom: '8px',
-  zIndex: 10,
+  zIndex: 2,
 })
 
 export type InstrumentStringsProps = {

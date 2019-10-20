@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { css } from 'emotion'
-import { FretBoardContext } from './FretboardContext'
+import { FretboardContext } from './FretboardContext'
 
 const stringStyle = (thickness: number, spacing: number) =>
   css({
@@ -21,9 +21,9 @@ export class InstrumentString extends PureComponent<InstrumentStringProps> {
   render() {
     const { thickness } = this.props
     return (
-      <FretBoardContext.Consumer>
+      <FretboardContext.Consumer>
         {({ stringSpacing }) => <div className={stringStyle(thickness, stringSpacing)} />}
-      </FretBoardContext.Consumer>
+      </FretboardContext.Consumer>
     )
   }
 }

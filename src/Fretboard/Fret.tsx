@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { css } from 'emotion'
-import { FretBoardContext } from './FretboardContext'
+import { FretboardContext } from './FretboardContext'
 import { getFretWidth } from './utils'
 import { FretDot } from './FretDot'
 
@@ -40,7 +40,7 @@ export class Fret extends PureComponent<FretProps> {
   render() {
     const { fretNumber } = this.props
     return (
-      <FretBoardContext.Consumer>
+      <FretboardContext.Consumer>
         {(context) => {
           const width = getFretWidth(context)(fretNumber)
           const separatorStyle = fretNumber === 0 ? nutStyle : fretWireStyle
@@ -51,7 +51,7 @@ export class Fret extends PureComponent<FretProps> {
             </div>
           )
         }}
-      </FretBoardContext.Consumer>
+      </FretboardContext.Consumer>
     )
   }
 }

@@ -6,9 +6,9 @@ const fretsStyle = css({
   alignItems: 'center',
   flexDirection: 'row',
   position: 'absolute',
-  top: '4px',
+  top: '3px',
   left: '0px',
-  bottom: '4px',
+  bottom: '3px',
   right: '0px',
   label: 'frets'
 })

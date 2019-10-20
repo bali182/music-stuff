@@ -3,25 +3,23 @@ import { css } from 'emotion'
 
 const dotContainerStyle = css({
   label: 'fret-dot-container',
-  alignSelf: 'flex-start',
   display: 'flex',
   flex: '1 1 1px',
   flexDirection: 'row',
   alignItems: 'center',
   justifyItems: 'center',
   justifyContent: 'center',
-  padding: '0px',
-  margin: '0px',
+  marginTop: '-4px',
 })
 
 const dotStyle = css({
   label: 'fret-dot',
   width: '8px',
-  height: '4px',
-  borderBottomLeftRadius: '8px',
-  borderBottomRightRadius: '8px',
+  height: '8px',
+  borderRadius: '8px',
   backgroundColor: '#000',
   margin: '0px 3px 0px 3px',
+  opacity: 0.2,
 })
 
 export type FretDotProps = {

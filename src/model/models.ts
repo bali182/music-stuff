@@ -47,6 +47,12 @@ export enum ChordTone {
   Ninth = '9',
 }
 
+export type ThreeStringTriad = {
+  rootPosition: ChordShape
+  firstInversion: ChordShape
+  secondInversion: ChordShape
+}
+
 export type ChordNote = {
   fret: number
   tone: ChordTone

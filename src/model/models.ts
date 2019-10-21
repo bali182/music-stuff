@@ -39,15 +39,19 @@ export enum Note {
   GSharp = 'G#',
   AFlat = 'Ab',
 }
+
 export enum ChordTone {
   Root = 'R',
   Third = '3',
   Fifth = '5',
-  Seventh = '7',
-  Ninth = '9',
 }
 
-export type ThreeStringTriad = {
+export enum ChordType {
+  Major = 'Major',
+  Minor = 'Minor',
+}
+
+export type TriadGroup = {
   rootPosition: ChordShape
   firstInversion: ChordShape
   secondInversion: ChordShape
@@ -62,6 +66,7 @@ export type ChordNote = {
 
 export type ChordShape = {
   root: Note
+  type: ChordType
   notes: ChordNote[]
 }
 

@@ -1,8 +1,9 @@
 import { getChordNote } from './getChordNote'
-import { ChordShape, Note, ChordTone, GuitarString } from './models'
+import { ChordShape, Note, ChordTone, GuitarString, ChordType } from './models'
 
-export const OpenCShape: ChordShape = {
+export const cShape: ChordShape = {
   root: Note.C,
+  type: ChordType.Major,
   notes: [
     getChordNote(3, Note.C, ChordTone.Root, GuitarString.A),
     getChordNote(2, Note.E, ChordTone.Third, GuitarString.D),
@@ -12,8 +13,9 @@ export const OpenCShape: ChordShape = {
   ],
 }
 
-export const OpenAShape: ChordShape = {
+export const aShape: ChordShape = {
   root: Note.A,
+  type: ChordType.Major,
   notes: [
     getChordNote(0, Note.A, ChordTone.Root, GuitarString.A),
     getChordNote(2, Note.E, ChordTone.Fifth, GuitarString.D),
@@ -23,8 +25,9 @@ export const OpenAShape: ChordShape = {
   ],
 }
 
-export const OpenGShape: ChordShape = {
+export const gShape: ChordShape = {
   root: Note.G,
+  type: ChordType.Major,
   notes: [
     getChordNote(3, Note.G, ChordTone.Root, GuitarString.E6),
     getChordNote(2, Note.B, ChordTone.Third, GuitarString.A),
@@ -35,8 +38,9 @@ export const OpenGShape: ChordShape = {
   ],
 }
 
-export const OpenEShape: ChordShape = {
+export const eShape: ChordShape = {
   root: Note.E,
+  type: ChordType.Major,
   notes: [
     getChordNote(0, Note.E, ChordTone.Root, GuitarString.E6),
     getChordNote(2, Note.B, ChordTone.Fifth, GuitarString.A),
@@ -47,8 +51,9 @@ export const OpenEShape: ChordShape = {
   ],
 }
 
-export const OpenDShape: ChordShape = {
+export const dShape: ChordShape = {
   root: Note.D,
+  type: ChordType.Major,
   notes: [
     getChordNote(0, Note.D, ChordTone.Root, GuitarString.D),
     getChordNote(2, Note.A, ChordTone.Fifth, GuitarString.G),
@@ -56,3 +61,5 @@ export const OpenDShape: ChordShape = {
     getChordNote(2, Note.FSharp, ChordTone.Third, GuitarString.E1),
   ],
 }
+
+export const majorCagedChords = [cShape, aShape, gShape, eShape, dShape]

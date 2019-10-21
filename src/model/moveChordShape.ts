@@ -14,6 +14,7 @@ export function moveChordShape(chord: ChordShape, root: Note, allowOpenStrings: 
   }
   const movedChord: ChordShape = {
     root: root,
+    type: chord.type,
     notes: chord.notes.map(
       (note): ChordNote => ({
         tone: note.tone,

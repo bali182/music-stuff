@@ -1,4 +1,4 @@
-import { ChordShape, ChordTone, Note, AnyString, ChordNote } from '../model/models'
+import { ChordShape, ChordTone, Note, AnyString, ChordNote, TriadGroup } from '../model/models'
 import { getChromaticScale } from '../model/getChromaticScale'
 import { getStringRootNote } from '../model/getStringRootNote'
 
@@ -12,4 +12,19 @@ export function expectCorrectNoteOnString(note: ChordNote) {
   const scale = getChromaticScale(root)
   const expectedNote = scale[note.fret % scale.length]
   expect(note.note).toBe(expectedNote)
+}
+
+// TODO test if inversion is correct
+export function testTriadGroup(name: string, triads: TriadGroup, asserter: (triad: ChordShape) => void) {
+  describe(name, () => {
+    it('should have proper root position', () => {
+      asserter(triads.rootPosition)
+    })
+    it('should have proper first inversion', () => {
+      asserter(triads.firstInversion)
+    })
+    it('should have proper second inversion', () => {
+      asserter(triads.secondInversion)
+    })
+  })
 }

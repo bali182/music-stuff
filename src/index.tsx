@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { render } from 'react-dom'
 import { CagedChord } from './Chords/CagedChord'
-import { OpenCShape, OpenAShape, OpenGShape, OpenEShape, OpenDShape } from './model/cagedMajorChords'
+import { cShape } from './model/majorCagedChords'
 import { css } from 'emotion'
 import { Note } from './model/models'
 
@@ -12,10 +12,10 @@ const WithMargins = ({ children }: { children: ReactNode }) => (
 render(
   <div>
     <WithMargins>
-      <CagedChord shape={OpenCShape} root={Note.C} />
+      <CagedChord shape={cShape} root={Note.C} />
     </WithMargins>
     <WithMargins>
-      <CagedChord shape={OpenCShape} root={Note.E} />
+      <CagedChord shape={cShape} root={Note.E} />
     </WithMargins>
   </div>,
   document.getElementById('root')

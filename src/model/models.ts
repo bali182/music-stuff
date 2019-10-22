@@ -47,8 +47,15 @@ export enum ChordTone {
 }
 
 export enum ChordType {
-  Major = 'Major',
-  Minor = 'Minor',
+  Major = 'Maj',
+  Minor = 'Min',
+  Diminished = 'Dim',
+}
+
+export type Chord = {
+  root: Note
+  type: ChordType
+  notes: Note[]
 }
 
 export type TriadGroup = {

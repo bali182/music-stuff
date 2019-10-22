@@ -1,4 +1,4 @@
-import { ChordShape, ChordTone, Note, AnyString, ChordNote, TriadGroup } from '../model/models'
+import { ChordShape, Note, ChordNote, TriadGroup } from '../model/models'
 import { getChromaticScale } from '../model/getChromaticScale'
 import { getStringRootNote } from '../model/getStringRootNote'
 

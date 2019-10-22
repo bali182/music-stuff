@@ -1,10 +1,11 @@
 import { EAD, ADG, DGB, GBE } from './minorTriads'
-import { ChordShape, ChordTone } from './models'
+import { ChordShape, ChordTone, ChordType } from './models'
 import { expectDistance, expectCorrectNoteOnString, testTriadGroup } from '../test/testUtils'
 
 describe('minor triads', () => {
   function expectMinorTriad(chord: ChordShape) {
     expect(chord.notes).toHaveLength(3)
+    expect(chord.type).toBe(ChordType.Minor)
     const root = chord.notes.find((note) => note.tone === ChordTone.Root)
     const third = chord.notes.find((note) => note.tone === ChordTone.Third)
     const fifth = chord.notes.find((note) => note.tone === ChordTone.Fifth)

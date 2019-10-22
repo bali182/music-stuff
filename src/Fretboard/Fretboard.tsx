@@ -64,7 +64,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
 
   static defaultProps: FretboardContexType = {
     dots: true,
-    positionMarkers: true,
+    positionMarkers: false,
     firstFretWidth: 70,
     lastFretWidth: 12,
     numberOfFrets: 22,

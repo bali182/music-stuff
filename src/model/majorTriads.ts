@@ -5,6 +5,7 @@ export const EAD: TriadGroup = {
   rootPosition: {
     root: Note.G,
     type: ChordType.Major,
+    description: 'Root position triad',
     notes: [
       getChordNote(3, Note.G, ChordTone.Root, GuitarString.E6),
       getChordNote(2, Note.B, ChordTone.Third, GuitarString.A),
@@ -14,6 +15,7 @@ export const EAD: TriadGroup = {
   firstInversion: {
     root: Note.D,
     type: ChordType.Major,
+    description: 'First inversion triad',
     notes: [
       getChordNote(2, Note.FSharp, ChordTone.Third, GuitarString.E6),
       getChordNote(0, Note.A, ChordTone.Fifth, GuitarString.A),
@@ -23,6 +25,7 @@ export const EAD: TriadGroup = {
   secondInversion: {
     root: Note.ASharp,
     type: ChordType.Major,
+    description: 'Second inversion triad',
     notes: [
       getChordNote(1, Note.F, ChordTone.Fifth, GuitarString.E6),
       getChordNote(1, Note.ASharp, ChordTone.Root, GuitarString.A),
@@ -35,6 +38,7 @@ export const ADG: TriadGroup = {
   rootPosition: {
     root: Note.C,
     type: ChordType.Major,
+    description: 'Root position triad',
     notes: [
       getChordNote(3, Note.C, ChordTone.Root, GuitarString.A),
       getChordNote(2, Note.E, ChordTone.Third, GuitarString.D),
@@ -44,6 +48,7 @@ export const ADG: TriadGroup = {
   firstInversion: {
     root: Note.G,
     type: ChordType.Major,
+    description: 'First inversion triad',
     notes: [
       getChordNote(2, Note.B, ChordTone.Third, GuitarString.A),
       getChordNote(0, Note.D, ChordTone.Fifth, GuitarString.D),
@@ -53,6 +58,7 @@ export const ADG: TriadGroup = {
   secondInversion: {
     root: Note.DSharp,
     type: ChordType.Major,
+    description: 'Second inversion triad',
     notes: [
       getChordNote(1, Note.ASharp, ChordTone.Fifth, GuitarString.A),
       getChordNote(1, Note.DSharp, ChordTone.Root, GuitarString.D),
@@ -65,6 +71,7 @@ export const DGB: TriadGroup = {
   rootPosition: {
     root: Note.E,
     type: ChordType.Major,
+    description: 'Root position triad',
     notes: [
       getChordNote(2, Note.E, ChordTone.Root, GuitarString.D),
       getChordNote(1, Note.GSharp, ChordTone.Third, GuitarString.G),
@@ -74,6 +81,7 @@ export const DGB: TriadGroup = {
   firstInversion: {
     root: Note.C,
     type: ChordType.Major,
+    description: 'First inversion triad',
     notes: [
       getChordNote(2, Note.E, ChordTone.Third, GuitarString.D),
       getChordNote(0, Note.G, ChordTone.Fifth, GuitarString.G),
@@ -83,6 +91,7 @@ export const DGB: TriadGroup = {
   secondInversion: {
     root: Note.G,
     type: ChordType.Major,
+    description: 'Second inversion triad',
     notes: [
       getChordNote(0, Note.D, ChordTone.Fifth, GuitarString.D),
       getChordNote(0, Note.G, ChordTone.Root, GuitarString.G),
@@ -95,6 +104,7 @@ export const GBE: TriadGroup = {
   rootPosition: {
     root: Note.A,
     type: ChordType.Major,
+    description: 'Root position triad',
     notes: [
       getChordNote(2, Note.A, ChordTone.Root, GuitarString.G),
       getChordNote(2, Note.CSharp, ChordTone.Third, GuitarString.B),
@@ -104,6 +114,7 @@ export const GBE: TriadGroup = {
   firstInversion: {
     root: Note.E,
     type: ChordType.Major,
+    description: 'First inversion triad',
     notes: [
       getChordNote(1, Note.GSharp, ChordTone.Third, GuitarString.G),
       getChordNote(0, Note.B, ChordTone.Fifth, GuitarString.B),
@@ -113,6 +124,7 @@ export const GBE: TriadGroup = {
   secondInversion: {
     root: Note.C,
     type: ChordType.Major,
+    description: 'Second inversion triad',
     notes: [
       getChordNote(0, Note.G, ChordTone.Fifth, GuitarString.G),
       getChordNote(1, Note.C, ChordTone.Root, GuitarString.B),

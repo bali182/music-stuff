@@ -1,4 +1,4 @@
-import { ChordShape, Note, ChromaticScaleFromC, ChordNote } from './models'
+import { ChordShape, Note, ChordNote } from './models'
 import minBy from 'lodash/minBy'
 import { getChromaticScale } from './getChromaticScale'
 import { getNormalizedNote } from './getNormalizedNote'
@@ -13,8 +13,8 @@ export function moveChordShape(chord: ChordShape, root: Note, allowOpenStrings: 
     shift = chromaticScale.length
   }
   const movedChord: ChordShape = {
+    ...chord,
     root: root,
-    type: chord.type,
     notes: chord.notes.map(
       (note): ChordNote => ({
         tone: note.tone,

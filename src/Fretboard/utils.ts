@@ -66,6 +66,7 @@ export const getFrettedNoteTop = (context: FretboardContexType) => (string: Guit
   return top
 }
 
+// TODO this is a big WTF
 export const getFrettedNoteLeft = (context: FretboardContexType) => (fret: number): number => {
   const fretWidth = getFretWidth(context)(fret)
   const frettedNoteSize = getFrettedNoteSize(context)
@@ -76,6 +77,8 @@ export const getFrettedNoteLeft = (context: FretboardContexType) => (fret: numbe
   }
   if (context.firstVisibleFret === 0) {
     left += getFretboardLeftSpacing(context) + getStringOverhang(context) * 2
+  } else {
+    left += getFretboardLeftSpacing(context) + getStringOverhang(context)
   }
   return left
 }

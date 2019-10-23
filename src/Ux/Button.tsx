@@ -5,6 +5,7 @@ import { colors } from './colors'
 export type ButtonProps = {
   children: ReactNode
   disabled?: boolean
+  onClick?: () => void
 }
 
 const buttonStyle = css({
@@ -33,9 +34,9 @@ const buttonStyle = css({
 
 export class Button extends PureComponent<ButtonProps> {
   render() {
-    const { children, disabled } = this.props
+    const { children, disabled, onClick } = this.props
     return (
-      <button disabled={Boolean(disabled)} className={buttonStyle}>
+      <button disabled={Boolean(disabled)} className={buttonStyle} onClick={onClick}>
         {children}
       </button>
     )

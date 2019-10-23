@@ -4,6 +4,7 @@ import { ChordShape, Note, ChordTone, GuitarString, ChordType } from './models'
 export const cShape: ChordShape = {
   root: Note.C,
   type: ChordType.Major,
+  description: 'C Shape',
   notes: [
     getChordNote(3, Note.C, ChordTone.Root, GuitarString.A),
     getChordNote(2, Note.E, ChordTone.Third, GuitarString.D),
@@ -16,6 +17,7 @@ export const cShape: ChordShape = {
 export const aShape: ChordShape = {
   root: Note.A,
   type: ChordType.Major,
+  description: 'A Shape',
   notes: [
     getChordNote(0, Note.A, ChordTone.Root, GuitarString.A),
     getChordNote(2, Note.E, ChordTone.Fifth, GuitarString.D),
@@ -28,6 +30,7 @@ export const aShape: ChordShape = {
 export const gShape: ChordShape = {
   root: Note.G,
   type: ChordType.Major,
+  description: 'G Shape',
   notes: [
     getChordNote(3, Note.G, ChordTone.Root, GuitarString.E6),
     getChordNote(2, Note.B, ChordTone.Third, GuitarString.A),
@@ -41,6 +44,7 @@ export const gShape: ChordShape = {
 export const eShape: ChordShape = {
   root: Note.E,
   type: ChordType.Major,
+  description: 'E Shape',
   notes: [
     getChordNote(0, Note.E, ChordTone.Root, GuitarString.E6),
     getChordNote(2, Note.B, ChordTone.Fifth, GuitarString.A),
@@ -54,6 +58,7 @@ export const eShape: ChordShape = {
 export const dShape: ChordShape = {
   root: Note.D,
   type: ChordType.Major,
+  description: 'D Shape',
   notes: [
     getChordNote(0, Note.D, ChordTone.Root, GuitarString.D),
     getChordNote(2, Note.A, ChordTone.Fifth, GuitarString.G),

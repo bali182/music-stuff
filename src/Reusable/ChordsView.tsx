@@ -11,31 +11,27 @@ import { CardContent } from '../Ux/CardContent'
 import { ChordFretboard } from './ChordFretboard'
 import { Button } from '../Ux/Button'
 
-export type ChordsScreenProps = {
+export type ChordsViewProps = {
   chords: ChordShape[]
   title: string
   color: string
 }
 
-export type ChordsScreenState = {
+export type ChordsViewState = {
   showLocationsMap: Map<ChordShape, boolean>
 }
 
-export class ChordsScreen extends PureComponent<ChordsScreenProps, ChordsScreenState> {
-  state: ChordsScreenState = {
+export class ChordsView extends PureComponent<ChordsViewProps, ChordsViewState> {
+  state: ChordsViewState = {
     showLocationsMap: new Map(),
   }
 
   render() {
     const { title } = this.props
     return (
-      <FullScreen>
-        <Container>
-          <CardSection title={title} itemsPerRow={4}>
-            {this.renderChordCards()}
-          </CardSection>
-        </Container>
-      </FullScreen>
+      <CardSection title={title} itemsPerRow={4}>
+        {this.renderChordCards()}
+      </CardSection>
     )
   }
 

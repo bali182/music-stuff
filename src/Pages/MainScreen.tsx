@@ -10,6 +10,13 @@ import { CardContent } from '../Ux/CardContent'
 import { Button } from '../Ux/Button'
 import { CardSection } from '../Ux/CardSection'
 import { Container } from '../Ux/Container'
+import { NavLink } from 'react-router-dom'
+import { css } from 'emotion'
+
+const linkStyle = css({
+  width: '100%',
+  display: 'block',
+})
 
 export class MainScreen extends Component {
   render() {
@@ -27,7 +34,9 @@ export class MainScreen extends Component {
                 relationships between CAGED chords.
               </CardContent>
               <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
+                <NavLink to="/major-caged" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
             </Card>
             <Card>
@@ -65,7 +74,9 @@ export class MainScreen extends Component {
               </CardHeader>
               <CardContent>Practice the essential triads shapes and inversions.</CardContent>
               <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
+                <NavLink to="/major-triads" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
             </Card>
             <Card>
@@ -75,7 +86,9 @@ export class MainScreen extends Component {
               </CardHeader>
               <CardContent>Practice the essential triads shapes and inversions.</CardContent>
               <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
+                <NavLink to="/minor-triads" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
             </Card>
             <Card>

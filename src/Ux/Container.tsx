@@ -8,6 +8,8 @@ export type ContainerProps = {
 const containerStyle = css({
   label: 'container',
   margin: '0px 10vw',
+  display: 'flex',
+  flexDirection: 'column',
 })
 
 export class Container extends PureComponent<ContainerProps> {

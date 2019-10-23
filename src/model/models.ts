@@ -52,6 +52,11 @@ export enum ChordType {
   Diminished = 'Diminished',
 }
 
+export enum KeyType {
+  Major = 'Major',
+  Minor = 'Minor',
+}
+
 export type Chord = {
   root: Note
   type: ChordType
@@ -76,6 +81,11 @@ export type ChordShape = {
   type: ChordType
   notes: ChordNote[]
   description: string
+}
+
+export type ChordProgression = {
+  description: string
+  chords: ChordShape[]
 }
 
 export const Notes = [

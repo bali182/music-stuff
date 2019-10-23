@@ -20,6 +20,7 @@ const buttonStyle = css({
   textDecoration: 'none',
   outline: 'none',
   width: '100%',
+  whiteSpace: 'nowrap',
   transition: 'all .4s cubic-bezier(0.175, 0.885, 0, 1)',
   ':hover': {
     transform: 'scale(1.1, 1.1)',

@@ -1,9 +1,8 @@
 import React, { PureComponent, ReactNode, Children } from 'react'
 import { css } from 'emotion'
 
-const cardRowStyle = css({
-  label: 'card-row',
-  margin: '0px 10vw',
+const cardContainerStyle = css({
+  label: 'card-container',
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -11,14 +10,14 @@ const cardRowStyle = css({
   alignContent: 'center',
 })
 
-type CardRowProps = {
+type CardContainerProps = {
   children: ReactNode
   itemsPerRow: number
 }
 
-export class CardRow extends PureComponent<CardRowProps> {
+export class CardContainer extends PureComponent<CardContainerProps> {
   render() {
-    return <div className={cardRowStyle}>{this.renderChildren()}</div>
+    return <div className={cardContainerStyle}>{this.renderChildren()}</div>
   }
 
   private renderChildren() {
@@ -33,10 +32,14 @@ export class CardRow extends PureComponent<CardRowProps> {
 
   private getCardWrapperStyle() {
     const { itemsPerRow } = this.props
-    const width = (1 / (itemsPerRow + 1)) * 100
+    const percentage = (1 / itemsPerRow) * 100
+    const width = `calc(${percentage}% - 20px)`
     return css({
       label: 'card-wrapper',
-      flex: `1 0 ${width}%`,
+      minWidth: '250px',
+      flexGrow: 1,
+      flexShrink: 0,
+      flexBasis: width,
       margin: '10px',
     })
   }

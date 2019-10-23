@@ -3,10 +3,12 @@ import { css } from 'emotion'
 
 const cardContentStyle = css({
   label: 'card-content',
-  margin: '18px 0px',
+  margin: '18px 14px',
   display: 'flex',
   alignItems: 'center',
   alignContent: 'center',
+  justifyContent: 'center',
+  justifyItems: 'center',
 })
 
 type CardContentProps = {

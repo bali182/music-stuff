@@ -10,19 +10,50 @@ import { CardContent } from '../Ux/CardContent'
 import { CagedChord } from '../Chords/CagedChord'
 import { EAD } from '../model/minorTriads'
 import { Note } from '../model/models'
+import { Button } from '../Ux/Button'
 
 export class MainScreen extends Component {
   render() {
     return (
       <FullScreen>
-        <CardRow>
+        <CardRow itemsPerRow={4}>
           <Card>
             <CardHeader color={colors.red}>
-              <CardTitle>D Major</CardTitle>
-              <CardSubTitle>First inversion triad</CardSubTitle>
+              <CardTitle>CAGED</CardTitle>
+              <CardSubTitle>Major chords practice</CardSubTitle>
             </CardHeader>
             <CardContent>
-              <CagedChord shape={EAD.rootPosition} root={Note.D} />
+              Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
+              relationships between CAGED chords.
+            </CardContent>
+            <CardContent>
+              <Button>Start practicing</Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader color={colors.red}>
+              <CardTitle>CAGED</CardTitle>
+              <CardSubTitle>Minor chords practice</CardSubTitle>
+            </CardHeader>
+            <CardContent>
+              Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
+              relationships between CAGED chords.
+            </CardContent>
+            <CardContent>
+              <Button>Start practicing</Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader color={colors.red}>
+              <CardTitle>CAGED</CardTitle>
+              <CardSubTitle>Major &amp; minor practice</CardSubTitle>
+            </CardHeader>
+            <CardContent>
+              Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
+              relationships between CAGED chords.
+            </CardContent>
+            <CardContent>
+              <Button>Start practicing</Button>
             </CardContent>
           </Card>
           <Card>

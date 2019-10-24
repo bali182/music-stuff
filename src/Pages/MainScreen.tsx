@@ -17,6 +17,10 @@ const linkStyle = css({
   display: 'block',
 })
 
+const cardExtraStyle = css({
+  height: '100%',
+})
+
 export class MainScreen extends Component {
   render() {
     return (
@@ -29,7 +33,8 @@ export class MainScreen extends Component {
                 <CardSubTitle>Find random notes</CardSubTitle>
               </CardHeader>
               <CardContent>
-                Find random notes on the neck as prompted, get help when needed by displaying the notes on the neck
+                Find random notes on the neck as prompted, get help when needed by displaying the notes on the guitar
+                neck
               </CardContent>
               <CardContent>
                 <NavLink to="/guitar-random-notes" className={linkStyle}>
@@ -43,7 +48,8 @@ export class MainScreen extends Component {
                 <CardSubTitle>Find random notes</CardSubTitle>
               </CardHeader>
               <CardContent>
-                Find random notes on the neck as prompted, get help when needed by displaying the notes on the neck
+                Find random notes on the neck as prompted, get help when needed by displaying the notes on the bass
+                neck.
               </CardContent>
               <CardContent>
                 <NavLink to="/bass-random-notes" className={linkStyle}>
@@ -54,48 +60,57 @@ export class MainScreen extends Component {
           </CardSection>
 
           <CardSection title="Triads" itemsPerRow={4}>
-            <Card>
+            <Card className={cardExtraStyle}>
               <CardHeader color={colors.green}>
                 <CardTitle>Triads</CardTitle>
                 <CardSubTitle>Major triads practice</CardSubTitle>
               </CardHeader>
-              <CardContent>Practice the essential triads shapes and inversions.</CardContent>
+              <CardContent>Practice triads shapes with inversions using common major-key progressions.</CardContent>
               <CardContent>
                 <NavLink to="/major-triads" className={linkStyle}>
                   <Button>Start practicing</Button>
                 </NavLink>
               </CardContent>
             </Card>
-            <Card>
+            <Card className={cardExtraStyle}>
               <CardHeader color={colors.green}>
                 <CardTitle>Triads</CardTitle>
                 <CardSubTitle>Minor triads practice</CardSubTitle>
               </CardHeader>
-              <CardContent>Practice the essential triads shapes and inversions.</CardContent>
+              <CardContent>Practice triads shapes with inversions using common minor-key progressions.</CardContent>
               <CardContent>
                 <NavLink to="/minor-triads" className={linkStyle}>
                   <Button>Start practicing</Button>
                 </NavLink>
               </CardContent>
             </Card>
-            <Card>
+            <Card className={cardExtraStyle}>
               <CardHeader color={colors.green}>
                 <CardTitle>Triads</CardTitle>
-                <CardSubTitle>Diminished triads practice</CardSubTitle>
+                <CardSubTitle>Major &amp; minor triads practice</CardSubTitle>
               </CardHeader>
-              <CardContent>Practice the essential triads shapes and inversions.</CardContent>
               <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
+                Practice triads shapes with inversions using common major or minor progressions.
               </CardContent>
-            </Card>
-            <Card>
-              <CardHeader color={colors.green}>
-                <CardTitle>Triads</CardTitle>
-                <CardSubTitle>Mixed triads practice</CardSubTitle>
-              </CardHeader>
-              <CardContent>Practice the essential triads shapes and inversions.</CardContent>
               <CardContent>
                 <NavLink to="/mixed-triads" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+            <Card className={cardExtraStyle}>
+              <CardHeader color={colors.green}>
+                <CardTitle>Triads</CardTitle>
+                <CardSubTitle>Random triads practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>
+                <span>
+                  Practice triads shapes with inversions using random pogressions. <b>Warning:</b> Might not sound
+                  pleasant!
+                </span>
+              </CardContent>
+              <CardContent>
+                <NavLink to="/random-triads" className={linkStyle}>
                   <Button>Start practicing</Button>
                 </NavLink>
               </CardContent>

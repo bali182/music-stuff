@@ -1,4 +1,4 @@
-import { Note } from './models'
+import { Note, KeyType, Key } from './models'
 import { getChromaticScale } from './getChromaticScale'
 
 const getScale = (chromaticIndices: number[]) => (root: Note): Note[] => {
@@ -17,3 +17,22 @@ export const getLocrianScale = getScale([0, 1, 3, 5, 6, 8, 10])
 
 export const getMajorScale = getIonianScale
 export const getMinorScale = getAeolianScale
+
+export function getDiatonicScale({ type, root }: Key): Note[] {
+  switch (type) {
+    case KeyType.Ionian:
+      return getIonianScale(root)
+    case KeyType.Dorian:
+      return getDorianScale(root)
+    case KeyType.Phrygian:
+      return getPhrygianScale(root)
+    case KeyType.Lydian:
+      return getLydianScale(root)
+    case KeyType.Mixolydian:
+      return getMixolydianScale(root)
+    case KeyType.Aeolian:
+      return getAeolianScale(root)
+    case KeyType.Locrian:
+      return getLocrianScale(root)
+  }
+}

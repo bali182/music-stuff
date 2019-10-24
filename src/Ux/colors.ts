@@ -1,9 +1,18 @@
 export const colors = {
   green: '#7AC74F',
-  lightYellowGreen: '#eaebc3',
-  orange: '#F18F01',
+  orange: '#ED9B40',
   red: '#E87461',
   blue: '#08B2E3',
-  darkGray: '#4C5B5C',
-  lightGray: '#a1b0b1',
+
+  darkRed: '#C97064',
+  darkGreen: '#83B692',
+  darkBlue: '#033860',
+  purple: '#56445D',
+  veryDarkRed: '#3C1518',
+  darkPurple: '#34344A',
+  brown: '#502419',
+
+  backgroundLightGreen: '#eaebc3',
+  buttonDarkGray: '#4C5B5C',
+  buttonLightGray: '#a1b0b1',
 }

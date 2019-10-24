@@ -9,7 +9,7 @@ import { getKeyName } from './getKeyName'
 import sample from 'lodash/sample'
 import { majorChordsOnlyProgressions, minorChordsOnlyProgressions, mixedChordProgressions } from './chordProgressions'
 
-export const getMajorCagedProgression = getSequence({
+export const getMajorCagedSequence = getSequence({
   progressions: () => majorChordsOnlyProgressions,
   description: (key) => `CAGED Chords in ${getKeyName(key)}`,
   key: () => ({ type: KeyType.Ionian, root: getRandomNote() }),
@@ -17,7 +17,7 @@ export const getMajorCagedProgression = getSequence({
   shapes: () => [cShape, aShape, gShape, eShape, dShape],
 })
 
-export const getMajorTriads = getSequence({
+export const getMajorTriadSequence = getSequence({
   progressions: () => majorChordsOnlyProgressions,
   description: (key) => `Major triads  in ${getKeyName(key)}`,
   key: () => ({ type: KeyType.Ionian, root: getRandomNote() }),
@@ -25,7 +25,7 @@ export const getMajorTriads = getSequence({
   shapes: () => majorTriads,
 })
 
-export const getMinorTriads = getSequence({
+export const getMinorTriadSequence = getSequence({
   progressions: () => minorChordsOnlyProgressions,
   description: (key) => `Minor triads  in ${getKeyName(key)}`,
   key: () => ({ type: KeyType.Aeolian, root: getRandomNote() }),
@@ -33,7 +33,7 @@ export const getMinorTriads = getSequence({
   shapes: () => minorTriads,
 })
 
-export const getMixedTriads = getSequence({
+export const getMixedTriadSequence = getSequence({
   progressions: () => mixedChordProgressions,
   description: (key) => `Mixed triads  in ${getKeyName(key)}`,
   key: () => ({ type: sample([KeyType.Ionian, KeyType.Aeolian]), root: getRandomNote() }),

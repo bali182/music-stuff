@@ -6,7 +6,7 @@ const fullScreenStyle = css({
   width: '100vw',
   height: '100vh',
   overflow: 'auto',
-  background: colors.lightYellowGreen,
+  background: colors.backgroundLightGreen,
 })
 
 export type FullScreenProps = {

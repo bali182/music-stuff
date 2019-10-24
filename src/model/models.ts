@@ -148,10 +148,10 @@ export const ChromaticScaleFromC = [
 export const BassStrings = [BassString.E, BassString.A, BassString.D, BassString.G]
 
 export const GuitarStrings = [
-  GuitarString.E1,
-  GuitarString.B,
-  GuitarString.G,
-  GuitarString.D,
-  GuitarString.A,
   GuitarString.E6,
+  GuitarString.A,
+  GuitarString.D,
+  GuitarString.G,
+  GuitarString.B,
+  GuitarString.E1,
 ]

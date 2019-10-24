@@ -18,7 +18,7 @@ const dotStyle = css({
   height: '8px',
   borderRadius: '8px',
   backgroundColor: '#000',
-  margin: '0px 3px 0px 3px',
+  margin: '3px 3px 0px 3px',
   opacity: 0.2,
 })
 

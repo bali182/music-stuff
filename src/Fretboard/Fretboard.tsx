@@ -55,7 +55,6 @@ export class Fretboard extends PureComponent<FretboardProps> {
     const stringOverhang = getStringOverhang(context)
     return css({
       label: 'fretboard',
-      background: 'white',
       position: 'relative',
       width: `${width + stringOverhang}px`,
       margin: 'auto',

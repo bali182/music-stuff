@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { FullScreen } from '../Ux/FullScreen'
-import { CardContainer } from '../Ux/CardContainer'
 import { Card } from '../Ux/Card'
 import { colors } from '../Ux/colors'
 import { CardTitle } from '../Ux/CardTitle'
@@ -23,49 +22,37 @@ export class MainScreen extends Component {
     return (
       <FullScreen>
         <Container>
-          <CardSection title="CAGED Chords" itemsPerRow={4}>
+          <CardSection title="Random notes" itemsPerRow={4}>
             <Card>
-              <CardHeader color={colors.red}>
-                <CardTitle>CAGED</CardTitle>
-                <CardSubTitle>Major chords practice</CardSubTitle>
+              <CardHeader color={colors.blue}>
+                <CardTitle>Guitar notes</CardTitle>
+                <CardSubTitle>Find random notes</CardSubTitle>
               </CardHeader>
               <CardContent>
-                Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
-                relationships between CAGED chords.
+                Find random notes on the neck as prompted, get help when needed by displaying the notes on the neck
               </CardContent>
               <CardContent>
-                <NavLink to="/major-caged" className={linkStyle}>
+                <NavLink to="/guitar-random-notes" className={linkStyle}>
                   <Button>Start practicing</Button>
                 </NavLink>
               </CardContent>
             </Card>
             <Card>
-              <CardHeader color={colors.red}>
-                <CardTitle>CAGED</CardTitle>
-                <CardSubTitle>Minor chords practice</CardSubTitle>
+              <CardHeader color={colors.blue}>
+                <CardTitle>Bass notes</CardTitle>
+                <CardSubTitle>Find random notes</CardSubTitle>
               </CardHeader>
               <CardContent>
-                Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
-                relationships between CAGED chords.
+                Find random notes on the neck as prompted, get help when needed by displaying the notes on the neck
               </CardContent>
               <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader color={colors.red}>
-                <CardTitle>CAGED</CardTitle>
-                <CardSubTitle>Major &amp; minor practice</CardSubTitle>
-              </CardHeader>
-              <CardContent>
-                Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
-                relationships between CAGED chords.
-              </CardContent>
-              <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
+                <NavLink to="/bass-random-notes" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
             </Card>
           </CardSection>
+
           <CardSection title="Triads" itemsPerRow={4}>
             <Card>
               <CardHeader color={colors.green}>
@@ -111,6 +98,50 @@ export class MainScreen extends Component {
                 <NavLink to="/mixed-triads" className={linkStyle}>
                   <Button>Start practicing</Button>
                 </NavLink>
+              </CardContent>
+            </Card>
+          </CardSection>
+
+          <CardSection title="CAGED Chords" itemsPerRow={4}>
+            <Card>
+              <CardHeader color={colors.red}>
+                <CardTitle>CAGED</CardTitle>
+                <CardSubTitle>Major chords practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>
+                Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
+                relationships between CAGED chords.
+              </CardContent>
+              <CardContent>
+                <NavLink to="/major-caged" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader color={colors.red}>
+                <CardTitle>CAGED</CardTitle>
+                <CardSubTitle>Minor chords practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>
+                Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
+                relationships between CAGED chords.
+              </CardContent>
+              <CardContent>
+                <Button disabled={true}>Coming soon...</Button>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader color={colors.red}>
+                <CardTitle>CAGED</CardTitle>
+                <CardSubTitle>Major &amp; minor practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>
+                Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
+                relationships between CAGED chords.
+              </CardContent>
+              <CardContent>
+                <Button disabled={true}>Coming soon...</Button>
               </CardContent>
             </Card>
           </CardSection>

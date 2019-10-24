@@ -5,6 +5,8 @@ import { MajorCagedPracticeScreen } from './MajorCagedPracticeScreen'
 import { MajorTriadsPracticeScreen } from './MajorTriadsPracticeScreen'
 import { MinorTriadsPracticeScreen } from './MinorTriadsPracticeScreen'
 import { MixedTriadsPracticeScreen } from './MixedTriadsPracticeScreen'
+import { GuitarNotesPracticeScreen } from './GuitarNotesPracticeScreen'
+import { BassNotesPracticeScreen } from './BassNotesPracticeScreen'
 
 export class App extends Component {
   render() {
@@ -25,6 +27,12 @@ export class App extends Component {
           </Route>
           <Route path="/mixed-triads" exact={true}>
             <MixedTriadsPracticeScreen />
+          </Route>
+          <Route path="/guitar-random-notes" exact={true}>
+            <GuitarNotesPracticeScreen />
+          </Route>
+          <Route path="/bass-random-notes" exact={true}>
+            <BassNotesPracticeScreen />
           </Route>
         </Switch>
       </HashRouter>

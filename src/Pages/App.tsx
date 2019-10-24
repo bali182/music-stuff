@@ -4,6 +4,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom'
 import { MajorCagedPracticeScreen } from './MajorCagedPracticeScreen'
 import { MajorTriadsPracticeScreen } from './MajorTriadsPracticeScreen'
 import { MinorTriadsPracticeScreen } from './MinorTriadsPracticeScreen'
+import { MixedTriadsPracticeScreen } from './MixedTriadsPracticeScreen'
 
 export class App extends Component {
   render() {
@@ -21,6 +22,9 @@ export class App extends Component {
           </Route>
           <Route path="/minor-triads" exact={true}>
             <MinorTriadsPracticeScreen />
+          </Route>
+          <Route path="/mixed-triads" exact={true}>
+            <MixedTriadsPracticeScreen />
           </Route>
         </Switch>
       </HashRouter>

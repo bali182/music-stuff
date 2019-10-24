@@ -5,6 +5,6 @@ import { colors } from '../Ux/colors'
 
 export class MinorTriadsPracticeScreen extends Component {
   render() {
-    return <ChordPracticeScreen getProgression={getMinorTriads} color={colors.orange} />
+    return <ChordPracticeScreen getSequence={getMinorTriads} color={colors.orange} />
   }
 }

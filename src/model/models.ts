@@ -53,8 +53,13 @@ export enum ChordType {
 }
 
 export enum KeyType {
-  Major = 'Major',
-  Minor = 'Minor',
+  Ionian = 'Ionian',
+  Dorian = 'Dorian',
+  Phrygian = 'Phrygian',
+  Lydian = 'Lydian',
+  Mixolydian = 'Mixolydian',
+  Aeolian = 'Aeolian',
+  Locrian = 'Locrian',
 }
 
 export type Chord = {
@@ -83,9 +88,22 @@ export type ChordShape = {
   description: string
 }
 
-export type ChordProgression = {
+export type Key = {
+  type: KeyType
+  root: Note
+}
+
+export type ChordSequence = {
+  key: Key
   description: string
   chords: ChordShape[]
+}
+
+export type ChordProgression = {
+  name: string
+  keyType: KeyType
+  // Array indices
+  scaleDegrees: number[]
 }
 
 export const Notes = [

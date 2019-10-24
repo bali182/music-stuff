@@ -108,7 +108,9 @@ export class MainScreen extends Component {
               </CardHeader>
               <CardContent>Practice the essential triads shapes and inversions.</CardContent>
               <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
+                <NavLink to="/mixed-triads" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
             </Card>
           </CardSection>

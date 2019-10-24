@@ -5,6 +5,6 @@ import { colors } from '../Ux/colors'
 
 export class MajorCagedPracticeScreen extends Component {
   render() {
-    return <ChordPracticeScreen getProgression={getMajorCagedProgression} color={colors.green} />
+    return <ChordPracticeScreen getSequence={getMajorCagedProgression} color={colors.green} />
   }
 }

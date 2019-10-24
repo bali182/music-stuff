@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { ChordsView } from './ChordsView'
-import { ChordProgression } from '../model/models'
+import { ChordSequence } from '../model/models'
 import { FullScreen } from '../Ux/FullScreen'
 import { Container } from '../Ux/Container'
 import { Button } from '../Ux/Button'
@@ -14,12 +14,12 @@ const nextButtonContainer = css({
 })
 
 export type ChordPracticeScreenProps = {
-  getProgression: () => ChordProgression
+  getSequence: () => ChordSequence
   color: string
 }
 
 export type ChordPracticeScreenState = {
-  progression: ChordProgression
+  progression: ChordSequence
 }
 
 export class ChordPracticeScreen extends Component<ChordPracticeScreenProps, ChordPracticeScreenState> {
@@ -28,7 +28,7 @@ export class ChordPracticeScreen extends Component<ChordPracticeScreenProps, Cho
   }
 
   private nextProgresson = () => {
-    const progression = this.props.getProgression()
+    const progression = this.props.getSequence()
     this.setState({ progression })
   }
 

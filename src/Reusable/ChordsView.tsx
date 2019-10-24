@@ -47,10 +47,10 @@ export class ChordsView extends PureComponent<ChordsViewProps, ChordsViewState> 
 
   private renderChordCards() {
     const { chords, color } = this.props
-    return chords.map((chord) => {
+    return chords.map((chord, i) => {
       const showFretPos = this.isShowingLocations(chord)
       return (
-        <Card>
+        <Card key={`${chord.root}-${chord.type}-${i}`}>
           <CardHeader color={color}>
             <CardTitle>
               {chord.root} {chord.type}

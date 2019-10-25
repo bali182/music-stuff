@@ -59,7 +59,7 @@ export class MainScreen extends Component {
             </Card>
           </CardSection>
 
-          <CardSection title="Triads" itemsPerRow={4}>
+          <CardSection title="Triads on the guitar" itemsPerRow={4}>
             <Card className={cardExtraStyle}>
               <CardHeader color={colors.green}>
                 <CardTitle>Triads</CardTitle>
@@ -111,6 +111,64 @@ export class MainScreen extends Component {
               </CardContent>
               <CardContent>
                 <NavLink to="/random-triads" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+          </CardSection>
+         
+          <CardSection title="Triads on the bass" itemsPerRow={4}>
+            <Card className={cardExtraStyle}>
+              <CardHeader color={colors.purple}>
+                <CardTitle>Triads</CardTitle>
+                <CardSubTitle>Major triads practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>Practice triads shapes with inversions using common major-key progressions.</CardContent>
+              <CardContent>
+                <NavLink to="/major-triads-bass" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+            <Card className={cardExtraStyle}>
+              <CardHeader color={colors.purple}>
+                <CardTitle>Triads</CardTitle>
+                <CardSubTitle>Minor triads practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>Practice triads shapes with inversions using common minor-key progressions.</CardContent>
+              <CardContent>
+                <NavLink to="/minor-triads-bass" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+            <Card className={cardExtraStyle}>
+              <CardHeader color={colors.purple}>
+                <CardTitle>Triads</CardTitle>
+                <CardSubTitle>Major &amp; minor triads practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>
+                Practice triads shapes with inversions using common major or minor progressions.
+              </CardContent>
+              <CardContent>
+                <NavLink to="/mixed-triads-bass" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+            <Card className={cardExtraStyle}>
+              <CardHeader color={colors.purple}>
+                <CardTitle>Triads</CardTitle>
+                <CardSubTitle>Random triads practice</CardSubTitle>
+              </CardHeader>
+              <CardContent>
+                <span>
+                  Practice triads shapes with inversions using random pogressions. <b>Warning:</b> Might not sound
+                  pleasant!
+                </span>
+              </CardContent>
+              <CardContent>
+                <NavLink to="/random-triads-bass" className={linkStyle}>
                   <Button>Start practicing</Button>
                 </NavLink>
               </CardContent>

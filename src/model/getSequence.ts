@@ -1,6 +1,5 @@
-import { ChordSequence, Note, ChordShape, Chord, Key, ChordType, ChordProgression } from './models'
 import sample from 'lodash/sample'
-import range from 'lodash/range'
+import { ChordSequence, Note, ChordShape, Key, ChordType, ChordProgression } from './models'
 import { getScaleChords } from './getScaleChords'
 import { moveChordShape } from './moveChordShape'
 

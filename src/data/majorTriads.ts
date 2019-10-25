@@ -1,5 +1,6 @@
 import { Note, ChordTone, GuitarString, TriadGroup, ChordType } from '../model/models'
 import { getChordNote } from '../model/getChordNote'
+import { getBassChordShape } from '../model/getBassChordShape'
 
 export const EAD: TriadGroup = {
   rootPosition: {
@@ -133,7 +134,7 @@ export const GBE: TriadGroup = {
   },
 }
 
-export const majorTriads = [
+export const majorTriadsGuitar = [
   EAD.rootPosition,
   EAD.firstInversion,
   EAD.secondInversion,
@@ -149,4 +150,14 @@ export const majorTriads = [
   GBE.rootPosition,
   GBE.firstInversion,
   GBE.secondInversion,
+]
+
+export const majorTriadsBass = [
+  getBassChordShape(EAD.rootPosition),
+  getBassChordShape(EAD.firstInversion),
+  getBassChordShape(EAD.secondInversion),
+
+  getBassChordShape(ADG.rootPosition),
+  getBassChordShape(ADG.firstInversion),
+  getBassChordShape(ADG.secondInversion),
 ]

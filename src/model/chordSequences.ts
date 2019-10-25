@@ -4,14 +4,11 @@ import { ChordType, KeyType, ChordSequence, ChordShape, Chord, Key } from './mod
 import { getRandomNote } from './getRandomNote'
 import { getMajorScale, getMinorScale, getDiatonicScale } from './scales'
 import { cShape, aShape, gShape, eShape, dShape } from '../data/majorCagedChords'
-import { majorTriads } from '../data/majorTriads'
-import { minorTriads } from '../data/minorTriads'
 import { getKeyName } from './getKeyName'
 import sample from 'lodash/sample'
 import shuffle from 'lodash/shuffle'
 import { majorChordsOnlyProgressions, minorChordsOnlyProgressions, mixedChordProgressions } from './chordProgressions'
 import { getScaleChords } from './getScaleChords'
-import { diminishedTriads } from '../data/diminishedTriads'
 import { moveChordShape } from './moveChordShape'
 import { getRandomKeyType } from './getRandomKeyType'
 
@@ -23,57 +20,64 @@ export const getMajorCagedSequence = getSequence({
   shapes: () => [cShape, aShape, gShape, eShape, dShape],
 })
 
-export const getMajorTriadSequence = getSequence({
-  progressions: () => majorChordsOnlyProgressions,
-  description: (key) => `Major triads  in ${getKeyName(key)}`,
-  key: () => ({ type: KeyType.Ionian, root: getRandomNote() }),
-  scale: (key) => getMajorScale(key.root),
-  shapes: () => majorTriads,
-})
+export const getMajorTriadSequence = (majShapes: ChordShape[]) =>
+  getSequence({
+    progressions: () => majorChordsOnlyProgressions,
+    description: (key) => `Major triads  in ${getKeyName(key)}`,
+    key: () => ({ type: KeyType.Ionian, root: getRandomNote() }),
+    scale: (key) => getMajorScale(key.root),
+    shapes: () => majShapes,
+  })
 
-export const getMinorTriadSequence = getSequence({
-  progressions: () => minorChordsOnlyProgressions,
-  description: (key) => `Minor triads in ${getKeyName(key)}`,
-  key: () => ({ type: KeyType.Aeolian, root: getRandomNote() }),
-  scale: (key) => getMinorScale(key.root),
-  shapes: () => minorTriads,
-})
+export const getMinorTriadSequence = (minShapes: ChordShape[]) =>
+  getSequence({
+    progressions: () => minorChordsOnlyProgressions,
+    description: (key) => `Minor triads in ${getKeyName(key)}`,
+    key: () => ({ type: KeyType.Aeolian, root: getRandomNote() }),
+    scale: (key) => getMinorScale(key.root),
+    shapes: () => minShapes,
+  })
 
-export const getMixedTriadSequence = getSequence({
-  progressions: () => mixedChordProgressions,
-  description: (key) => `Mixed triads in ${getKeyName(key)}`,
-  key: () => ({ type: sample([KeyType.Ionian, KeyType.Aeolian]), root: getRandomNote() }),
-  scale: (key) => {
-    switch (key.type) {
-      case KeyType.Ionian:
-        return getMajorScale(key.root)
-      case KeyType.Aeolian:
-        return getMinorScale(key.root)
-      default:
-        throw new TypeError(`Unexpected key type: ${key.type}`)
-    }
-  },
-  shapes: (type: ChordType) => {
-    switch (type) {
-      case ChordType.Major:
-        return majorTriads
-      case ChordType.Minor:
-        return minorTriads
-      default:
-        throw new TypeError(`Unexpected chord type: ${type}`)
-    }
-  },
-})
+export const getMixedTriadSequence = (majShapes: ChordShape[], minShapes: ChordShape[]) =>
+  getSequence({
+    progressions: () => mixedChordProgressions,
+    description: (key) => `Mixed triads in ${getKeyName(key)}`,
+    key: () => ({ type: sample([KeyType.Ionian, KeyType.Aeolian]), root: getRandomNote() }),
+    scale: (key) => {
+      switch (key.type) {
+        case KeyType.Ionian:
+          return getMajorScale(key.root)
+        case KeyType.Aeolian:
+          return getMinorScale(key.root)
+        default:
+          throw new TypeError(`Unexpected key type: ${key.type}`)
+      }
+    },
+    shapes: (type: ChordType) => {
+      switch (type) {
+        case ChordType.Major:
+          return majShapes
+        case ChordType.Minor:
+          return minShapes
+        default:
+          throw new TypeError(`Unexpected chord type: ${type}`)
+      }
+    },
+  })
 
-export function getRandomTriadSequence(): ChordSequence {
+export const getRandomTriadSequence = (
+  majShapes: ChordShape[],
+  minShapes: ChordShape[],
+  dimShapes: ChordShape[]
+) => (): ChordSequence => {
   const key: Key = { root: getRandomNote(), type: getRandomKeyType() }
   const scale = getDiatonicScale(key)
   const [rootChord, ...chords] = getScaleChords(scale).map((chord, i) => [chord, i + 1]) as [Chord, number][]
   const randomChords = [rootChord, ...shuffle(chords).slice(3)]
   const chordSelection = {
-    [ChordType.Major]: majorTriads,
-    [ChordType.Minor]: minorTriads,
-    [ChordType.Diminished]: diminishedTriads,
+    [ChordType.Major]: majShapes,
+    [ChordType.Minor]: minShapes,
+    [ChordType.Diminished]: dimShapes,
   }
   const progression = randomChords
     .map(([chord, degree]) => {

@@ -1,11 +1,11 @@
-import { majorTriads } from '../data/majorTriads'
+import { majorTriadsGuitar } from '../data/majorTriads'
 import { ChordTone, ChordType } from './models'
 import { getTriadType } from './getTriadType'
-import { minorTriads } from '../data/minorTriads'
+import { minorTriadsBass } from '../data/minorTriads'
 
 describe('getTriadType', () => {
   it('should identify all major triads correctly', () => {
-    for (const triad of majorTriads) {
+    for (const triad of majorTriadsGuitar) {
       const root = triad.notes.find((note) => note.tone === ChordTone.Root)
       const third = triad.notes.find((note) => note.tone === ChordTone.Third)
       const fifth = triad.notes.find((note) => note.tone === ChordTone.Fifth)
@@ -13,7 +13,7 @@ describe('getTriadType', () => {
     }
   })
   it('should identify all minor triads correctly', () => {
-    for (const triad of minorTriads) {
+    for (const triad of minorTriadsBass) {
       const root = triad.notes.find((note) => note.tone === ChordTone.Root)
       const third = triad.notes.find((note) => note.tone === ChordTone.Third)
       const fifth = triad.notes.find((note) => note.tone === ChordTone.Fifth)

@@ -1,5 +1,5 @@
-import { Note, ChordTone, GuitarString, TriadGroup, ChordType } from './models'
-import { getChordNote } from './getChordNote'
+import { Note, ChordTone, GuitarString, TriadGroup, ChordType } from '../model/models'
+import { getChordNote } from '../model/getChordNote'
 
 export const EAD: TriadGroup = {
   rootPosition: {

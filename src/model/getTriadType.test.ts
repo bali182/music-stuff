@@ -1,7 +1,7 @@
-import { majorTriads } from './majorTriads'
+import { majorTriads } from '../data/majorTriads'
 import { ChordTone, ChordType } from './models'
 import { getTriadType } from './getTriadType'
-import { minorTriads } from './minorTriads'
+import { minorTriads } from '../data/minorTriads'
 
 describe('getTriadType', () => {
   it('should identify all major triads correctly', () => {

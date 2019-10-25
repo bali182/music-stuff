@@ -1,4 +1,4 @@
-import { ChordShape, ChordTone, ChordType } from './models'
+import { ChordShape, ChordTone, ChordType } from '../model/models'
 import { expectDistance, expectCorrectNoteOnString, testTriadGroup } from '../test/testUtils'
 import { EAD, ADG, DGB, GBE } from './majorTriads'
 

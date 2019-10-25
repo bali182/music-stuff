@@ -1,5 +1,5 @@
 import { EAD, ADG, DGB, GBE } from './minorTriads'
-import { ChordShape, ChordTone, ChordType } from './models'
+import { ChordShape, ChordTone, ChordType } from '../model/models'
 import { expectDistance, expectCorrectNoteOnString, testTriadGroup } from '../test/testUtils'
 
 describe('minor triads', () => {

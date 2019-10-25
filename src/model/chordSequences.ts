@@ -65,7 +65,7 @@ export const getMixedTriadSequence = getSequence({
   },
 })
 
-export function getRandomMajorTriadSequence(): ChordSequence {
+export function getRandomTriadSequence(): ChordSequence {
   const key: Key = { root: getRandomNote(), type: getRandomKeyType() }
   const scale = getDiatonicScale(key)
   const [rootChord, ...chords] = getScaleChords(scale).map((chord, i) => [chord, i + 1]) as [Chord, number][]

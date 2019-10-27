@@ -4,9 +4,9 @@ import { FullScreen } from '../Ux/FullScreen'
 import { Container } from '../Ux/Container'
 import { Headline } from '../Ux/Headline'
 import { NoteView } from '../Reusable/NoteView'
-import { getExtendedRandomNote } from '../model/getRandomNote'
 import { Button } from '../Ux/Button'
 import { css } from 'emotion'
+import { getExtendedRandomNote } from '../model/Notes'
 
 export type RandomNotePracticeScreenState = {
   note: Note

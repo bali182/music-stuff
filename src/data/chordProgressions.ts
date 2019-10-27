@@ -1,4 +1,4 @@
-import { ChordProgression, KeyType } from './models'
+import { ChordProgression, KeyType } from '../model/models'
 
 // Major only progressions
 export const I_IV_I_V: ChordProgression = {

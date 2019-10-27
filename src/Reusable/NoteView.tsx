@@ -3,8 +3,8 @@ import { Note, AnyString } from '../model/models'
 import { Card } from '../Ux/Card'
 import { css } from 'emotion'
 import { colors } from '../Ux/colors'
-import { getNormalizedNote } from '../model/getNormalizedNote'
 import { NoteFretboard } from './NoteFretboard'
+import { getNormalizedNote } from '../model/Notes'
 
 const colorMap = {
   [Note.C]: colors.red,

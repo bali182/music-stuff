@@ -1,16 +1,18 @@
 import { getSequence } from './getSequence'
 import * as roman from 'tonal-roman-numeral'
 import { ChordType, KeyType, ChordSequence, ChordShape, Chord, Key } from './models'
-import { getRandomNote } from './getRandomNote'
 import { getMajorScale, getMinorScale, getDiatonicScale } from './Scales'
 import { cShape, aShape, gShape, eShape, dShape } from '../data/majorCagedChords'
-import { getKeyName } from './getKeyName'
 import sample from 'lodash/sample'
 import shuffle from 'lodash/shuffle'
-import { majorChordsOnlyProgressions, minorChordsOnlyProgressions, mixedChordProgressions } from './chordProgressions'
-import { getScaleChords } from './getScaleChords'
-import { moveChordShape } from './moveChordShape'
-import { getRandomKeyType } from './getRandomKeyType'
+import {
+  majorChordsOnlyProgressions,
+  minorChordsOnlyProgressions,
+  mixedChordProgressions,
+} from '../data/chordProgressions'
+import { getRandomNote } from './Notes'
+import { getScaleChords, moveChordShape } from './Chords'
+import { getKeyName, getRandomKeyType } from './Keys'
 
 export const getMajorCagedSequence = getSequence({
   progressions: () => majorChordsOnlyProgressions,

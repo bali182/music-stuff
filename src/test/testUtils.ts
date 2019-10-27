@@ -1,6 +1,6 @@
 import { ChordShape, Note, ChordNote, TriadGroup } from '../model/models'
-import { getChromaticScale } from '../model/getChromaticScale'
-import { getStringRootNote } from '../model/getStringRootNote'
+import { getChromaticScale } from '../model/Scales'
+import { getStringRootNote } from '../model/Strings'
 
 export function expectDistance(noteA: Note, noteB: Note, distance: number) {
   const scale = getChromaticScale(noteA)

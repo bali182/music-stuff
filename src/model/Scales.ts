@@ -1,5 +1,28 @@
 import { Note, KeyType, Key } from './models'
-import { getChromaticScale } from './getChromaticScale'
+import { getNormalizedNote } from './Notes'
+
+const ChromaticScaleFromC = [
+  Note.C,
+  Note.CSharp,
+  Note.D,
+  Note.DSharp,
+  Note.E,
+  Note.F,
+  Note.FSharp,
+  Note.G,
+  Note.GSharp,
+  Note.A,
+  Note.ASharp,
+  Note.B,
+]
+
+export const getChromaticScale = (root: Note): Note[] => {
+  const rootNote = getNormalizedNote(root)
+  const index = ChromaticScaleFromC.indexOf(rootNote)
+  const end = ChromaticScaleFromC.slice(0, index)
+  const start = ChromaticScaleFromC.slice(index)
+  return start.concat(end)
+}
 
 const getScale = (chromaticIndices: number[]) => (root: Note): Note[] => {
   const chromaticScale = getChromaticScale(root)
@@ -18,7 +41,7 @@ export const getLocrianScale = getScale([0, 1, 3, 5, 6, 8, 10])
 export const getMajorScale = getIonianScale
 export const getMinorScale = getAeolianScale
 
-export function getDiatonicScale({ type, root }: Key): Note[] {
+export const getDiatonicScale = ({ type, root }: Key): Note[] => {
   switch (type) {
     case KeyType.Ionian:
       return getIonianScale(root)

@@ -134,21 +134,6 @@ export const Notes = [
   Note.AFlat,
 ]
 
-export const ChromaticScaleFromC = [
-  Note.C,
-  Note.CSharp,
-  Note.D,
-  Note.DSharp,
-  Note.E,
-  Note.F,
-  Note.FSharp,
-  Note.G,
-  Note.GSharp,
-  Note.A,
-  Note.ASharp,
-  Note.B,
-]
-
 export const BassStrings = [BassString.E, BassString.A, BassString.D, BassString.G]
 
 export const GuitarStrings = [

@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react'
 import { Fretboard } from '../Fretboard/Fretboard'
 import { Note, AnyString } from '../model/models'
 import { FrettedNote, DefaultColors } from '../Fretboard/FrettedNote'
-import { getStringRootNote } from '../model/getStringRootNote'
-import { getNormalizedNote } from '../model/getNormalizedNote'
-import { getChromaticScale } from '../model/getChromaticScale'
+import { getChromaticScale } from '../model/Scales'
+import { getNormalizedNote } from '../model/Notes'
+import { getStringRootNote } from '../model/Strings'
 
 export type NoteFretboardProps = {
   note: Note

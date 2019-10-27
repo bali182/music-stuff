@@ -1,5 +1,5 @@
-import { getChordNote } from '../model/getChordNote'
 import { ChordShape, Note, ScaleDegree, GuitarString, ChordType } from '../model/models'
+import { getChordNote } from '../model/Chords'
 
 export const cShape: ChordShape = {
   root: Note.C,

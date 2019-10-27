@@ -1,8 +1,10 @@
 import React, { PureComponent } from 'react'
 import { Fretboard } from '../Fretboard/Fretboard'
 import { min, max } from '../utils'
-import { FrettedNote, DefaultColors } from '../Fretboard/FrettedNote'
-import { ChordShape, ScaleDegree, GuitarStrings, AnyString } from '../model/models'
+import { NoteMarker, DefaultColors } from '../Fretboard/NoteMarker'
+import { ChordShape, AnyString } from '../model/models'
+import { getScaleDegree, isRootScaleDegree, getScaleDegreeName } from '../model/Keys'
+import { getNoteOnString } from '../model/Strings'
 
 export type ChordFretboardProps = {
   chord: ChordShape
@@ -35,14 +37,18 @@ export class ChordFretboard extends PureComponent<ChordFretboardProps> {
     const { chord, showLocation, strings } = this.props
     return chord.notes
       .filter((note) => strings.indexOf(note.string) >= 0)
-      .map((note) => (
-        <FrettedNote
-          key={`${note.string}-${note.fret}`}
-          color={note.scaleDegree === ScaleDegree.Root ? DefaultColors.red : DefaultColors.gray}
-          fret={showLocation ? note.fret : note.fret + 12}
-          label={showLocation ? note.note.toString() : note.scaleDegree.toString()}
-          string={note.string}
-        />
-      ))
+      .map((frettedNote) => {
+        const note = getNoteOnString(frettedNote)
+        const degree = getScaleDegree(chord.key, note)
+        return (
+          <NoteMarker
+            key={`${frettedNote.string}-${frettedNote.fret}`}
+            color={isRootScaleDegree(degree) ? DefaultColors.red : DefaultColors.gray}
+            fret={showLocation ? frettedNote.fret : frettedNote.fret + 12}
+            label={showLocation ? note.toString() : getScaleDegreeName(degree)}
+            string={frettedNote.string}
+          />
+        )
+      })
   }
 }

@@ -1,69 +1,63 @@
-import { ChordShape, Note, ScaleDegree, GuitarString, ChordType } from '../model/models'
-import { getChordNote } from '../model/Chords'
+import { ChordShape, Note, GuitarString, KeyType } from '../model/models'
 
 export const cShape: ChordShape = {
-  root: Note.C,
-  type: ChordType.Major,
   description: 'C Shape',
+  key: { root: Note.C, type: KeyType.Ionian },
   notes: [
-    getChordNote(3, Note.C, ScaleDegree.Root, GuitarString.A),
-    getChordNote(2, Note.E, ScaleDegree.Third, GuitarString.D),
-    getChordNote(0, Note.G, ScaleDegree.Fifth, GuitarString.G),
-    getChordNote(1, Note.C, ScaleDegree.Root, GuitarString.B),
-    getChordNote(0, Note.E, ScaleDegree.Third, GuitarString.E1),
+    { fret: 3, string: GuitarString.A },
+    { fret: 2, string: GuitarString.D },
+    { fret: 0, string: GuitarString.G },
+    { fret: 1, string: GuitarString.B },
+    { fret: 0, string: GuitarString.E1 },
   ],
 }
 
 export const aShape: ChordShape = {
-  root: Note.A,
-  type: ChordType.Major,
   description: 'A Shape',
+  key: { root: Note.A, type: KeyType.Ionian },
   notes: [
-    getChordNote(0, Note.A, ScaleDegree.Root, GuitarString.A),
-    getChordNote(2, Note.E, ScaleDegree.Fifth, GuitarString.D),
-    getChordNote(2, Note.A, ScaleDegree.Root, GuitarString.G),
-    getChordNote(2, Note.CSharp, ScaleDegree.Third, GuitarString.B),
-    getChordNote(0, Note.E, ScaleDegree.Fifth, GuitarString.E1),
+    { fret: 0, string: GuitarString.A },
+    { fret: 2, string: GuitarString.D },
+    { fret: 2, string: GuitarString.G },
+    { fret: 2, string: GuitarString.B },
+    { fret: 0, string: GuitarString.E1 },
   ],
 }
 
 export const gShape: ChordShape = {
-  root: Note.G,
-  type: ChordType.Major,
   description: 'G Shape',
+  key: { root: Note.G, type: KeyType.Ionian },
   notes: [
-    getChordNote(3, Note.G, ScaleDegree.Root, GuitarString.E6),
-    getChordNote(2, Note.B, ScaleDegree.Third, GuitarString.A),
-    getChordNote(0, Note.D, ScaleDegree.Fifth, GuitarString.D),
-    getChordNote(0, Note.G, ScaleDegree.Root, GuitarString.G),
-    getChordNote(0, Note.B, ScaleDegree.Third, GuitarString.B),
-    getChordNote(3, Note.G, ScaleDegree.Root, GuitarString.E1),
+    { fret: 3, string: GuitarString.E6 },
+    { fret: 2, string: GuitarString.A },
+    { fret: 0, string: GuitarString.D },
+    { fret: 0, string: GuitarString.G },
+    { fret: 0, string: GuitarString.B },
+    { fret: 3, string: GuitarString.E1 },
   ],
 }
 
 export const eShape: ChordShape = {
-  root: Note.E,
-  type: ChordType.Major,
   description: 'E Shape',
+  key: { root: Note.E, type: KeyType.Ionian },
   notes: [
-    getChordNote(0, Note.E, ScaleDegree.Root, GuitarString.E6),
-    getChordNote(2, Note.B, ScaleDegree.Fifth, GuitarString.A),
-    getChordNote(2, Note.E, ScaleDegree.Root, GuitarString.D),
-    getChordNote(1, Note.GSharp, ScaleDegree.Third, GuitarString.G),
-    getChordNote(0, Note.B, ScaleDegree.Fifth, GuitarString.B),
-    getChordNote(0, Note.E, ScaleDegree.Root, GuitarString.E1),
+    { fret: 0, string: GuitarString.E6 },
+    { fret: 2, string: GuitarString.A },
+    { fret: 2, string: GuitarString.D },
+    { fret: 1, string: GuitarString.G },
+    { fret: 0, string: GuitarString.B },
+    { fret: 0, string: GuitarString.E1 },
   ],
 }
 
 export const dShape: ChordShape = {
-  root: Note.D,
-  type: ChordType.Major,
   description: 'D Shape',
+  key: { root: Note.D, type: KeyType.Ionian },
   notes: [
-    getChordNote(0, Note.D, ScaleDegree.Root, GuitarString.D),
-    getChordNote(2, Note.A, ScaleDegree.Fifth, GuitarString.G),
-    getChordNote(3, Note.D, ScaleDegree.Root, GuitarString.B),
-    getChordNote(2, Note.FSharp, ScaleDegree.Third, GuitarString.E1),
+    { fret: 0, string: GuitarString.D },
+    { fret: 2, string: GuitarString.G },
+    { fret: 3, string: GuitarString.B },
+    { fret: 2, string: GuitarString.E1 },
   ],
 }
 

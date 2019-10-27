@@ -9,14 +9,14 @@ export const DefaultColors = {
   gray: '#808080',
 }
 
-export type FrettedNoteProps = {
+export type NoteMarkerProps = {
   label: string
   string: AnyString
   fret: number
   color?: string
 }
 
-export class FrettedNote extends PureComponent<FrettedNoteProps> {
+export class NoteMarker extends PureComponent<NoteMarkerProps> {
   render() {
     const { label } = this.props
     return (
@@ -32,7 +32,7 @@ export class FrettedNote extends PureComponent<FrettedNoteProps> {
     const left = getFrettedNoteLeft(context)(fret)
     const size = getFrettedNoteSize(context)
     return css({
-      label: 'fretted-note',
+      label: 'note-marker',
       position: 'absolute',
       display: 'flex',
       alignItems: 'center',
@@ -56,7 +56,7 @@ export class FrettedNote extends PureComponent<FrettedNoteProps> {
     })
   }
 
-  static defaultProps: Partial<FrettedNoteProps> = {
+  static defaultProps: Partial<NoteMarkerProps> = {
     color: DefaultColors.red,
   }
 }

@@ -1,6 +1,7 @@
 import { moveNote, getNormalizedNote, getDistanceBetweenNotes } from './Notes'
 import { getChromaticScale } from './Scales'
-import { Note, Notes } from './models'
+import { Note } from './models'
+import { Notes } from '../data/notes'
 
 describe('Notes', () => {
   describe('moveNote', () => {

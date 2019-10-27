@@ -1,4 +1,5 @@
-import { AnyString, BassString, GuitarString, Note } from './models'
+import { AnyString, BassString, GuitarString, Note, FrettedNote } from './models'
+import { moveNote } from './Notes'
 
 export function getBassString(string: AnyString): BassString {
   switch (string) {
@@ -36,4 +37,8 @@ export function getStringRootNote(string: AnyString): Note {
     case GuitarString.B:
       return Note.B
   }
+}
+
+export function getNoteOnString({ string, fret }: FrettedNote): Note {
+  return moveNote(getStringRootNote(string), fret)
 }

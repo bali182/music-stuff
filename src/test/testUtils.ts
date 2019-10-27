@@ -1,30 +1,41 @@
-import { ChordShape, Note, ChordNote, TriadGroup } from '../model/models'
+import { ChordShape, Note, TriadGroup, Key, _ScaleDegree, FrettedNote } from '../model/models'
 import { getChromaticScale } from '../model/Scales'
-import { getStringRootNote } from '../model/Strings'
+import { getScaleDegree } from '../model/Keys'
+import { getNoteOnString } from '../model/Strings'
 
 export function expectDistance(noteA: Note, noteB: Note, distance: number) {
   const scale = getChromaticScale(noteA)
   expect(noteB).toBe(scale[distance])
 }
 
-export function expectCorrectNoteOnString(note: ChordNote) {
-  const root = getStringRootNote(note.string)
-  const scale = getChromaticScale(root)
-  const expectedNote = scale[note.fret % scale.length]
-  expect(note.note).toBe(expectedNote)
+export const ofScaleDegree = (key: Key, expectedDegree: _ScaleDegree) => (note: FrettedNote) => {
+  const actualDegree = getScaleDegree(key, getNoteOnString(note))
+  return actualDegree.degree === expectedDegree.degree && actualDegree.modifier == expectedDegree.modifier
+}
+
+export function expectChord(chord: ChordShape): void {
+  expect(chord.notes.length).toBeGreaterThanOrEqual(3)
+
+  const roots = chord.notes.filter(ofScaleDegree(chord.key, { degree: 1 }))
+  const thirds = chord.notes.filter(ofScaleDegree(chord.key, { degree: 3 }))
+  const fifths = chord.notes.filter(ofScaleDegree(chord.key, { degree: 5 }))
+
+  expect(roots.length).toBeGreaterThanOrEqual(1)
+  expect(thirds.length).toBeGreaterThanOrEqual(1)
+  expect(fifths.length).toBeGreaterThanOrEqual(1)
 }
 
 // TODO test if inversion is correct
-export function testTriadGroup(name: string, triads: TriadGroup, asserter: (triad: ChordShape) => void) {
+export function testTriadGroup(name: string, triads: TriadGroup) {
   describe(name, () => {
     it('should have proper root position', () => {
-      asserter(triads.rootPosition)
+      expectChord(triads.rootPosition)
     })
     it('should have proper first inversion', () => {
-      asserter(triads.firstInversion)
+      expectChord(triads.firstInversion)
     })
     it('should have proper second inversion', () => {
-      asserter(triads.secondInversion)
+      expectChord(triads.secondInversion)
     })
   })
 }

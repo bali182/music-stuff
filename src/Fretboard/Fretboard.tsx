@@ -5,7 +5,7 @@ import { FretboardContext, FretboardContexType } from './FretboardContext'
 import { getFretboardWidth, getStringOverhang } from './utils'
 import { InstrumentStrings } from './InstrumentStrings'
 import { Frets } from './Frets'
-import { FrettedNotes } from './FrettedNotes'
+import { NoteMarkers } from './NoteMarkers'
 import { FretPositionMarkers } from './FretPositionMarkers'
 
 export type FretboardProps = Partial<FretboardContexType> & {
@@ -44,7 +44,7 @@ export class Fretboard extends PureComponent<FretboardProps> {
           <Frets />
           {context.positionMarkers ? <FretPositionMarkers /> : null}
           <InstrumentStrings />
-          <FrettedNotes>{children}</FrettedNotes>
+          <NoteMarkers>{children}</NoteMarkers>
         </FretboardContext.Provider>
       </div>
     )

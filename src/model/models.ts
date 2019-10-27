@@ -40,22 +40,6 @@ export enum Note {
   AFlat = 'Ab',
 }
 
-export enum ScaleDegree {
-  Root = 'R',
-  Second = 2,
-  Third = 3,
-  Fourth = 4,
-  Fifth = 5,
-  Sixth = 6,
-  Seventh = 7,
-}
-
-export enum ChordType {
-  Major = 'Major',
-  Minor = 'Minor',
-  Diminished = 'Diminished',
-}
-
 export enum KeyType {
   Ionian = 'Ionian',
   Dorian = 'Dorian',
@@ -67,8 +51,7 @@ export enum KeyType {
 }
 
 export type Chord = {
-  root: Note
-  type: ChordType
+  key: Key
   notes: Note[]
 }
 
@@ -78,17 +61,26 @@ export type TriadGroup = {
   secondInversion: ChordShape
 }
 
-export type ChordNote = {
-  fret: number
-  scaleDegree: ScaleDegree
-  note: Note
+export enum ScaleDegreeModifier {
+  Flat = 'b',
+  Sharp = '#',
+}
+
+export type ScaleDegreeNum = 1 | 2 | 3 | 4 | 5 | 6 | 7
+
+export type _ScaleDegree = {
+  degree: ScaleDegreeNum
+  modifier?: ScaleDegreeModifier
+}
+
+export type FrettedNote = {
   string: AnyString
+  fret: number
 }
 
 export type ChordShape = {
-  root: Note
-  type: ChordType
-  notes: ChordNote[]
+  key: Key
+  notes: FrettedNote[]
   description: string
 }
 
@@ -109,38 +101,3 @@ export type ChordProgression = {
   // Array indices
   scaleDegrees: number[]
 }
-
-export const Notes = [
-  Note.A,
-  Note.ASharp,
-  Note.BFlat,
-  Note.B,
-  Note.BSharp,
-  Note.CFlat,
-  Note.C,
-  Note.CSharp,
-  Note.DFlat,
-  Note.D,
-  Note.DSharp,
-  Note.EFlat,
-  Note.E,
-  Note.ESharp,
-  Note.FFlat,
-  Note.F,
-  Note.FSharp,
-  Note.GFlat,
-  Note.G,
-  Note.GSharp,
-  Note.AFlat,
-]
-
-export const BassStrings = [BassString.E, BassString.A, BassString.D, BassString.G]
-
-export const GuitarStrings = [
-  GuitarString.E6,
-  GuitarString.A,
-  GuitarString.D,
-  GuitarString.G,
-  GuitarString.B,
-  GuitarString.E1,
-]

@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
 import { ChordShape, AnyString } from '../model/models'
-import { FullScreen } from '../Ux/FullScreen'
-import { Container } from '../Ux/Container'
 import { CardSection } from '../Ux/CardSection'
 import { Card } from '../Ux/Card'
 import { CardHeader } from '../Ux/CardHeader'
@@ -10,6 +8,7 @@ import { CardSubTitle } from '../Ux/CardSubTitle'
 import { CardContent } from '../Ux/CardContent'
 import { ChordFretboard } from './ChordFretboard'
 import { Button } from '../Ux/Button'
+import { getChordKeyName } from '../model/Chords'
 
 export type ChordsViewProps = {
   chords: ChordShape[]
@@ -51,11 +50,9 @@ export class ChordsView extends PureComponent<ChordsViewProps, ChordsViewState> 
     return chords.map((chord, i) => {
       const showFretPos = this.isShowingLocations(chord)
       return (
-        <Card key={`${chord.root}-${chord.type}-${i}`}>
+        <Card key={`${chord.key.root}-${chord.key.type}-${i}`}>
           <CardHeader color={color}>
-            <CardTitle>
-              {chord.root} {chord.type}
-            </CardTitle>
+            <CardTitle>{getChordKeyName(chord.key)}</CardTitle>
             <CardSubTitle>{chord.description}</CardSubTitle>
           </CardHeader>
           <CardContent>

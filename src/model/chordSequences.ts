@@ -1,7 +1,7 @@
 import { getSequence } from './getSequence'
 import * as roman from 'tonal-roman-numeral'
-import { ChordType, KeyType, ChordSequence, ChordShape, Chord, Key } from './models'
-import { getMajorScale, getMinorScale, getDiatonicScale } from './Scales'
+import { KeyType, ChordSequence, ChordShape, Chord, Key } from './models'
+import { getMajorScale, getMinorScale, getScale } from './Scales'
 import { cShape, aShape, gShape, eShape, dShape } from '../data/majorCagedChords'
 import sample from 'lodash/sample'
 import shuffle from 'lodash/shuffle'
@@ -55,14 +55,14 @@ export const getMixedTriadSequence = (majShapes: ChordShape[], minShapes: ChordS
           throw new TypeError(`Unexpected key type: ${key.type}`)
       }
     },
-    shapes: (type: ChordType) => {
-      switch (type) {
-        case ChordType.Major:
+    shapes: (key: Key) => {
+      switch (key.type) {
+        case KeyType.Ionian:
           return majShapes
-        case ChordType.Minor:
+        case KeyType.Aeolian:
           return minShapes
         default:
-          throw new TypeError(`Unexpected chord type: ${type}`)
+          throw new TypeError(`Unexpected chord type: ${key.type}`)
       }
     },
   })
@@ -73,26 +73,26 @@ export const getRandomTriadSequence = (
   dimShapes: ChordShape[]
 ) => (): ChordSequence => {
   const key: Key = { root: getRandomNote(), type: getRandomKeyType() }
-  const scale = getDiatonicScale(key)
+  const scale = getScale(key)
   const [rootChord, ...chords] = getScaleChords(scale).map((chord, i) => [chord, i + 1]) as [Chord, number][]
   const randomChords = [rootChord, ...shuffle(chords).slice(3)]
   const chordSelection = {
-    [ChordType.Major]: majShapes,
-    [ChordType.Minor]: minShapes,
-    [ChordType.Diminished]: dimShapes,
+    [KeyType.Ionian]: majShapes,
+    [KeyType.Aeolian]: minShapes,
+    [KeyType.Locrian]: dimShapes,
   }
   const progression = randomChords
     .map(([chord, degree]) => {
-      const romanNum = roman.fromDegree(degree, chord.type === ChordType.Major)
-      return chord.type === ChordType.Diminished ? `${romanNum}°` : romanNum
+      const romanNum = roman.fromDegree(degree, chord.key.type === KeyType.Ionian)
+      return chord.key.type === KeyType.Locrian ? `${romanNum}°` : romanNum
     })
     .join('-')
   const chordShapes = randomChords
     .map(([chord]) => chord)
     .map(
-      ({ root: chordRoot, type: chordType }): ChordShape => {
-        const shape = sample(chordSelection[chordType])
-        return moveChordShape(shape, chordRoot)
+      ({ key }): ChordShape => {
+        const shape = sample(chordSelection[key.type])
+        return moveChordShape(shape, key.root)
       }
     )
   return {

@@ -1,7 +1,8 @@
 import sample from 'lodash/sample'
 import values from 'lodash/values'
-import { Note, Notes } from './models'
+import { Note } from './models'
 import { getChromaticScale } from './Scales'
+import { Notes } from '../data/notes'
 
 export function getNormalizedNote(note: Note): Note {
   if (Notes.indexOf(note) < 0) {

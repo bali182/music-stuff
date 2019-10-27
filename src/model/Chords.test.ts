@@ -1,39 +1,42 @@
-import { Note, ScaleDegree, GuitarString, ChordType } from './models'
-import { getChordNote, getScaleChords, getTriadType } from './Chords'
+import { Note, Key, KeyType } from './models'
+import { getScaleChords, getChordKey } from './Chords'
 import { getMajorScale, getMinorScale } from './Scales'
 import { majorTriadsGuitar } from '../data/majorTriads'
-import { minorTriadsBass } from '../data/minorTriads'
+import { minorTriadsGuitar } from '../data/minorTriads'
+import { ofScaleDegree } from '../test/testUtils'
+import { getNoteOnString } from './Strings'
 
 describe('Chords', () => {
-  describe('getChordNote', () => {
-    it('should create a ChordNote', () => {
-      const note = getChordNote(1, Note.A, ScaleDegree.Root, GuitarString.B)
-      expect(note.fret).toBe(1)
-      expect(note.note).toBe(Note.A)
-      expect(note.scaleDegree).toBe(ScaleDegree.Root)
-      expect(note.string).toBe(GuitarString.B)
-    })
-  })
   describe('getTriadType', () => {
     it('should identify all major triads correctly', () => {
       for (const triad of majorTriadsGuitar) {
-        const root = triad.notes.find((note) => note.scaleDegree === ScaleDegree.Root)
-        const third = triad.notes.find((note) => note.scaleDegree === ScaleDegree.Third)
-        const fifth = triad.notes.find((note) => note.scaleDegree === ScaleDegree.Fifth)
-        expect(getTriadType(root.note, third.note, fifth.note)).toBe(ChordType.Major)
+        const root = triad.notes.find(ofScaleDegree(triad.key, { degree: 1 }))
+        const third = triad.notes.find(ofScaleDegree(triad.key, { degree: 3 }))
+        const fifth = triad.notes.find(ofScaleDegree(triad.key, { degree: 5 }))
+        const key = getChordKey(getNoteOnString(root), getNoteOnString(third), getNoteOnString(fifth))
+        expect(key.type).toBe(KeyType.Ionian)
       }
     })
     it('should identify all minor triads correctly', () => {
-      for (const triad of minorTriadsBass) {
-        const root = triad.notes.find((note) => note.scaleDegree === ScaleDegree.Root)
-        const third = triad.notes.find((note) => note.scaleDegree === ScaleDegree.Third)
-        const fifth = triad.notes.find((note) => note.scaleDegree === ScaleDegree.Fifth)
-        expect(getTriadType(root.note, third.note, fifth.note)).toBe(ChordType.Minor)
+      for (const triad of minorTriadsGuitar) {
+        const root = triad.notes.find(ofScaleDegree(triad.key, { degree: 1 }))
+        const third = triad.notes.find(ofScaleDegree(triad.key, { degree: 3 }))
+        const fifth = triad.notes.find(ofScaleDegree(triad.key, { degree: 5 }))
+        const key = getChordKey(getNoteOnString(root), getNoteOnString(third), getNoteOnString(fifth))
+        expect(key.type).toBe(KeyType.Aeolian)
       }
     })
   })
 
   describe('getScaleChords', () => {
+    const cIonianKey: Key = { root: Note.C, type: KeyType.Ionian }
+    const dAeolianKey: Key = { root: Note.D, type: KeyType.Aeolian }
+    const eAeolianKey: Key = { root: Note.E, type: KeyType.Aeolian }
+    const fIonianKey: Key = { root: Note.F, type: KeyType.Ionian }
+    const gIonianKey: Key = { root: Note.G, type: KeyType.Ionian }
+    const aAeolianKey: Key = { root: Note.A, type: KeyType.Aeolian }
+    const bLocrianKey: Key = { root: Note.B, type: KeyType.Locrian }
+
     it('should identify major scale chords properly', () => {
       const scale = getMajorScale(Note.C)
       const chords = getScaleChords(scale)
@@ -42,26 +45,13 @@ describe('Chords', () => {
 
       const [c, dm, em, f, g, am, bdim] = chords
 
-      expect(c.root).toBe(Note.C)
-      expect(c.type).toBe(ChordType.Major)
-
-      expect(dm.root).toBe(Note.D)
-      expect(dm.type).toBe(ChordType.Minor)
-
-      expect(em.root).toBe(Note.E)
-      expect(em.type).toBe(ChordType.Minor)
-
-      expect(f.root).toBe(Note.F)
-      expect(f.type).toBe(ChordType.Major)
-
-      expect(g.root).toBe(Note.G)
-      expect(g.type).toBe(ChordType.Major)
-
-      expect(am.root).toBe(Note.A)
-      expect(am.type).toBe(ChordType.Minor)
-
-      expect(bdim.root).toBe(Note.B)
-      expect(bdim.type).toBe(ChordType.Diminished)
+      expect(c.key).toEqual(cIonianKey)
+      expect(dm.key).toEqual(dAeolianKey)
+      expect(em.key).toEqual(eAeolianKey)
+      expect(f.key).toEqual(fIonianKey)
+      expect(g.key).toEqual(gIonianKey)
+      expect(am.key).toEqual(aAeolianKey)
+      expect(bdim.key).toEqual(bLocrianKey)
     })
 
     it('should identify minor scale chords properly', () => {
@@ -72,26 +62,13 @@ describe('Chords', () => {
 
       const [am, bdim, c, dm, em, f, g] = chords
 
-      expect(am.root).toBe(Note.A)
-      expect(am.type).toBe(ChordType.Minor)
-
-      expect(bdim.root).toBe(Note.B)
-      expect(bdim.type).toBe(ChordType.Diminished)
-
-      expect(c.root).toBe(Note.C)
-      expect(c.type).toBe(ChordType.Major)
-
-      expect(dm.root).toBe(Note.D)
-      expect(dm.type).toBe(ChordType.Minor)
-
-      expect(em.root).toBe(Note.E)
-      expect(em.type).toBe(ChordType.Minor)
-
-      expect(f.root).toBe(Note.F)
-      expect(f.type).toBe(ChordType.Major)
-
-      expect(g.root).toBe(Note.G)
-      expect(g.type).toBe(ChordType.Major)
+      expect(am.key).toEqual(aAeolianKey)
+      expect(bdim.key).toEqual(bLocrianKey)
+      expect(c.key).toEqual(cIonianKey)
+      expect(dm.key).toEqual(dAeolianKey)
+      expect(em.key).toEqual(eAeolianKey)
+      expect(f.key).toEqual(fIonianKey)
+      expect(g.key).toEqual(gIonianKey)
     })
   })
 })

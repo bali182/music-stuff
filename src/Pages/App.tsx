@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { MainScreen } from './MainScreen'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 import { RandomNotePracticeScreen } from '../Reusable/RandomNotePracticeScreen'
-import { GuitarStrings, BassStrings } from '../model/models'
 import { ChordPracticeScreen } from '../Reusable/ChordPracticeScreen'
 import {
   getMajorCagedSequence,
@@ -15,6 +14,7 @@ import { colors } from '../Ux/colors'
 import { majorTriadsGuitar, majorTriadsBass } from '../data/majorTriads'
 import { minorTriadsGuitar, minorTriadsBass } from '../data/minorTriads'
 import { diminishedTriadsGuitar, diminishedTriadsBass } from '../data/diminishedTriads'
+import { GuitarStrings, BassStrings } from '../data/strings'
 
 export class App extends Component {
   render() {

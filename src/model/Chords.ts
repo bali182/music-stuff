@@ -1,14 +1,11 @@
 import minBy from 'lodash/minBy'
-import { Note, ScaleDegree, AnyString, ChordNote, Chord, ChordType } from './models'
+import { Note, AnyString, Chord, FrettedNote, Key, KeyType } from './models'
 import { getDistanceBetweenNotes } from './Notes'
 import { ChordShape, GuitarString } from './models'
 import { getBassString } from './Strings'
-import { getChromaticScale } from './Scales'
-import { moveNote, getNormalizedNote } from './Notes'
-
-export function getChordNote(fret: number, note: Note, tone: ScaleDegree, string: AnyString): ChordNote {
-  return { fret, note, scaleDegree: tone, string }
-}
+import { getChromaticScale, getMajorScale, getIonianScale, getAeolianScale, getLocrianScale } from './Scales'
+import { getNormalizedNote } from './Notes'
+import { getChordTypeName } from './Keys'
 
 export function getScaleChords(scale: Note[]): Chord[] {
   return scale.map((root: Note, degree: number) => {
@@ -16,25 +13,25 @@ export function getScaleChords(scale: Note[]): Chord[] {
     const fifth = scale[(degree + 4) % scale.length]
     return {
       root,
-      type: getTriadType(root, third, fifth),
+      key: getChordKey(root, third, fifth),
       notes: [root, third, fifth],
     }
   })
 }
 
-export function getTriadType(root: Note, third: Note, fifth: Note): ChordType {
-  const rootThirdDist = getDistanceBetweenNotes(root, third)
-  const thirdFifthDist = getDistanceBetweenNotes(third, fifth)
-  if (rootThirdDist === 4 && thirdFifthDist === 3) {
-    return ChordType.Major
-  } else if (rootThirdDist === 3 && thirdFifthDist === 4) {
-    return ChordType.Minor
-  } else if (rootThirdDist === 3 && thirdFifthDist === 3) {
-    return ChordType.Diminished
+export function isParentScale(root: Note, third: Note, fifth: Note, scale: Note[]): boolean {
+  return scale[0] === root && scale[2] === third && scale[4] === fifth
+}
+
+export function getChordKey(root: Note, third: Note, fifth: Note): Key {
+  if (isParentScale(root, third, fifth, getIonianScale(root))) {
+    return { type: KeyType.Ionian, root }
+  } else if (isParentScale(root, third, fifth, getAeolianScale(root))) {
+    return { type: KeyType.Aeolian, root }
+  } else if (isParentScale(root, third, fifth, getLocrianScale(root))) {
+    return { type: KeyType.Locrian, root }
   }
-  throw new TypeError(
-    `Triad (${root} -${rootThirdDist}-> ${third} -${thirdFifthDist}-> ${fifth}) had unrecognizable note distances.`
-  )
+  throw new TypeError(`Cant identify parent key for (${root}, ${third}, ${fifth})`)
 }
 
 export function getBassChordShape(guitarChord: ChordShape): ChordShape {
@@ -51,7 +48,7 @@ export function getBassChordShape(guitarChord: ChordShape): ChordShape {
 
 export function moveChordShape(chord: ChordShape, root: Note, allowOpenStrings: boolean = true): ChordShape {
   const normalizedRoot = getNormalizedNote(root)
-  const chromaticScale = getChromaticScale(getNormalizedNote(chord.root))
+  const chromaticScale = getChromaticScale(getNormalizedNote(chord.key.root))
   const lowestNote = minBy(chord.notes, (note) => note.fret)
   let shift = chromaticScale.indexOf(normalizedRoot)
   if (shift === 0 && lowestNote.fret === 0 && !allowOpenStrings) {
@@ -59,15 +56,17 @@ export function moveChordShape(chord: ChordShape, root: Note, allowOpenStrings: 
   }
   const movedChord: ChordShape = {
     ...chord,
-    root: root,
+    key: { root, type: chord.key.type },
     notes: chord.notes.map(
-      (note): ChordNote => ({
-        scaleDegree: note.scaleDegree,
+      (note): FrettedNote => ({
         string: note.string,
         fret: note.fret + shift,
-        note: moveNote(note.note, shift),
       })
     ),
   }
   return movedChord
+}
+
+export function getChordKeyName(key: Key): string {
+  return `${key.root} ${getChordTypeName(key.type)}`
 }

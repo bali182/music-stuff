@@ -1,4 +1,4 @@
-import { getMajorScale, getMinorScale } from './scales'
+import { getMajorScale, getMinorScale } from './Scales'
 import { Note, ChordType } from './models'
 import { getScaleChords } from './getScaleChords'
 

@@ -1,7 +1,7 @@
 import { ChordShape, ScaleDegree, ChordType } from '../model/models'
 import { expectCorrectNoteOnString } from '../test/testUtils'
 import { cShape, dShape, eShape, gShape, aShape } from './majorCagedChords'
-import { getMajorScale } from '../model/scales'
+import { getMajorScale } from '../model/Scales'
 
 describe('diminished triads', () => {
   function expectMajorChord(chord: ChordShape) {

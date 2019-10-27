@@ -17,7 +17,7 @@ export function moveChordShape(chord: ChordShape, root: Note, allowOpenStrings: 
     root: root,
     notes: chord.notes.map(
       (note): ChordNote => ({
-        tone: note.tone,
+        scaleDegree: note.scaleDegree,
         string: note.string,
         fret: note.fret + shift,
         note: moveNote(note.note, shift),

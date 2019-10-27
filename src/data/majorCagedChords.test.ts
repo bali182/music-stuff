@@ -1,4 +1,4 @@
-import { ChordShape, ChordTone, ChordType } from '../model/models'
+import { ChordShape, ScaleDegree, ChordType } from '../model/models'
 import { expectCorrectNoteOnString } from '../test/testUtils'
 import { cShape, dShape, eShape, gShape, aShape } from './majorCagedChords'
 import { getMajorScale } from '../model/scales'
@@ -7,9 +7,9 @@ describe('diminished triads', () => {
   function expectMajorChord(chord: ChordShape) {
     expect(chord.type).toBe(ChordType.Major)
 
-    const rootNotes = chord.notes.filter((note) => note.tone === ChordTone.Root)
-    const thirdNotes = chord.notes.filter((note) => note.tone === ChordTone.Third)
-    const fifthNotes = chord.notes.filter((note) => note.tone === ChordTone.Fifth)
+    const rootNotes = chord.notes.filter((note) => note.scaleDegree === ScaleDegree.Root)
+    const thirdNotes = chord.notes.filter((note) => note.scaleDegree === ScaleDegree.Third)
+    const fifthNotes = chord.notes.filter((note) => note.scaleDegree === ScaleDegree.Fifth)
 
     expect(rootNotes.length).toBeGreaterThanOrEqual(1)
     expect(thirdNotes.length).toBeGreaterThanOrEqual(1)
@@ -18,19 +18,19 @@ describe('diminished triads', () => {
     const majorScale = getMajorScale(chord.root)
 
     for (const chordNote of chord.notes) {
-      switch (chordNote.tone) {
-        case ChordTone.Root:
+      switch (chordNote.scaleDegree) {
+        case ScaleDegree.Root:
           expect(chordNote.note).toBe(chord.root)
           expect(chordNote.note).toBe(majorScale[0])
           break
-        case ChordTone.Third:
+        case ScaleDegree.Third:
           expect(chordNote.note).toBe(majorScale[2])
           break
-        case ChordTone.Fifth:
+        case ScaleDegree.Fifth:
           expect(chordNote.note).toBe(majorScale[4])
           break
         default:
-          fail(`Unexpected chord tone: ${chordNote.tone}`)
+          fail(`Unexpected chord tone: ${chordNote.scaleDegree}`)
       }
     }
 

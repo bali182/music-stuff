@@ -40,10 +40,14 @@ export enum Note {
   AFlat = 'Ab',
 }
 
-export enum ChordTone {
+export enum ScaleDegree {
   Root = 'R',
-  Third = '3',
-  Fifth = '5',
+  Second = 2,
+  Third = 3,
+  Fourth = 4,
+  Fifth = 5,
+  Sixth = 6,
+  Seventh = 7,
 }
 
 export enum ChordType {
@@ -76,7 +80,7 @@ export type TriadGroup = {
 
 export type ChordNote = {
   fret: number
-  tone: ChordTone
+  scaleDegree: ScaleDegree
   note: Note
   string: AnyString
 }

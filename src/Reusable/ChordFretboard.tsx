@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Fretboard } from '../Fretboard/Fretboard'
 import { min, max } from '../utils'
 import { FrettedNote, DefaultColors } from '../Fretboard/FrettedNote'
-import { ChordShape, ChordTone, GuitarStrings, AnyString } from '../model/models'
+import { ChordShape, ScaleDegree, GuitarStrings, AnyString } from '../model/models'
 
 export type ChordFretboardProps = {
   chord: ChordShape
@@ -38,9 +38,9 @@ export class ChordFretboard extends PureComponent<ChordFretboardProps> {
       .map((note) => (
         <FrettedNote
           key={`${note.string}-${note.fret}`}
-          color={note.tone === ChordTone.Root ? DefaultColors.red : DefaultColors.gray}
+          color={note.scaleDegree === ScaleDegree.Root ? DefaultColors.red : DefaultColors.gray}
           fret={showLocation ? note.fret : note.fret + 12}
-          label={showLocation ? note.note : note.tone}
+          label={showLocation ? note.note.toString() : note.scaleDegree.toString()}
           string={note.string}
         />
       ))

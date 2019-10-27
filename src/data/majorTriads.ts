@@ -1,4 +1,4 @@
-import { Note, ChordTone, GuitarString, TriadGroup, ChordType } from '../model/models'
+import { Note, ScaleDegree, GuitarString, TriadGroup, ChordType } from '../model/models'
 import { getChordNote } from '../model/getChordNote'
 import { getBassChordShape } from '../model/getBassChordShape'
 
@@ -8,9 +8,9 @@ export const EAD: TriadGroup = {
     type: ChordType.Major,
     description: 'Root position triad',
     notes: [
-      getChordNote(3, Note.G, ChordTone.Root, GuitarString.E6),
-      getChordNote(2, Note.B, ChordTone.Third, GuitarString.A),
-      getChordNote(0, Note.D, ChordTone.Fifth, GuitarString.D),
+      getChordNote(3, Note.G, ScaleDegree.Root, GuitarString.E6),
+      getChordNote(2, Note.B, ScaleDegree.Third, GuitarString.A),
+      getChordNote(0, Note.D, ScaleDegree.Fifth, GuitarString.D),
     ],
   },
   firstInversion: {
@@ -18,9 +18,9 @@ export const EAD: TriadGroup = {
     type: ChordType.Major,
     description: 'First inversion triad',
     notes: [
-      getChordNote(2, Note.FSharp, ChordTone.Third, GuitarString.E6),
-      getChordNote(0, Note.A, ChordTone.Fifth, GuitarString.A),
-      getChordNote(0, Note.D, ChordTone.Root, GuitarString.D),
+      getChordNote(2, Note.FSharp, ScaleDegree.Third, GuitarString.E6),
+      getChordNote(0, Note.A, ScaleDegree.Fifth, GuitarString.A),
+      getChordNote(0, Note.D, ScaleDegree.Root, GuitarString.D),
     ],
   },
   secondInversion: {
@@ -28,9 +28,9 @@ export const EAD: TriadGroup = {
     type: ChordType.Major,
     description: 'Second inversion triad',
     notes: [
-      getChordNote(1, Note.F, ChordTone.Fifth, GuitarString.E6),
-      getChordNote(1, Note.ASharp, ChordTone.Root, GuitarString.A),
-      getChordNote(0, Note.D, ChordTone.Third, GuitarString.D),
+      getChordNote(1, Note.F, ScaleDegree.Fifth, GuitarString.E6),
+      getChordNote(1, Note.ASharp, ScaleDegree.Root, GuitarString.A),
+      getChordNote(0, Note.D, ScaleDegree.Third, GuitarString.D),
     ],
   },
 }
@@ -41,9 +41,9 @@ export const ADG: TriadGroup = {
     type: ChordType.Major,
     description: 'Root position triad',
     notes: [
-      getChordNote(3, Note.C, ChordTone.Root, GuitarString.A),
-      getChordNote(2, Note.E, ChordTone.Third, GuitarString.D),
-      getChordNote(0, Note.G, ChordTone.Fifth, GuitarString.G),
+      getChordNote(3, Note.C, ScaleDegree.Root, GuitarString.A),
+      getChordNote(2, Note.E, ScaleDegree.Third, GuitarString.D),
+      getChordNote(0, Note.G, ScaleDegree.Fifth, GuitarString.G),
     ],
   },
   firstInversion: {
@@ -51,9 +51,9 @@ export const ADG: TriadGroup = {
     type: ChordType.Major,
     description: 'First inversion triad',
     notes: [
-      getChordNote(2, Note.B, ChordTone.Third, GuitarString.A),
-      getChordNote(0, Note.D, ChordTone.Fifth, GuitarString.D),
-      getChordNote(0, Note.G, ChordTone.Root, GuitarString.G),
+      getChordNote(2, Note.B, ScaleDegree.Third, GuitarString.A),
+      getChordNote(0, Note.D, ScaleDegree.Fifth, GuitarString.D),
+      getChordNote(0, Note.G, ScaleDegree.Root, GuitarString.G),
     ],
   },
   secondInversion: {
@@ -61,9 +61,9 @@ export const ADG: TriadGroup = {
     type: ChordType.Major,
     description: 'Second inversion triad',
     notes: [
-      getChordNote(1, Note.ASharp, ChordTone.Fifth, GuitarString.A),
-      getChordNote(1, Note.DSharp, ChordTone.Root, GuitarString.D),
-      getChordNote(0, Note.G, ChordTone.Third, GuitarString.G),
+      getChordNote(1, Note.ASharp, ScaleDegree.Fifth, GuitarString.A),
+      getChordNote(1, Note.DSharp, ScaleDegree.Root, GuitarString.D),
+      getChordNote(0, Note.G, ScaleDegree.Third, GuitarString.G),
     ],
   },
 }
@@ -74,9 +74,9 @@ export const DGB: TriadGroup = {
     type: ChordType.Major,
     description: 'Root position triad',
     notes: [
-      getChordNote(2, Note.E, ChordTone.Root, GuitarString.D),
-      getChordNote(1, Note.GSharp, ChordTone.Third, GuitarString.G),
-      getChordNote(0, Note.B, ChordTone.Fifth, GuitarString.B),
+      getChordNote(2, Note.E, ScaleDegree.Root, GuitarString.D),
+      getChordNote(1, Note.GSharp, ScaleDegree.Third, GuitarString.G),
+      getChordNote(0, Note.B, ScaleDegree.Fifth, GuitarString.B),
     ],
   },
   firstInversion: {
@@ -84,9 +84,9 @@ export const DGB: TriadGroup = {
     type: ChordType.Major,
     description: 'First inversion triad',
     notes: [
-      getChordNote(2, Note.E, ChordTone.Third, GuitarString.D),
-      getChordNote(0, Note.G, ChordTone.Fifth, GuitarString.G),
-      getChordNote(1, Note.C, ChordTone.Root, GuitarString.B),
+      getChordNote(2, Note.E, ScaleDegree.Third, GuitarString.D),
+      getChordNote(0, Note.G, ScaleDegree.Fifth, GuitarString.G),
+      getChordNote(1, Note.C, ScaleDegree.Root, GuitarString.B),
     ],
   },
   secondInversion: {
@@ -94,9 +94,9 @@ export const DGB: TriadGroup = {
     type: ChordType.Major,
     description: 'Second inversion triad',
     notes: [
-      getChordNote(0, Note.D, ChordTone.Fifth, GuitarString.D),
-      getChordNote(0, Note.G, ChordTone.Root, GuitarString.G),
-      getChordNote(0, Note.B, ChordTone.Third, GuitarString.B),
+      getChordNote(0, Note.D, ScaleDegree.Fifth, GuitarString.D),
+      getChordNote(0, Note.G, ScaleDegree.Root, GuitarString.G),
+      getChordNote(0, Note.B, ScaleDegree.Third, GuitarString.B),
     ],
   },
 }
@@ -107,9 +107,9 @@ export const GBE: TriadGroup = {
     type: ChordType.Major,
     description: 'Root position triad',
     notes: [
-      getChordNote(2, Note.A, ChordTone.Root, GuitarString.G),
-      getChordNote(2, Note.CSharp, ChordTone.Third, GuitarString.B),
-      getChordNote(0, Note.E, ChordTone.Fifth, GuitarString.E1),
+      getChordNote(2, Note.A, ScaleDegree.Root, GuitarString.G),
+      getChordNote(2, Note.CSharp, ScaleDegree.Third, GuitarString.B),
+      getChordNote(0, Note.E, ScaleDegree.Fifth, GuitarString.E1),
     ],
   },
   firstInversion: {
@@ -117,9 +117,9 @@ export const GBE: TriadGroup = {
     type: ChordType.Major,
     description: 'First inversion triad',
     notes: [
-      getChordNote(1, Note.GSharp, ChordTone.Third, GuitarString.G),
-      getChordNote(0, Note.B, ChordTone.Fifth, GuitarString.B),
-      getChordNote(0, Note.E, ChordTone.Root, GuitarString.E1),
+      getChordNote(1, Note.GSharp, ScaleDegree.Third, GuitarString.G),
+      getChordNote(0, Note.B, ScaleDegree.Fifth, GuitarString.B),
+      getChordNote(0, Note.E, ScaleDegree.Root, GuitarString.E1),
     ],
   },
   secondInversion: {
@@ -127,9 +127,9 @@ export const GBE: TriadGroup = {
     type: ChordType.Major,
     description: 'Second inversion triad',
     notes: [
-      getChordNote(0, Note.G, ChordTone.Fifth, GuitarString.G),
-      getChordNote(1, Note.C, ChordTone.Root, GuitarString.B),
-      getChordNote(0, Note.E, ChordTone.Third, GuitarString.E1),
+      getChordNote(0, Note.G, ScaleDegree.Fifth, GuitarString.G),
+      getChordNote(1, Note.C, ScaleDegree.Root, GuitarString.B),
+      getChordNote(0, Note.E, ScaleDegree.Third, GuitarString.E1),
     ],
   },
 }

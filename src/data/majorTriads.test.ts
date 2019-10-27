@@ -1,4 +1,4 @@
-import { ChordShape, ChordTone, ChordType } from '../model/models'
+import { ChordShape, ScaleDegree, ChordType } from '../model/models'
 import { expectDistance, expectCorrectNoteOnString, testTriadGroup } from '../test/testUtils'
 import { EAD, ADG, DGB, GBE } from './majorTriads'
 
@@ -6,9 +6,9 @@ describe('major triads', () => {
   function expectMajorTriad(chord: ChordShape) {
     expect(chord.notes).toHaveLength(3)
     expect(chord.type).toBe(ChordType.Major)
-    const root = chord.notes.find((note) => note.tone === ChordTone.Root)
-    const third = chord.notes.find((note) => note.tone === ChordTone.Third)
-    const fifth = chord.notes.find((note) => note.tone === ChordTone.Fifth)
+    const root = chord.notes.find((note) => note.scaleDegree === ScaleDegree.Root)
+    const third = chord.notes.find((note) => note.scaleDegree === ScaleDegree.Third)
+    const fifth = chord.notes.find((note) => note.scaleDegree === ScaleDegree.Fifth)
 
     expect(root).not.toBeUndefined()
     expect(third).not.toBeUndefined()

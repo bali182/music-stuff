@@ -68,7 +68,7 @@ export enum ScaleDegreeModifier {
 
 export type ScaleDegreeNum = 1 | 2 | 3 | 4 | 5 | 6 | 7
 
-export type _ScaleDegree = {
+export type ScaleDegree = {
   degree: ScaleDegreeNum
   modifier?: ScaleDegreeModifier
 }
@@ -82,6 +82,11 @@ export type ChordShape = {
   key: Key
   notes: FrettedNote[]
   description: string
+}
+
+export type ScaleShape = {
+  key: Key
+  notes: FrettedNote[]
 }
 
 export type Key = {

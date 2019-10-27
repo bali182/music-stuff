@@ -1,5 +1,7 @@
+import entries from 'lodash/entries'
+import remove from 'lodash/remove'
 import { Note, KeyType, Key } from './models'
-import { getNormalizedNote } from './Notes'
+import { getNormalizedNote, asBaseNote, isSharpNote, getHigherBaseNote, asFlatNote } from './Notes'
 
 const ChromaticScaleFromC = [
   Note.C,
@@ -22,6 +24,36 @@ export const getChromaticScale = (root: Note): Note[] => {
   const end = ChromaticScaleFromC.slice(0, index)
   const start = ChromaticScaleFromC.slice(index)
   return start.concat(end)
+}
+
+// TODO F# major wtf...
+export const replaceDuplicateNotes = (notes: Note[]): { [key: string]: Note[] } => {
+  // Create registry with base notes
+  const registry = {
+    [Note.C]: [],
+    [Note.D]: [],
+    [Note.E]: [],
+    [Note.F]: [],
+    [Note.G]: [],
+    [Note.A]: [],
+    [Note.B]: [],
+  }
+  // Add each note to their appropriate slot
+  notes.forEach((note) => registry[asBaseNote(note)].push(note))
+
+  // Searching through the registry and moving each sharp note to a higher registry as a flat note
+  entries(registry).forEach(([, notes]) => {
+    if (notes.length >= 2) {
+      const sharpNote = notes.find(isSharpNote)
+      if (sharpNote !== undefined) {
+        const higherBase = getHigherBaseNote(sharpNote)
+        const flatNote = asFlatNote(higherBase)
+        registry[higherBase].push(flatNote)
+        remove(notes, (n) => n === sharpNote)
+      }
+    }
+  })
+  return registry
 }
 
 const buildScaleFromDegrees = (chromaticIndices: number[]) => (root: Note): Note[] => {

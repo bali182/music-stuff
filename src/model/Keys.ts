@@ -1,7 +1,7 @@
 import sample from 'lodash/sample'
 import values from 'lodash/values'
 import isNil from 'lodash/isNil'
-import { Key, KeyType, Note, _ScaleDegree, ScaleDegreeNum } from './models'
+import { Key, KeyType, Note, ScaleDegree, ScaleDegreeNum } from './models'
 import { getScale } from './Scales'
 
 export function getKeyTypeName(type: KeyType): string {
@@ -29,7 +29,7 @@ export function getRandomKeyType(): KeyType {
   return sample(values(KeyType))
 }
 
-export function getScaleDegree(key: Key, note: Note): _ScaleDegree {
+export function getScaleDegree(key: Key, note: Note): ScaleDegree {
   const scale = getScale(key)
   const index = scale.indexOf(note)
   if (index >= 0) {
@@ -41,11 +41,11 @@ export function getScaleDegree(key: Key, note: Note): _ScaleDegree {
   throw new TypeError('Sharp/Flat scale degrees are not yet supported.')
 }
 
-export function isRootScaleDegree(degree: _ScaleDegree): Boolean {
+export function isRootScaleDegree(degree: ScaleDegree): Boolean {
   return degree.degree === 1 && isNil(degree.modifier)
 }
 
-export function getScaleDegreeName(degree: _ScaleDegree): string {
+export function getScaleDegreeName(degree: ScaleDegree): string {
   if (isNil(degree.modifier)) {
     return degree.degree.toString()
   }

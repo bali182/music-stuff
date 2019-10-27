@@ -1,5 +1,5 @@
-import { ChordShape, Note, TriadGroup, Key, _ScaleDegree, FrettedNote } from '../model/models'
-import { getChromaticScale } from '../model/Scales'
+import { ChordShape, Note, TriadGroup, Key, ScaleDegree, FrettedNote, ScaleShape } from '../model/models'
+import { getChromaticScale, getScale } from '../model/Scales'
 import { getScaleDegree } from '../model/Keys'
 import { getNoteOnString } from '../model/Strings'
 
@@ -8,7 +8,7 @@ export function expectDistance(noteA: Note, noteB: Note, distance: number) {
   expect(noteB).toBe(scale[distance])
 }
 
-export const ofScaleDegree = (key: Key, expectedDegree: _ScaleDegree) => (note: FrettedNote) => {
+export const ofScaleDegree = (key: Key, expectedDegree: ScaleDegree) => (note: FrettedNote) => {
   const actualDegree = getScaleDegree(key, getNoteOnString(note))
   return actualDegree.degree === expectedDegree.degree && actualDegree.modifier == expectedDegree.modifier
 }
@@ -23,6 +23,13 @@ export function expectChord(chord: ChordShape): void {
   expect(roots.length).toBeGreaterThanOrEqual(1)
   expect(thirds.length).toBeGreaterThanOrEqual(1)
   expect(fifths.length).toBeGreaterThanOrEqual(1)
+}
+
+export function expectScaleShape(scale: ScaleShape): void {
+  const parentScale = getScale(scale.key)
+  for (const frettedNote of scale.notes) {
+    expect(parentScale).toContain(getNoteOnString(frettedNote))
+  }
 }
 
 // TODO test if inversion is correct

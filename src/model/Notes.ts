@@ -32,6 +32,43 @@ export function getNormalizedNote(note: Note): Note {
   }
 }
 
+// TODO hacky stuff
+export function isSharpNote(note: Note): boolean {
+  return Notes.indexOf(note) >= 0 && note.toString().indexOf('#') === 1
+}
+
+export function isFlatNote(note: Note): boolean {
+  return Notes.indexOf(note) >= 0 && note.toString().indexOf('b') === 1
+}
+
+export function isBaseNote(note: Note): boolean {
+  return Notes.indexOf(note) >= 0 && note.length === 1
+}
+
+export function asBaseNote(note: Note): Note {
+  const str = note.toString()
+  return str.length === 1 ? note : (str.slice(0, 1) as Note)
+}
+
+export function asSharpNote(note: Note): Note {
+  return isBaseNote(note) ? (`${note}#` as Note) : (note.replace('b', '#') as Note)
+}
+
+export function asFlatNote(note: Note): Note {
+  return isBaseNote(note) ? (`${note}b` as Note) : (note.replace('#', 'b') as Note)
+}
+
+const BaseNotes = [Note.C, Note.D, Note.E, Note.F, Note.G, Note.A, Note.B]
+
+export function getHigherBaseNote(note: Note): Note {
+  return BaseNotes[(BaseNotes.indexOf(asBaseNote(note)) + 1) % BaseNotes.length]
+}
+
+export function getLowerBaseNote(note: Note): Note {
+  const index = BaseNotes.indexOf(asBaseNote(note)) - 1
+  return BaseNotes[index < 0 ? BaseNotes.length - 1 : index]
+}
+
 export function moveNote(note: Note, semitones: number): Note {
   const scale = getChromaticScale(note)
   const withoutOctaves = semitones % scale.length

@@ -1,7 +1,7 @@
 import sample from 'lodash/sample'
 import values from 'lodash/values'
 import isNil from 'lodash/isNil'
-import { Key, KeyType, Note, ScaleDegree, ScaleDegreeNum } from './models'
+import { MusicalKey, KeyType, Note, ScaleDegree, ScaleDegreeNum } from './models'
 import { getScale } from './Scales'
 
 export function getKeyTypeName(type: KeyType): string {
@@ -21,7 +21,7 @@ export function getChordTypeName(type: KeyType): string {
   }
 }
 
-export function getKeyName({ root, type }: Key): string {
+export function getKeyName({ root, type }: MusicalKey): string {
   return `${root} ${getKeyTypeName(type)}`
 }
 
@@ -29,7 +29,7 @@ export function getRandomKeyType(): KeyType {
   return sample(values(KeyType))
 }
 
-export function getScaleDegree(key: Key, note: Note): ScaleDegree {
+export function getScaleDegree(key: MusicalKey, note: Note): ScaleDegree {
   const scale = getScale(key)
   const index = scale.indexOf(note)
   if (index >= 0) {
@@ -50,4 +50,29 @@ export function getScaleDegreeName(degree: ScaleDegree): string {
     return degree.degree.toString()
   }
   return `${degree.degree}${degree.modifier}`
+}
+
+const KeyTypes = [
+  KeyType.Ionian,
+  KeyType.Dorian,
+  KeyType.Phrygian,
+  KeyType.Lydian,
+  KeyType.Mixolydian,
+  KeyType.Aeolian,
+  KeyType.Locrian,
+]
+
+export function getRelativeKey(sourceKey: MusicalKey, targetType: KeyType): MusicalKey {
+  const keyTypesArranged = KeyTypes.slice(KeyTypes.indexOf(sourceKey.type), KeyTypes.length).concat(
+    KeyTypes.slice(0, KeyTypes.indexOf(sourceKey.type))
+  )
+  const sourceTypeIdx = keyTypesArranged.indexOf(sourceKey.type)
+  const targetTypeIdx = keyTypesArranged.indexOf(targetType)
+  const rootIndex = (sourceTypeIdx + targetTypeIdx) % keyTypesArranged.length
+  const scale = getScale(sourceKey)
+
+  return {
+    root: scale[rootIndex],
+    type: targetType,
+  }
 }

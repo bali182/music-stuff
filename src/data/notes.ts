@@ -23,3 +23,5 @@ export const Notes = [
   Note.GSharp,
   Note.AFlat,
 ]
+
+export const NaturalNotes = [Note.A, Note.B, Note.C, Note.D, Note.E, Note.F, Note.G]

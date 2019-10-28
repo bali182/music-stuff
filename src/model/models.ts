@@ -51,7 +51,7 @@ export enum KeyType {
 }
 
 export type Chord = {
-  key: Key
+  key: MusicalKey
   notes: Note[]
 }
 
@@ -79,23 +79,23 @@ export type FrettedNote = {
 }
 
 export type ChordShape = {
-  key: Key
+  key: MusicalKey
   notes: FrettedNote[]
   description: string
 }
 
 export type ScaleShape = {
-  key: Key
+  key: MusicalKey
   notes: FrettedNote[]
 }
 
-export type Key = {
+export type MusicalKey = {
   type: KeyType
   root: Note
 }
 
 export type ChordSequence = {
-  key: Key
+  key: MusicalKey
   description: string
   chords: ChordShape[]
 }

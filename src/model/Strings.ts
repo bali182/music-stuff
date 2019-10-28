@@ -42,3 +42,8 @@ export function getStringRootNote(string: AnyString): Note {
 export function getNoteOnString({ string, fret }: FrettedNote): Note {
   return moveNote(getStringRootNote(string), fret)
 }
+
+export const moveFrettedNote = (amount: number) => (note: FrettedNote): FrettedNote => ({
+  string: note.string,
+  fret: note.fret + amount,
+})

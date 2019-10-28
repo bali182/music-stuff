@@ -2,7 +2,7 @@ import sample from 'lodash/sample'
 import values from 'lodash/values'
 import { Note } from './models'
 import { getChromaticScale } from './Scales'
-import { Notes } from '../data/notes'
+import { Notes, NaturalNotes } from '../data/notes'
 
 export function getNormalizedNote(note: Note): Note {
   if (Notes.indexOf(note) < 0) {
@@ -83,7 +83,7 @@ export function getDistanceBetweenNotes(a: Note, b: Note): number {
 }
 
 export function getRandomNote(): Note {
-  return sample(getChromaticScale(Note.C))
+  return sample(NaturalNotes)
 }
 
 export function getExtendedRandomNote(): Note {

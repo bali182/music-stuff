@@ -1,6 +1,6 @@
 import entries from 'lodash/entries'
 import remove from 'lodash/remove'
-import { Note, KeyType, Key } from './models'
+import { Note, KeyType, MusicalKey } from './models'
 import { getNormalizedNote, asBaseNote, isSharpNote, getHigherBaseNote, asFlatNote } from './Notes'
 
 const ChromaticScaleFromC = [
@@ -73,7 +73,7 @@ export const getLocrianScale = buildScaleFromDegrees([0, 1, 3, 5, 6, 8, 10])
 export const getMajorScale = getIonianScale
 export const getMinorScale = getAeolianScale
 
-export const getScale = ({ type, root }: Key): Note[] => {
+export const getScale = ({ type, root }: MusicalKey): Note[] => {
   switch (type) {
     case KeyType.Ionian:
       return getIonianScale(root)

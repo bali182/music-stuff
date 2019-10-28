@@ -1,4 +1,4 @@
-import { ChordShape, Note, TriadGroup, Key, ScaleDegree, FrettedNote, ScaleShape } from '../model/models'
+import { ChordShape, Note, TriadGroup, MusicalKey, ScaleDegree, FrettedNote, ScaleShape } from '../model/models'
 import { getChromaticScale, getScale } from '../model/Scales'
 import { getScaleDegree } from '../model/Keys'
 import { getNoteOnString } from '../model/Strings'
@@ -8,7 +8,7 @@ export function expectDistance(noteA: Note, noteB: Note, distance: number) {
   expect(noteB).toBe(scale[distance])
 }
 
-export const ofScaleDegree = (key: Key, expectedDegree: ScaleDegree) => (note: FrettedNote) => {
+export const ofScaleDegree = (key: MusicalKey, expectedDegree: ScaleDegree) => (note: FrettedNote) => {
   const actualDegree = getScaleDegree(key, getNoteOnString(note))
   return actualDegree.degree === expectedDegree.degree && actualDegree.modifier == expectedDegree.modifier
 }

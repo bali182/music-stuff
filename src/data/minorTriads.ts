@@ -1,5 +1,5 @@
 import { Note, GuitarString, TriadGroup, KeyType } from '../model/models'
-import { getBassChordShape } from '../model/Chords'
+import { getBassChordShape } from '../model/ChordShapes'
 
 export const EAD: TriadGroup = {
   rootPosition: {

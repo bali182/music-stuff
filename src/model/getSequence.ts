@@ -1,13 +1,14 @@
 import sample from 'lodash/sample'
-import { ChordSequence, Note, ChordShape, Key, ChordProgression } from './models'
-import { getScaleChords, moveChordShape } from './Chords'
+import { ChordSequence, Note, ChordShape, MusicalKey, ChordProgression } from './models'
+import { getScaleChords } from './Chords'
+import { moveChordShape } from './ChordShapes'
 
 export type ProgressionGeneratorParams = {
-  description: (key: Key) => string
-  scale: (key: Key) => Note[]
-  progressions: (key: Key) => ChordProgression[]
-  key: () => Key
-  shapes: (chordParentKey: Key) => ChordShape[]
+  description: (key: MusicalKey) => string
+  scale: (key: MusicalKey) => Note[]
+  progressions: (key: MusicalKey) => ChordProgression[]
+  key: () => MusicalKey
+  shapes: (chordParentKey: MusicalKey) => ChordShape[]
 }
 
 export const getSequence = (params: ProgressionGeneratorParams) => (): ChordSequence => {

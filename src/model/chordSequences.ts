@@ -1,6 +1,6 @@
 import { getSequence } from './getSequence'
 import * as roman from 'tonal-roman-numeral'
-import { KeyType, ChordSequence, ChordShape, Chord, Key } from './models'
+import { KeyType, ChordSequence, ChordShape, Chord, MusicalKey } from './models'
 import { getMajorScale, getMinorScale, getScale } from './Scales'
 import { cShape, aShape, gShape, eShape, dShape } from '../data/majorCagedChords'
 import sample from 'lodash/sample'
@@ -11,8 +11,9 @@ import {
   mixedChordProgressions,
 } from '../data/chordProgressions'
 import { getRandomNote } from './Notes'
-import { getScaleChords, moveChordShape } from './Chords'
+import { getScaleChords } from './Chords'
 import { getKeyName, getRandomKeyType } from './Keys'
+import { moveChordShape } from './ChordShapes'
 
 export const getMajorCagedSequence = getSequence({
   progressions: () => majorChordsOnlyProgressions,
@@ -55,7 +56,7 @@ export const getMixedTriadSequence = (majShapes: ChordShape[], minShapes: ChordS
           throw new TypeError(`Unexpected key type: ${key.type}`)
       }
     },
-    shapes: (key: Key) => {
+    shapes: (key: MusicalKey) => {
       switch (key.type) {
         case KeyType.Ionian:
           return majShapes
@@ -72,7 +73,7 @@ export const getRandomTriadSequence = (
   minShapes: ChordShape[],
   dimShapes: ChordShape[]
 ) => (): ChordSequence => {
-  const key: Key = { root: getRandomNote(), type: getRandomKeyType() }
+  const key: MusicalKey = { root: getRandomNote(), type: getRandomKeyType() }
   const scale = getScale(key)
   const [rootChord, ...chords] = getScaleChords(scale).map((chord, i) => [chord, i + 1]) as [Chord, number][]
   const randomChords = [rootChord, ...shuffle(chords).slice(3)]
@@ -89,12 +90,7 @@ export const getRandomTriadSequence = (
     .join('-')
   const chordShapes = randomChords
     .map(([chord]) => chord)
-    .map(
-      ({ key }): ChordShape => {
-        const shape = sample(chordSelection[key.type])
-        return moveChordShape(shape, key.root)
-      }
-    )
+    .map(({ key }): ChordShape => moveChordShape(sample(chordSelection[key.type]), key.root))
   return {
     key,
     description: `Random triads in ${getKeyName(key)}, ${progression} progression`,

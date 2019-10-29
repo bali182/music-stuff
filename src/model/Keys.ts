@@ -3,6 +3,7 @@ import values from 'lodash/values'
 import isNil from 'lodash/isNil'
 import { MusicalKey, KeyType, Note, ScaleDegree, ScaleDegreeNum } from './models'
 import { getScale } from './Scales'
+import { NaturalNotes } from '../data/notes'
 
 export function getKeyTypeName(type: KeyType): string {
   return type.toString()
@@ -23,10 +24,6 @@ export function getChordTypeName(type: KeyType): string {
 
 export function getKeyName({ root, type }: MusicalKey): string {
   return `${root} ${getKeyTypeName(type)}`
-}
-
-export function getRandomKeyType(): KeyType {
-  return sample(values(KeyType))
 }
 
 export function getScaleDegree(key: MusicalKey, note: Note): ScaleDegree {
@@ -74,5 +71,15 @@ export function getRelativeKey(sourceKey: MusicalKey, targetType: KeyType): Musi
   return {
     root: scale[rootIndex],
     type: targetType,
+  }
+}
+
+export function getRandomKey(
+  roots: Note[] = NaturalNotes,
+  keyTypes: KeyType[] = [KeyType.Ionian, KeyType.Aeolian]
+): MusicalKey {
+  return {
+    root: sample(roots),
+    type: sample(keyTypes),
   }
 }

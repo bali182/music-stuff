@@ -12,7 +12,7 @@ import {
 } from '../data/chordProgressions'
 import { getRandomNote } from './Notes'
 import { getScaleChords } from './Chords'
-import { getKeyName, getRandomKeyType } from './Keys'
+import { getKeyName, getRandomKey } from './Keys'
 import { moveChordShape } from './ChordShapes'
 
 export const getMajorCagedSequence = getSequence({
@@ -73,7 +73,7 @@ export const getRandomTriadSequence = (
   minShapes: ChordShape[],
   dimShapes: ChordShape[]
 ) => (): ChordSequence => {
-  const key: MusicalKey = { root: getRandomNote(), type: getRandomKeyType() }
+  const key: MusicalKey = getRandomKey()
   const scale = getScale(key)
   const [rootChord, ...chords] = getScaleChords(scale).map((chord, i) => [chord, i + 1]) as [Chord, number][]
   const randomChords = [rootChord, ...shuffle(chords).slice(3)]

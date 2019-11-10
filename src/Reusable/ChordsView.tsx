@@ -9,6 +9,7 @@ import { CardContent } from '../Ux/CardContent'
 import { ChordFretboard } from './ChordFretboard'
 import { Button } from '../Ux/Button'
 import { getChordKeyName } from '../model/Chords'
+import isNil from 'lodash/isNil'
 
 export type ChordsViewProps = {
   chords: ChordShape[]

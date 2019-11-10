@@ -1,10 +1,7 @@
-import minBy from 'lodash/minBy'
-import { Note, AnyString, Chord, FrettedNote, MusicalKey, KeyType, ScaleShape } from './models'
-import { getDistanceBetweenNotes } from './Notes'
-import { ChordShape, GuitarString } from './models'
-import { getBassString } from './Strings'
-import { getChromaticScale, getMajorScale, getIonianScale, getAeolianScale, getLocrianScale } from './Scales'
-import { getNormalizedNote } from './Notes'
+import shuffle from 'lodash/shuffle'
+import * as roman from 'tonal-roman-numeral'
+import { Note, Chord, MusicalKey, KeyType, ChordSequence, ChordShape } from './models'
+import { getIonianScale, getAeolianScale, getLocrianScale, getScale } from './Scales'
 import { getChordTypeName } from './Keys'
 
 export function getScaleChords(scale: Note[]): Chord[] {
@@ -36,4 +33,31 @@ export function getChordKey(root: Note, third: Note, fifth: Note): MusicalKey {
 
 export function getChordKeyName(key: MusicalKey): string {
   return `${key.root} ${getChordTypeName(key.type)}`
+}
+
+export function getRandomChordSequence(
+  key: MusicalKey,
+  amount: number,
+  filter: (shape: Chord) => boolean = () => true
+): ChordSequence {
+  const scale = getScale(key)
+  const allChords = getScaleChords(scale).map((chord, i) => [chord, i + 1]) as [Chord, number][]
+  const [rootChord, ...restOfChords] = allChords.filter(([shape, scaleDegree]) => {
+    const result = filter(shape)
+    if (!result && scaleDegree === 1) {
+      throw new Error(`Filter disallows root chord!`)
+    }
+    return result
+  })
+  const chordsWithNumbers = [rootChord, ...shuffle(restOfChords).slice(amount - 1)]
+  const chordNumbers = chordsWithNumbers.map(([chord, degree]) => {
+    const romanNum = roman.fromDegree(degree, chord.key.type === KeyType.Ionian)
+    return chord.key.type === KeyType.Locrian ? `${romanNum}°` : romanNum
+  })
+  const chords = chordsWithNumbers.map(([chord]) => chord)
+  return {
+    key,
+    chordNumbers,
+    chords,
+  }
 }

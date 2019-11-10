@@ -31,3 +31,11 @@ export function moveChordShape(chord: ChordShape, root: Note, allowOpenStrings: 
   }
   return movedChord
 }
+
+export function shiftChordShape(chord: ChordShape, halfSteps: number): ChordShape {
+  return {
+    ...chord,
+    key: chord.key,
+    notes: chord.notes.map(moveFrettedNote(halfSteps)),
+  }
+}

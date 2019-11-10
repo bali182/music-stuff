@@ -49,6 +49,10 @@ export function getScaleDegreeName(degree: ScaleDegree): string {
   return `${degree.degree}${degree.modifier}`
 }
 
+export function keysEqual(keyA: MusicalKey, keyB: MusicalKey): boolean {
+  return keyA.root === keyB.root && keyA.type === keyB.type
+}
+
 const KeyTypes = [
   KeyType.Ionian,
   KeyType.Dorian,

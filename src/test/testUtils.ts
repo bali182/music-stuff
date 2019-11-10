@@ -28,7 +28,14 @@ export function expectChord(chord: ChordShape): void {
 export function expectScaleShape(scale: ScaleShape): void {
   const parentScale = getScale(scale.key)
   for (const frettedNote of scale.notes) {
-    expect(parentScale).toContain(getNoteOnString(frettedNote))
+    const note = getNoteOnString(frettedNote)
+    if (parentScale.indexOf(note) < 0) {
+      fail(
+        `Note ${note}" (fretted as ${JSON.stringify(frettedNote)}) isn't on parent scale: ${JSON.stringify(
+          parentScale
+        )}`
+      )
+    }
   }
 }
 

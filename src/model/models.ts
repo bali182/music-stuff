@@ -96,6 +96,12 @@ export type MusicalKey = {
 
 export type ChordSequence = {
   key: MusicalKey
+  chordNumbers: string[]
+  chords: Chord[]
+}
+
+export type ChordShapeSequence = {
+  key: MusicalKey
   description: string
   chords: ChordShape[]
 }
@@ -105,4 +111,10 @@ export type ChordProgression = {
   keyType: KeyType
   // Array indices
   scaleDegrees: number[]
+}
+
+export type ScaleWithChords = {
+  scale: ScaleShape
+  chords: ChordShape[]
+  description: string
 }

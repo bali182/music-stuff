@@ -1,6 +1,6 @@
 import { getSequence } from './getSequence'
 import * as roman from 'tonal-roman-numeral'
-import { KeyType, ChordSequence, ChordShape, Chord, MusicalKey } from './models'
+import { KeyType, ChordShapeSequence, ChordShape, Chord, MusicalKey } from './models'
 import { getMajorScale, getMinorScale, getScale } from './Scales'
 import { cShape, aShape, gShape, eShape, dShape } from '../data/majorCagedChords'
 import sample from 'lodash/sample'
@@ -11,7 +11,7 @@ import {
   mixedChordProgressions,
 } from '../data/chordProgressions'
 import { getRandomNote } from './Notes'
-import { getScaleChords } from './Chords'
+import { getScaleChords, getRandomChordSequence } from './Chords'
 import { getKeyName, getRandomKey } from './Keys'
 import { moveChordShape } from './ChordShapes'
 
@@ -72,28 +72,18 @@ export const getRandomTriadSequence = (
   majShapes: ChordShape[],
   minShapes: ChordShape[],
   dimShapes: ChordShape[]
-) => (): ChordSequence => {
+) => (): ChordShapeSequence => {
   const key: MusicalKey = getRandomKey()
-  const scale = getScale(key)
-  const [rootChord, ...chords] = getScaleChords(scale).map((chord, i) => [chord, i + 1]) as [Chord, number][]
-  const randomChords = [rootChord, ...shuffle(chords).slice(3)]
+  const chordSeq = getRandomChordSequence(key, 4)
   const chordSelection = {
     [KeyType.Ionian]: majShapes,
     [KeyType.Aeolian]: minShapes,
     [KeyType.Locrian]: dimShapes,
   }
-  const progression = randomChords
-    .map(([chord, degree]) => {
-      const romanNum = roman.fromDegree(degree, chord.key.type === KeyType.Ionian)
-      return chord.key.type === KeyType.Locrian ? `${romanNum}°` : romanNum
-    })
-    .join('-')
-  const chordShapes = randomChords
-    .map(([chord]) => chord)
-    .map(({ key }): ChordShape => moveChordShape(sample(chordSelection[key.type]), key.root))
+  const chordShapes = chordSeq.chords.map(({ key }) => moveChordShape(sample(chordSelection[key.type]), key.root))
   return {
     key,
-    description: `Random triads in ${getKeyName(key)}, ${progression} progression`,
+    description: `${getKeyName(key)}, ${chordSeq.chordNumbers.join('-')}`,
     chords: chordShapes,
   }
 }

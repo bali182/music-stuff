@@ -47,3 +47,7 @@ export const moveFrettedNote = (amount: number) => (note: FrettedNote): FrettedN
   string: note.string,
   fret: note.fret + amount,
 })
+
+export function notesEqual(noteA: FrettedNote, noteB: FrettedNote) {
+  return noteA.fret === noteB.fret && noteA.string === noteB.string
+}

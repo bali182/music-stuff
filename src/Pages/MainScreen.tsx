@@ -226,9 +226,19 @@ export class MainScreen extends Component {
                 <CardTitle>Triads</CardTitle>
                 <CardSubTitle>Triads &amp; Pentatonic</CardSubTitle>
               </CardHeader>
+              <CardContent>Practice random triad shapes and their relation to a single pentatonic shape.</CardContent>
               <CardContent>
-                Practice random triad shapes and their relation to the respective pentatonic shapes
+                <NavLink to="/pentatonic-with-triads" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
+            </Card>
+            <Card>
+              <CardHeader color={colors.orange}>
+                <CardTitle>Triads</CardTitle>
+                <CardSubTitle>Triads &amp; Pentatonic</CardSubTitle>
+              </CardHeader>
+              <CardContent>Practice random triad shapes and their relation to two pentatonic shapes.</CardContent>
               <CardContent>
                 <NavLink to="/pentatonics-with-triads" className={linkStyle}>
                   <Button>Start practicing</Button>

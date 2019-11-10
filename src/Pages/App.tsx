@@ -17,7 +17,7 @@ import { minorTriadsGuitar, minorTriadsBass } from '../data/minorTriads'
 import { diminishedTriadsGuitar, diminishedTriadsBass } from '../data/diminishedTriads'
 import { GuitarStrings, BassStrings } from '../data/strings'
 import { ScaleWithChordsScreen } from '../Reusable/ScaleWithChordsScreen'
-import { getRandomTriadsOnPentatonicScale, getRandomCagedChordsOnPentatonicScale } from '../model/scalesWithChords'
+import { getRandomTriadsOnTwoPentatonicShapes, getRandomCagedChordsOnPentatonicScale, getRandomTriadsOnSinglePentatonicShape } from '../model/scalesWithChords'
 
 export class App extends Component {
   render() {
@@ -95,9 +95,16 @@ export class App extends Component {
           <Route path="/bass-random-notes" exact={true}>
             <RandomNotePracticeScreen strings={BassStrings} />
           </Route>
+          <Route path="/pentatonic-with-triads" exact={true}>
+            <ScaleWithChordsScreen
+              getScaleWithChords={getRandomTriadsOnSinglePentatonicShape}
+              color={colors.green}
+              strings={GuitarStrings}
+            />
+          </Route>
           <Route path="/pentatonics-with-triads" exact={true}>
             <ScaleWithChordsScreen
-              getScaleWithChords={getRandomTriadsOnPentatonicScale}
+              getScaleWithChords={getRandomTriadsOnTwoPentatonicShapes}
               color={colors.green}
               strings={GuitarStrings}
             />

@@ -82,7 +82,7 @@ export const getRandomTriadsWithScales = (config: TriadsWithScalesConfig): Scale
   }
 }
 
-export function getRandomTriadsOnPentatonicScale() {
+export function getRandomTriadsOnTwoPentatonicShapes() {
   const getShapes = getRandomScaleShapes(2, 5)
   return getRandomTriadsWithScales({
     amountOfChords: 4,
@@ -90,6 +90,19 @@ export function getRandomTriadsOnPentatonicScale() {
     majShapes: majorTriadsGuitar,
     minShapes: minorTriadsGuitar,
     dimShapes: diminishedTriadsGuitar,
+    diatonicShapes: getShapes(diatonicShapes),
+    pentatonicShapes: getShapes(pentatonicShapes),
+  })
+}
+
+export function getRandomTriadsOnSinglePentatonicShape() {
+  const getShapes = getRandomScaleShapes(1, 5)
+  return getRandomTriadsWithScales({
+    amountOfChords: 2,
+    useDiatonicForLookup: false,
+    majShapes: majorTriadsGuitar,
+    minShapes: minorTriadsGuitar,
+    dimShapes: [],
     diatonicShapes: getShapes(diatonicShapes),
     pentatonicShapes: getShapes(pentatonicShapes),
   })

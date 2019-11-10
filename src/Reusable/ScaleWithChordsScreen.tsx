@@ -74,7 +74,7 @@ export class ScaleWithChordsScreen extends Component<ScaleWithChordsScreenProps,
       return null
     }
     return (
-      <CardSection itemsPerRow={4} title={`Scale shapes`}>
+      <CardSection itemsPerRow={4} title="Scale and Chord shapes">
         <Card>
           <CardHeader color={colors.red}>
             <CardTitle>{getKeyName(data.scale.key)} Pentatonic Scale</CardTitle>

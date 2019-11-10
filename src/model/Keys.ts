@@ -5,10 +5,6 @@ import { MusicalKey, KeyType, Note, ScaleDegree, ScaleDegreeNum } from './models
 import { getScale } from './Scales'
 import { NaturalNotes } from '../data/notes'
 
-export function getKeyTypeName(type: KeyType): string {
-  return type.toString()
-}
-
 export function getChordTypeName(type: KeyType): string {
   switch (type) {
     case KeyType.Ionian:
@@ -23,7 +19,7 @@ export function getChordTypeName(type: KeyType): string {
 }
 
 export function getKeyName({ root, type }: MusicalKey): string {
-  return `${root} ${getKeyTypeName(type)}`
+  return `${root} ${getChordTypeName(type)}`
 }
 
 export function getScaleDegree(key: MusicalKey, note: Note): ScaleDegree {

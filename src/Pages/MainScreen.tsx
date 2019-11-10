@@ -201,20 +201,9 @@ export class MainScreen extends Component {
                 relationships between CAGED chords.
               </CardContent>
               <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader color={colors.red}>
-                <CardTitle>CAGED</CardTitle>
-                <CardSubTitle>Major &amp; minor practice</CardSubTitle>
-              </CardHeader>
-              <CardContent>
-                Practice the CAGED shapes along the neck. Get better at finding root notes, and visualising the
-                relationships between CAGED chords.
-              </CardContent>
-              <CardContent>
-                <Button disabled={true}>Coming soon...</Button>
+                <NavLink to="/minor-caged" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
             </Card>
           </CardSection>

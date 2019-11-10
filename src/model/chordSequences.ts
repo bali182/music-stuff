@@ -1,17 +1,17 @@
 import { getSequence } from './getSequence'
 import * as roman from 'tonal-roman-numeral'
-import { KeyType, ChordShapeSequence, ChordShape, Chord, MusicalKey } from './models'
-import { getMajorScale, getMinorScale, getScale } from './Scales'
-import { cShape, aShape, gShape, eShape, dShape } from '../data/majorCagedChords'
+import { KeyType, ChordShapeSequence, ChordShape, MusicalKey } from './models'
+import { getMajorScale, getMinorScale } from './Scales'
+import * as majCaged from '../data/majorCagedChords'
+import * as minCaged from '../data/minorCagedChords'
 import sample from 'lodash/sample'
-import shuffle from 'lodash/shuffle'
 import {
   majorChordsOnlyProgressions,
   minorChordsOnlyProgressions,
   mixedChordProgressions,
 } from '../data/chordProgressions'
 import { getRandomNote } from './Notes'
-import { getScaleChords, getRandomChordSequence } from './Chords'
+import { getRandomChordSequence } from './Chords'
 import { getKeyName, getRandomKey } from './Keys'
 import { moveChordShape } from './ChordShapes'
 
@@ -20,7 +20,15 @@ export const getMajorCagedSequence = getSequence({
   description: (key) => `CAGED Chords in ${getKeyName(key)}`,
   key: () => ({ type: KeyType.Ionian, root: getRandomNote() }),
   scale: (key) => getMajorScale(key.root),
-  shapes: () => [cShape, aShape, gShape, eShape, dShape],
+  shapes: () => [majCaged.cShape, majCaged.aShape, majCaged.gShape, majCaged.eShape, majCaged.dShape],
+})
+
+export const getMinorCagedSequence = getSequence({
+  progressions: () => minorChordsOnlyProgressions,
+  description: (key) => `CAGED Chords in ${getKeyName(key)}`,
+  key: () => ({ type: KeyType.Aeolian, root: getRandomNote() }),
+  scale: (key) => getMinorScale(key.root),
+  shapes: () => [minCaged.cShape, minCaged.aShape, minCaged.gShape, minCaged.eShape, minCaged.dShape],
 })
 
 export const getMajorTriadSequence = (majShapes: ChordShape[]) =>

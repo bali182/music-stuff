@@ -9,6 +9,7 @@ import {
   getMinorTriadSequence,
   getMixedTriadSequence,
   getRandomTriadSequence,
+  getMinorCagedSequence,
 } from '../model/chordSequences'
 import { colors } from '../Ux/colors'
 import { majorTriadsGuitar, majorTriadsBass } from '../data/majorTriads'
@@ -28,6 +29,9 @@ export class App extends Component {
           </Route>
           <Route path="/major-caged" exact={true}>
             <ChordPracticeScreen getSequence={getMajorCagedSequence} color={colors.red} strings={GuitarStrings} />
+          </Route>
+          <Route path="/minor-caged" exact={true}>
+            <ChordPracticeScreen getSequence={getMinorCagedSequence} color={colors.red} strings={GuitarStrings} />
           </Route>
           <Route path="/major-triads" exact={true}>
             <ChordPracticeScreen

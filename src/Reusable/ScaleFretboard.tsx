@@ -47,12 +47,14 @@ export class ScaleWithChordFretboard extends PureComponent<ScaleFretboardProps> 
       .map((frettedNote) => {
         const note = getNoteOnString(frettedNote)
         const degree = getScaleDegree(chord.key, note)
+        const fret = showPositions ? frettedNote.fret : frettedNote.fret + 12
+        const label = showPositions ? note.toString() : getScaleDegreeName(degree)
         return (
           <NoteMarker
             key={`${frettedNote.string}-${frettedNote.fret}`}
             color={NoteMarkerColors.highlight}
-            fret={showPositions ? frettedNote.fret : frettedNote.fret + 12}
-            label={getScaleDegreeName(degree)}
+            fret={fret}
+            label={label}
             string={frettedNote.string}
           />
         )
@@ -67,12 +69,15 @@ export class ScaleWithChordFretboard extends PureComponent<ScaleFretboardProps> 
       .map((frettedNote) => {
         const note = getNoteOnString(frettedNote)
         const degree = getScaleDegree(scale.key, note)
+        const fret = showPositions ? frettedNote.fret : frettedNote.fret + 12
+        const label = showPositions ? note.toString() : getScaleDegreeName(degree)
+        const color = isRootScaleDegree(degree) ? NoteMarkerColors.important : NoteMarkerColors.default
         return (
           <NoteMarker
             key={`${frettedNote.string}-${frettedNote.fret}`}
-            color={isRootScaleDegree(degree) ? NoteMarkerColors.important : NoteMarkerColors.default}
-            fret={showPositions ? frettedNote.fret : frettedNote.fret + 12}
-            label={getScaleDegreeName(degree)}
+            color={color}
+            fret={fret}
+            label={label}
             string={frettedNote.string}
           />
         )

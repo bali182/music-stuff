@@ -3,10 +3,12 @@ import { css } from 'emotion'
 import { FretboardContext, FretboardContexType } from './FretboardContext'
 import { getFrettedNoteSize, getFrettedNoteTop, getFrettedNoteLeft } from './utils'
 import { AnyString } from '../model/models'
+import { colors } from '../Ux/colors'
 
-export const DefaultColors = {
-  red: '#ca3433',
-  gray: '#808080',
+export const NoteMarkerColors = {
+  important: colors.red,
+  default: '#808080',
+  highlight: colors.blue,
 }
 
 export type NoteMarkerProps = {
@@ -42,7 +44,7 @@ export class NoteMarker extends PureComponent<NoteMarkerProps> {
       fontSize: '12px',
       userSelect: 'none',
       color: '#fff',
-      opacity: 0.6,
+      opacity: 0.9,
       ':hover': {
         opacity: 1,
       },
@@ -57,6 +59,6 @@ export class NoteMarker extends PureComponent<NoteMarkerProps> {
   }
 
   static defaultProps: Partial<NoteMarkerProps> = {
-    color: DefaultColors.red,
+    color: NoteMarkerColors.important,
   }
 }

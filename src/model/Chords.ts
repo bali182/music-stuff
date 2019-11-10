@@ -49,7 +49,7 @@ export function getRandomChordSequence(
     }
     return result
   })
-  const chordsWithNumbers = [rootChord, ...shuffle(restOfChords).slice(amount - 1)]
+  const chordsWithNumbers = [rootChord, ...shuffle(restOfChords).slice(0, amount - 1)]
   const chordNumbers = chordsWithNumbers.map(([chord, degree]) => {
     const romanNum = roman.fromDegree(degree, chord.key.type === KeyType.Ionian)
     return chord.key.type === KeyType.Locrian ? `${romanNum}°` : romanNum

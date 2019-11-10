@@ -3,6 +3,7 @@ import * as minTriads from './minorTriads'
 import * as majTriads from './minorTriads'
 import * as dimTriads from './diminishedTriads'
 import * as majCaged from './majorCagedChords'
+import * as minCaged from './minorCagedChords'
 
 describe('Chords', () => {
   describe('minor triads', () => {
@@ -29,5 +30,12 @@ describe('Chords', () => {
     it('should represent a correct "G" shape', () => expectChord(majCaged.gShape))
     it('should represent a correct "E" shape', () => expectChord(majCaged.eShape))
     it('should represent a correct "D" shape', () => expectChord(majCaged.dShape))
+  })
+  describe('minor CAGED', () => {
+    it('should represent a correct "C" shape', () => expectChord(minCaged.cShape))
+    it('should represent a correct "A" shape', () => expectChord(minCaged.aShape))
+    it('should represent a correct "G" shape', () => expectChord(minCaged.gShape))
+    it('should represent a correct "E" shape', () => expectChord(minCaged.eShape))
+    it('should represent a correct "D" shape', () => expectChord(minCaged.dShape))
   })
 })

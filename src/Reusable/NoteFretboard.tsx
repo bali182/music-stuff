@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Fretboard } from '../Fretboard/Fretboard'
 import { Note, AnyString } from '../model/models'
-import { NoteMarker, DefaultColors } from '../Fretboard/NoteMarker'
+import { NoteMarker, NoteMarkerColors } from '../Fretboard/NoteMarker'
 import { getChromaticScale } from '../model/Scales'
 import { getNormalizedNote } from '../model/Notes'
 import { getStringRootNote } from '../model/Strings'
@@ -30,7 +30,7 @@ export class NoteFretboard extends PureComponent<NoteFretboardProps> {
       return (
         <NoteMarker
           key={`${string}-${note}-${fret}`}
-          color={DefaultColors.red}
+          color={NoteMarkerColors.important}
           fret={fret}
           label={note}
           string={string}

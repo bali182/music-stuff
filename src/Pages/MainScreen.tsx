@@ -116,7 +116,7 @@ export class MainScreen extends Component {
               </CardContent>
             </Card>
           </CardSection>
-         
+
           <CardSection title="Triads on the bass" itemsPerRow={4}>
             <Card className={cardExtraStyle}>
               <CardHeader color={colors.purple}>
@@ -215,6 +215,35 @@ export class MainScreen extends Component {
               </CardContent>
               <CardContent>
                 <Button disabled={true}>Coming soon...</Button>
+              </CardContent>
+            </Card>
+          </CardSection>
+
+          <CardSection title="Chords &amp; Pentatonic scales" itemsPerRow={4}>
+            <Card>
+              <CardHeader color={colors.orange}>
+                <CardTitle>CAGED</CardTitle>
+                <CardSubTitle>CAGED &amp; Pentatonic</CardSubTitle>
+              </CardHeader>
+              <CardContent>Practice CAGED chord shapes in relation with the pentatonic scale shapes</CardContent>
+              <CardContent>
+                <NavLink to="/pentatonics-with-caged" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader color={colors.orange}>
+                <CardTitle>Triads</CardTitle>
+                <CardSubTitle>Triads &amp; Pentatonic</CardSubTitle>
+              </CardHeader>
+              <CardContent>
+                Practice random triad shapes and their relation to the respective pentatonic shapes
+              </CardContent>
+              <CardContent>
+                <NavLink to="/pentatonics-with-triads" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
               </CardContent>
             </Card>
           </CardSection>

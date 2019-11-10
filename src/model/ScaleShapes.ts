@@ -4,7 +4,6 @@ import { getDistanceBetweenNotes } from './Notes'
 import { moveFrettedNote, getBassString, notesEqual } from './Strings'
 import uniqBy from 'lodash/uniqBy'
 import sortBy from 'lodash/sortBy'
-import flatMap from 'lodash/flatMap'
 
 export function getScaleShapeInKey(shape: ScaleShape, key: MusicalKey, allowZeroFret: boolean = true): ScaleShape {
   const relativeTargetKey = getRelativeKey(shape.key, key.type)
@@ -27,6 +26,14 @@ function hasMatchingNotes(notesA: FrettedNote[], notesB: FrettedNote[]): boolean
   return notesA.some((noteA) => notesB.some((noteB) => notesEqual(noteA, noteB)))
 }
 
+export function shiftScaleShape(shape: ScaleShape, halfSteps: number): ScaleShape {
+  return {
+    ...shape,
+    key: shape.key,
+    notes: shape.notes.map(moveFrettedNote(halfSteps)),
+  }
+}
+
 function adjustNotes(notesA: FrettedNote[], notesB: FrettedNote[]): [FrettedNote[], FrettedNote[]] {
   if (hasMatchingNotes(notesA, notesB)) {
     return [notesA, notesB]
@@ -42,7 +49,7 @@ function adjustNotes(notesA: FrettedNote[], notesB: FrettedNote[]): [FrettedNote
   throw new Error(`Scale shapes can't be merged.`)
 }
 
-export function mergeScaleShapes(shapeA: ScaleShape, shapeB: ScaleShape): ScaleShape {
+function mergeTwoScaleShapes(shapeA: ScaleShape, shapeB: ScaleShape): ScaleShape {
   if (!keysEqual(shapeA.key, shapeB.key)) {
     throw new Error(`Multiple keys in the given shapes: ${getKeyName(shapeA.key)} and ${getKeyName(shapeB.key)}`)
   }
@@ -50,6 +57,18 @@ export function mergeScaleShapes(shapeA: ScaleShape, shapeB: ScaleShape): ScaleS
   return {
     key: shapeA.key,
     notes: sortBy(uniqBy(notesA.concat(notesB), (note) => `${note.string}-${note.fret}`), ['string', 'fret']),
+  }
+}
+
+export function mergeScaleShapes(shapes: ScaleShape[]): ScaleShape {
+  switch (shapes.length) {
+    case 0:
+      return null
+    case 1:
+      return shapes[0]
+    default:
+      const [shape1, ...restOfShapes] = shapes
+      return restOfShapes.reduce((merged, shape) => mergeTwoScaleShapes(merged, shape), shape1)
   }
 }
 

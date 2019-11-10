@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Fretboard } from '../Fretboard/Fretboard'
 import { min, max } from '../utils'
-import { NoteMarker, DefaultColors } from '../Fretboard/NoteMarker'
+import { NoteMarker, NoteMarkerColors } from '../Fretboard/NoteMarker'
 import { ChordShape, AnyString } from '../model/models'
 import { getScaleDegree, isRootScaleDegree, getScaleDegreeName } from '../model/Keys'
 import { getNoteOnString } from '../model/Strings'
@@ -43,7 +43,7 @@ export class ChordFretboard extends PureComponent<ChordFretboardProps> {
         return (
           <NoteMarker
             key={`${frettedNote.string}-${frettedNote.fret}`}
-            color={isRootScaleDegree(degree) ? DefaultColors.red : DefaultColors.gray}
+            color={isRootScaleDegree(degree) ? NoteMarkerColors.important : NoteMarkerColors.default}
             fret={showLocation ? frettedNote.fret : frettedNote.fret + 12}
             label={showLocation ? note.toString() : getScaleDegreeName(degree)}
             string={frettedNote.string}

@@ -89,3 +89,7 @@ export function getRandomNote(): Note {
 export function getExtendedRandomNote(): Note {
   return sample(values(Note))
 }
+
+export function getAllNotes(): Note[] {
+  return values(Note)
+}

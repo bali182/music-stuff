@@ -6,11 +6,13 @@ import { Headline } from '../Ux/Headline'
 import { NoteView } from '../Reusable/NoteView'
 import { Button } from '../Ux/Button'
 import { css } from 'emotion'
-import { getExtendedRandomNote } from '../model/Notes'
+import { getExtendedRandomNote, getAllNotes } from '../model/Notes'
+import sample from 'lodash/sample'
 
 export type RandomNotePracticeScreenState = {
   note: Note
   fretboardVisible: boolean
+  notes: Note[]
 }
 
 export type RandomNotePracticeScreenProps = {
@@ -30,18 +32,26 @@ const buttonStyle = css({
 })
 
 export class RandomNotePracticeScreen extends Component<RandomNotePracticeScreenProps, RandomNotePracticeScreenState> {
-  state: RandomNotePracticeScreenState = {
-    note: getExtendedRandomNote(),
-    fretboardVisible: false,
+  state: RandomNotePracticeScreenState = this.getNextState(getAllNotes())
+
+  private getNextState(notes: Note[]): RandomNotePracticeScreenState {
+    const nextNote = sample(notes)
+    const withoutNextNote = notes.filter((note) => note !== nextNote)
+    const nextNotes = withoutNextNote.length === 0 ? getAllNotes() : withoutNextNote
+    return {
+      note: nextNote,
+      notes: nextNotes,
+      fretboardVisible: false,
+    }
   }
-  private updateNote = () => {
-    this.setState({ note: getExtendedRandomNote(), fretboardVisible: false })
-  }
+
+  private updateNote = () => this.setState(this.getNextState(this.state.notes))
 
   private toggleFretboard = () => {
     const { fretboardVisible } = this.state
     this.setState({ fretboardVisible: !fretboardVisible })
   }
+
   render() {
     const { note, fretboardVisible } = this.state
     const { strings } = this.props

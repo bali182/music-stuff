@@ -177,6 +177,18 @@ export class MainScreen extends Component {
 
           <CardSection title="CAGED Chords" itemsPerRow={4}>
             <Card>
+              <CardHeader color={colors.orange}>
+                <CardTitle>CAGED</CardTitle>
+                <CardSubTitle>Random CAGED Chords</CardSubTitle>
+              </CardHeader>
+              <CardContent>Practice finding CAGED chord shapes quickly in random shapes/keys</CardContent>
+              <CardContent>
+                <NavLink to="/random-caged-shapes" className={linkStyle}>
+                  <Button>Start practicing</Button>
+                </NavLink>
+              </CardContent>
+            </Card>
+            <Card>
               <CardHeader color={colors.red}>
                 <CardTitle>CAGED</CardTitle>
                 <CardSubTitle>Major chords practice</CardSubTitle>

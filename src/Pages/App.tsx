@@ -17,7 +17,12 @@ import { minorTriadsGuitar, minorTriadsBass } from '../data/minorTriads'
 import { diminishedTriadsGuitar, diminishedTriadsBass } from '../data/diminishedTriads'
 import { GuitarStrings, BassStrings } from '../data/strings'
 import { ScaleWithChordsScreen } from '../Reusable/ScaleWithChordsScreen'
-import { getRandomTriadsOnTwoPentatonicShapes, getRandomCagedChordsOnPentatonicScale, getRandomTriadsOnSinglePentatonicShape } from '../model/scalesWithChords'
+import {
+  getRandomTriadsOnTwoPentatonicShapes,
+  getRandomCagedChordsOnPentatonicScale,
+  getRandomTriadsOnSinglePentatonicShape,
+} from '../model/scalesWithChords'
+import { RandomCagedChordPracticeScreen } from '../Reusable/RandomCagedChordPracticeScreen'
 
 export class App extends Component {
   render() {
@@ -115,6 +120,9 @@ export class App extends Component {
               color={colors.green}
               strings={GuitarStrings}
             />
+          </Route>
+          <Route path="/random-caged-shapes" exact={true}>
+            <RandomCagedChordPracticeScreen />
           </Route>
         </Switch>
       </HashRouter>

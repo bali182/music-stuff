@@ -15,4 +15,6 @@ export const colors = {
   backgroundLightGreen: '#eaebc3',
   buttonDarkGray: '#4C5B5C',
   buttonLightGray: '#a1b0b1',
+
+  white: '#fff'
 }

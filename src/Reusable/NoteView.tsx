@@ -2,25 +2,9 @@ import React, { PureComponent } from 'react'
 import { Note, AnyString } from '../model/models'
 import { Card } from '../Ux/Card'
 import { css } from 'emotion'
-import { colors } from '../Ux/colors'
 import { NoteFretboard } from './NoteFretboard'
 import { getNormalizedNote } from '../model/Notes'
-
-const colorMap = {
-  [Note.C]: colors.red,
-  [Note.CSharp]: colors.green,
-  [Note.D]: colors.blue,
-  [Note.DSharp]: colors.orange,
-
-  [Note.E]: colors.darkRed,
-  [Note.F]: colors.darkBlue,
-  [Note.FSharp]: colors.darkPurple,
-  [Note.G]: colors.veryDarkRed,
-  [Note.GSharp]: colors.purple,
-  [Note.A]: colors.darkGreen,
-  [Note.ASharp]: colors.buttonDarkGray,
-  [Note.B]: colors.brown,
-}
+import { noteColors } from './noteColors'
 
 const noteCardStyle = css({
   minWidth: '200px',
@@ -62,7 +46,7 @@ export class NoteView extends PureComponent<NoteViewProps> {
   }
   private renderNote() {
     const { note } = this.props
-    return <div className={noteStyle(colorMap[getNormalizedNote(note)])}>{note}</div>
+    return <div className={noteStyle(noteColors[getNormalizedNote(note)])}>{note}</div>
   }
   private renderFretboard() {
     const { strings, fretboard, note } = this.props
